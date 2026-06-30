@@ -1,0 +1,39 @@
+.services {
+  padding: var(--section-padding);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.itemTitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.itemText {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .list {
+    flex-direction: row;
+  }
+
+  .item {
+    flex: 1;
+  }
+}

@@ -1,0 +1,25 @@
+.contact {
+  padding: var(--section-padding);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.text {
+  color: var(--color-muted);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.email {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}

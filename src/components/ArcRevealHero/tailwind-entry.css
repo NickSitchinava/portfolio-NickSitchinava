@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-muted-foreground: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-muted-bg);
+}
