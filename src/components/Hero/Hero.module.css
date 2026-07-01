@@ -1,40 +1,108 @@
 .hero {
-  min-height: 100dvh;
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  overflow: hidden;
+  background: #050507;
+  padding: 6rem 1.5rem 4rem;
+}
+
+.glow {
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: var(--section-padding);
+  max-width: 52rem;
   gap: 1.5rem;
 }
 
-.heading {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2.5rem;
-  max-width: 700px;
-  line-height: 1.15;
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.subtext {
-  color: var(--color-muted);
-  max-width: 500px;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-.cta {
-  background: var(--color-accent);
-  color: #fff;
-  padding: 0.75rem 1.75rem;
-  border-radius: 999px;
+.headline {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.1;
   font-weight: 600;
-  font-size: 0.9rem;
+  color: #fff;
+  margin: 0;
 }
 
-@media (min-width: 768px) {
-  .heading {
-    font-size: 3.5rem;
-  }
+.headline em {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.subhead {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 38rem;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primaryCta {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #050507;
+  background: #fff;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.primaryCta:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.secondaryCta {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.secondaryCta:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
 }
