@@ -10,6 +10,7 @@ import {
   useTransform,
 } from "motion/react";
 import { cn } from "@/lib/utils";
+import { LoaderRevealContext } from "./LoaderContext";
 import "./tailwind-entry.css";
 
 export type ArcRevealGreeting = {
@@ -120,65 +121,67 @@ export function ArcRevealHero({
   const current = greetings[Math.min(index, greetings.length - 1)];
 
   return (
-    <div
-      className={cn(
-        "relative isolate w-full bg-background text-foreground",
-        className
-      )}
-    >
+    <LoaderRevealContext.Provider value={{ isRevealed: phase === "done" }}>
       <div
-        className={cn("relative z-0", revealClassName)}
-        aria-hidden={showOverlay}
-        inert={showOverlay ? true : undefined}
-      >
-        {children}
-      </div>
-
-      <AnimatePresence>
-        {showOverlay && (
-          <motion.div
-            key="arc-reveal-overlay"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 1 }}
-            transition={{ duration: 0 }}
-            className={cn(
-              "fixed inset-0 z-30 h-dvh w-full overflow-hidden bg-foreground",
-              introClassName
-            )}
-          >
-            <div className="absolute inset-0 flex items-center justify-center px-6">
-              <AnimatePresence mode="wait">
-                {phase === "intro" && current && (
-                  <motion.span
-                    key={`${index}-${current.text}`}
-                    lang={current.lang}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                    className={cn(
-                      "select-none text-center text-3xl font-semibold tracking-tight text-background sm:text-5xl md:text-6xl",
-                      greetingClassName
-                    )}
-                  >
-                    {current.text}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              <motion.path d={arcPath} style={{ fill: "var(--color-bg)" }} />
-            </svg>
-          </motion.div>
+        className={cn(
+          "relative isolate w-full bg-background text-foreground",
+          className
         )}
-      </AnimatePresence>
-    </div>
+      >
+        <div
+          className={cn("relative z-0", revealClassName)}
+          aria-hidden={showOverlay}
+          inert={showOverlay ? true : undefined}
+        >
+          {children}
+        </div>
+
+        <AnimatePresence>
+          {showOverlay && (
+            <motion.div
+              key="arc-reveal-overlay"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 1 }}
+              transition={{ duration: 0 }}
+              className={cn(
+                "fixed inset-0 z-30 h-dvh w-full overflow-hidden bg-background",
+                introClassName
+              )}
+            >
+              <div className="absolute inset-0 flex items-center justify-center px-6">
+                <AnimatePresence mode="wait">
+                  {phase === "intro" && current && (
+                    <motion.span
+                      key={`${index}-${current.text}`}
+                      lang={current.lang}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                      className={cn(
+                        "select-none text-center text-3xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl",
+                        greetingClassName
+                      )}
+                    >
+                      {current.text}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <svg
+                className="pointer-events-none absolute inset-0 h-full w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden
+              >
+                <motion.path d={arcPath} style={{ fill: "var(--color-text)" }} />
+              </svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </LoaderRevealContext.Provider>
   );
 }
 

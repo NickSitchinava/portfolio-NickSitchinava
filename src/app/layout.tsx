@@ -18,26 +18,27 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nicksitchinava.dev"),
-  title: "Nick Sitchinava — Freelance Web Developer | Websites & Landing Pages",
+  title: "Web Design & Development Agency | Nick Sitchinava",
   description:
-    "Nick Sitchinava is a freelance web developer building fast, custom websites, landing pages, and web applications for startups and growing businesses.",
+    "We design and build custom websites, landing pages, and web applications for startups and growing businesses. Fast, SEO-friendly, built to convert.",
   keywords: [
-    "Nick Sitchinava",
-    "freelance web developer",
-    "web developer",
-    "website developer",
-    "landing page developer",
+    "web design agency",
+    "website design and development",
     "custom website design",
-    "Next.js developer",
-    "responsive web design",
-    "business website development",
+    "landing page design services",
+    "web development agency",
+    "small business website design",
+    "web app development",
+    "responsive website design",
+    "Next.js development agency",
+    "Nick Sitchinava",
   ],
   openGraph: {
     type: "website",
     url: "https://nicksitchinava.dev",
-    title: "Nick Sitchinava — Freelance Web Developer",
+    title: "Web Design & Development Agency | Nick Sitchinava",
     description:
-      "Custom websites, landing pages, and web applications, built by freelance web developer Nick Sitchinava.",
+      "Custom websites, landing pages, and web applications, designed and built to convert.",
   },
 };
 
