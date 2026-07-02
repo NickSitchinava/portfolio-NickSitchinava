@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "Web Design & Development Agency | Nick Sitchinava",
   description:
     "We design and build custom websites, landing pages, and web applications for startups and growing businesses. Fast, SEO-friendly, built to convert.",
+  icons: {
+    icon: "/images/logo.webp",
+  },
   keywords: [
     "web design agency",
     "website design and development",
