@@ -81,6 +81,21 @@ export default function Hero() {
           </a>
         </motion.div>
       </div>
+
+      <div className={styles.waveDivider} aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path
+            className={styles.waveBack}
+            d="M0,82 C220,24 380,124 620,72 C860,20 1040,112 1440,52 L1440,120 L0,120 Z"
+            fill="oklch(32% 0.06 290 / 0.35)"
+          />
+          <path
+            className={styles.waveFront}
+            d="M0,64 C240,118 470,8 720,34 C980,60 1180,132 1440,70 L1440,120 L0,120 Z"
+            fill="var(--color-bg)"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

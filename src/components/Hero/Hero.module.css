@@ -1,10 +1,11 @@
 .hero {
+  --wave-height: clamp(48px, 9vw, 110px);
   position: relative;
   min-height: 100svh;
   display: flex;
   overflow: hidden;
   background: #050507;
-  padding: 6rem 1.5rem 4rem;
+  padding: 6rem 1.5rem calc(4rem + var(--wave-height));
 }
 
 .glow {
@@ -137,4 +138,20 @@
 
 .secondaryCta:active {
   transform: scale(0.97);
+}
+
+.waveDivider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 2;
+  height: var(--wave-height);
+  pointer-events: none;
+}
+
+.waveDivider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
