@@ -1,0 +1,106 @@
+import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import { ArcRevealHero } from "@/components/ArcRevealHero/ArcRevealHero";
+import GradualBlur from "@/components/ui/gradual-blur";
+import { locales, type Locale } from "@/i18n/config";
+import { dictionaries } from "@/i18n/dictionaries";
+import "../globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const SITE_URL = "https://nicksitchinava.dev";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = dictionaries[locale].meta;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: t.title,
+    description: t.description,
+    keywords: t.keywords,
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: {
+        en: `${SITE_URL}/en`,
+        ka: `${SITE_URL}/ka`,
+        "x-default": `${SITE_URL}/en`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      url: `${SITE_URL}/${locale}`,
+      title: t.title,
+      description: t.ogDescription,
+      locale: locale === "ka" ? "ka_GE" : "en_US",
+    },
+  };
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const t = dictionaries[locale];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Nick Sitchinava",
+    image: `${SITE_URL}/images/logo.webp`,
+    url: `${SITE_URL}/${locale}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tbilisi",
+      addressCountry: "GE",
+    },
+    areaServed: ["Georgia", "Worldwide"],
+    description: t.meta.description,
+  };
+
+  return (
+    <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
+          {children}
+        </ArcRevealHero>
+        <GradualBlur
+          target="page"
+          position="bottom"
+          height="7rem"
+          strength={2}
+          divCount={5}
+          curve="bezier"
+          exponential
+          opacity={1}
+        />
+      </body>
+    </html>
+  );
+}

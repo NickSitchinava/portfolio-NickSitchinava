@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./header.module.css";
+import { dictionaries } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
 type Theme = "light" | "dark";
 
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [overHero, setOverHero] = useState(true);
   const [activeTheme, setActiveTheme] = useState<Theme>("light");
@@ -15,6 +18,8 @@ export default function Header() {
   const [coverSize, setCoverSize] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
   const revealId = useRef(0);
+  const t = dictionaries[locale].header;
+  const otherLocale: Locale = locale === "en" ? "ka" : "en";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -95,13 +100,16 @@ export default function Header() {
           />
         </a>
         <nav className={styles.nav}>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#about">{t.about}</a>
+          <a href="#services">{t.services}</a>
+          <a href="#projects">{t.projects}</a>
+          <a href="#contact">{t.contact}</a>
         </nav>
+        <Link href={`/${otherLocale}`} className={styles.langSwitch}>
+          {otherLocale.toUpperCase()}
+        </Link>
         <a href="#contact" className={styles.cta}>
-          Start a Project
+          {t.cta}
         </a>
       </header>
     </div>

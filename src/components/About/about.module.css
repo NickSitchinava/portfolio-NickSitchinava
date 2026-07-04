@@ -1,18 +1,177 @@
 .about {
-  padding: var(--section-padding);
-  max-width: 700px;
+  padding: 7rem 1.5rem;
+  background: var(--color-bg);
+}
+
+.grid {
+  max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 .heading {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2rem;
-  margin-bottom: 1.25rem;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
-.text {
-  color: var(--color-muted);
+.headingItalic {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-text);
+}
+
+.headingRegular {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-text);
+}
+
+.paragraph {
+  font-family: var(--font-body);
   font-size: 1.05rem;
   line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 32rem;
+  margin: 0;
+}
+
+.location {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: oklch(55% 0.18 290);
+  margin: 0;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid oklch(90% 0.01 290);
+}
+
+.step:first-child {
+  border-top: none;
+}
+
+.stepNumber {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: oklch(55% 0.18 290);
+  padding-top: 0.15rem;
+  min-width: 1.75rem;
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stepTitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.stepText {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.ctaRow {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid oklch(90% 0.01 290);
+}
+
+.cta {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  background: oklch(55% 0.18 290);
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cta:hover {
+  background: oklch(48% 0.19 290);
+  transform: translateY(-2px);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .grid {
+    gap: 2.5rem;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+  }
+
+  .step {
+    gap: 1rem;
+    padding: 1.4rem 0;
+  }
+
+  .stepNumber {
+    min-width: 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
+  }
 }
