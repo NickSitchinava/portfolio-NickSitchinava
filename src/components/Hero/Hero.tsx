@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import GlowHorizon from "@/components/ui/glow-horizon";
 import { useLoaderReveal } from "@/components/ArcRevealHero/LoaderContext";
+import { Button } from "@/components/ui/Button/Button";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import styles from "./Hero.module.css";
@@ -78,12 +79,36 @@ export default function Hero({ locale }: { locale: Locale }) {
           variants={fadeUp}
           transition={{ duration: 0.7, ease: EASE, delay: 0.45 }}
         >
-          <a href="#projects" className={styles.primaryCta}>
+          <Button
+            href="#projects"
+            className={styles.primaryCta}
+            style={
+              {
+                "--btn-bg": "#fff",
+                "--btn-fg": "#050507",
+                "--btn-fill": "#050507",
+                "--btn-fill-fg": "#fff",
+              } as React.CSSProperties
+            }
+          >
             {t.primaryCta}
-          </a>
-          <a href="#contact" className={styles.secondaryCta}>
+          </Button>
+          <Button
+            href="#contact"
+            className={styles.secondaryCta}
+            style={
+              {
+                "--btn-bg": "rgba(255,255,255,0.06)",
+                "--btn-fg": "#fff",
+                "--btn-border": "1px solid rgba(255,255,255,0.16)",
+                "--btn-blur": "blur(12px)",
+                "--btn-fill": "#fff",
+                "--btn-fill-fg": "#050507",
+              } as React.CSSProperties
+            }
+          >
             {t.secondaryCta}
-          </a>
+          </Button>
         </motion.div>
       </div>
 

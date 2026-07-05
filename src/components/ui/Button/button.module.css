@@ -1,0 +1,40 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.8rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--btn-bg, oklch(55% 0.18 290));
+  color: var(--btn-fg, #fff);
+  border: var(--btn-border, none);
+  backdrop-filter: var(--btn-blur, none);
+  -webkit-backdrop-filter: var(--btn-blur, none);
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fill {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  background: var(--btn-fill, oklch(20% 0.02 290));
+  z-index: 0;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.active {
+  color: var(--btn-fill-fg, #fff);
+}

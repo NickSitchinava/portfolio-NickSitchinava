@@ -1,7 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button/Button";
 import styles from "./about.module.css";
+
+const Strands = dynamic(() => import("@/components/Strands/Strands"), {
+  ssr: false,
+});
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -102,37 +109,118 @@ export interface AboutProps {
 
 export default function About({ locale = "en" }: AboutProps) {
   const t = content[locale];
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+  const [reduceEffects, setReduceEffects] = useState(false);
+
+  useEffect(() => {
+    setReduceEffects(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        window.innerWidth < 700
+    );
+
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const showEffects = inView && !reduceEffects;
 
   return (
-    <section id="about" className={styles.about} aria-label={t.ariaLabel}>
-      <div className={styles.grid}>
+    <section
+      ref={sectionRef}
+      id="about"
+      className={styles.about}
+      aria-label={t.ariaLabel}
+    >
+      <div className={styles.inner}>
         <motion.div
-          className={styles.intro}
+          className={styles.header}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
         >
-          <motion.span className={styles.eyebrow} variants={fadeUp} transition={{ duration: 0.5, ease: EASE }}>
+          <motion.span
+            className={styles.eyebrow}
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: EASE }}
+          >
             {t.eyebrow}
           </motion.span>
 
-          <motion.h2 className={styles.heading} variants={fadeUp} transition={{ duration: 0.6, ease: EASE }}>
-            <span className={styles.headingItalic}>{t.headingLineOne}</span>
-            <span className={styles.headingRegular}>{t.headingLineTwo}</span>
+          <motion.h2
+            className={styles.heading}
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE }}
+          >
+            <span>{t.headingLineOne}</span>
+            <span>{t.headingLineTwo}</span>
           </motion.h2>
 
-          <motion.p className={styles.paragraph} variants={fadeUp} transition={{ duration: 0.6, ease: EASE }}>
+          <motion.p
+            className={styles.paragraph}
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE }}
+          >
             {t.paragraph}
           </motion.p>
 
-          <motion.p className={styles.location} variants={fadeUp} transition={{ duration: 0.6, ease: EASE }}>
+          <motion.p
+            className={styles.location}
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE }}
+          >
             {t.location}
           </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: EASE }}
+          >
+            <Button
+              href="#contact"
+              style={
+                {
+                  "--btn-bg": "oklch(55% 0.18 290)",
+                  "--btn-fg": "#fff",
+                  "--btn-fill": "oklch(30% 0.14 290)",
+                  "--btn-fill-fg": "#fff",
+                } as React.CSSProperties
+              }
+            >
+              {t.cta}
+            </Button>
+          </motion.div>
         </motion.div>
 
+        <div className={styles.panel}>
+          {showEffects && (
+            <Strands
+              colors={["#8b5cf6", "#e8702a", "#4922e5"]}
+              count={4}
+              speed={0.35}
+              amplitude={0.9}
+              thickness={0.55}
+              glow={2.4}
+              opacity={0.9}
+              intensity={0.6}
+            />
+          )}
+        </div>
+
         <motion.div
-          className={styles.steps}
+          className={styles.strip}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -141,23 +229,15 @@ export default function About({ locale = "en" }: AboutProps) {
           {t.steps.map((step) => (
             <motion.div
               key={step.number}
-              className={styles.step}
+              className={styles.stripItem}
               variants={fadeUp}
               transition={{ duration: 0.5, ease: EASE }}
             >
               <span className={styles.stepNumber}>{step.number}</span>
-              <div className={styles.stepBody}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepText}>{step.description}</p>
-              </div>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <p className={styles.stepText}>{step.description}</p>
             </motion.div>
           ))}
-
-          <motion.div className={styles.ctaRow} variants={fadeUp} transition={{ duration: 0.5, ease: EASE }}>
-            <a href="#contact" className={styles.cta}>
-              {t.cta}
-            </a>
-          </motion.div>
         </motion.div>
       </div>
     </section>

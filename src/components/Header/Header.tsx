@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button/Button";
 import styles from "./header.module.css";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
@@ -108,9 +109,20 @@ export default function Header({ locale }: { locale: Locale }) {
         <Link href={`/${otherLocale}`} className={styles.langSwitch}>
           {otherLocale.toUpperCase()}
         </Link>
-        <a href="#contact" className={styles.cta}>
+        <Button
+          href="#contact"
+          className={styles.cta}
+          style={
+            {
+              "--btn-bg": "#fff",
+              "--btn-fg": "#050507",
+              "--btn-fill": "#050507",
+              "--btn-fill-fg": "#fff",
+            } as React.CSSProperties
+          }
+        >
           {t.cta}
-        </a>
+        </Button>
       </header>
     </div>
   );
