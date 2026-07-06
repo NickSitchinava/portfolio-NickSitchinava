@@ -3,6 +3,14 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import {
+  Search,
+  PenTool,
+  Rocket,
+  LifeBuoy,
+  MapPin,
+  type LucideIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/Button/Button";
 import styles from "./about.module.css";
 
@@ -26,46 +34,62 @@ const stagger = {
 
 type Locale = "en" | "ka";
 
-const content: Record<
-  Locale,
-  {
-    ariaLabel: string;
-    eyebrow: string;
-    headingLineOne: string;
-    headingLineTwo: string;
-    paragraph: string;
-    location: string;
-    steps: { number: string; title: string; description: string }[];
-    cta: string;
-  }
-> = {
+interface AboutStep {
+  title: string;
+  description: string;
+}
+
+interface AboutStat {
+  value: string;
+  label: string;
+}
+
+interface AboutContent {
+  ariaLabel: string;
+  eyebrow: string;
+  locationBadge: string;
+  headingLineOne: string;
+  headingLineTwo: string;
+  paragraph: string;
+  stats: AboutStat[];
+  steps: AboutStep[];
+  cta: string;
+}
+
+const content: Record<Locale, AboutContent> = {
   en: {
     ariaLabel: "About us",
     eyebrow: "How We Work",
+    locationBadge: "Tbilisi, Georgia",
     headingLineOne: "Thoughtful process,",
     headingLineTwo: "lasting results",
     paragraph:
-      "We're a Tbilisi-based web design and development studio building fast, considered websites for businesses across Georgia and beyond. Every project starts with structure, not templates.",
-    location:
-      "Based in Tbilisi, Georgia, serving local and international clients.",
+      "We're a web design and development studio built for high-ticket local service businesses, HVAC, landscaping, and similar trades, that need a website which actually brings in calls. We study the problems specific to your industry, then design and build a site to solve them: fast to load, considered in every detail, and built to convert. From Tbilisi, we build for clients across Georgia and abroad.",
+    stats: [
+      { value: "5+", label: "Years of Experience" },
+      { value: "<3s", label: "Page Load Time" },
+      { value: "EN / KA", label: "Fully Bilingual" },
+    ],
     steps: [
       {
-        number: "01",
         title: "Discover",
         description:
-          "We learn your goals, your audience, and your content before any design decisions are made.",
+          "We study the problems specific to your industry, HVAC scheduling, landscaping seasonality, whatever slows down calls and bookings, before any design work begins.",
       },
       {
-        number: "02",
         title: "Design",
         description:
-          "We build a visual system that reflects your brand and keeps navigation effortless.",
+          "We build a visual system around getting visitors to call, book, or request a quote, not just look good.",
       },
       {
-        number: "03",
         title: "Build & Launch",
         description:
-          "We write clean, fast code and ship a site that's optimized for search from day one.",
+          "We write clean, fast code and launch a site built to load in under 3 seconds, in English and Georgian if needed.",
+      },
+      {
+        title: "Support & Iterate",
+        description:
+          "We keep watching performance after launch, and you can book updates or fixes whenever you need them.",
       },
     ],
     cta: "Start a Project",
@@ -73,42 +97,50 @@ const content: Record<
   ka: {
     ariaLabel: "ჩვენ შესახებ",
     eyebrow: "როგორ ვმუშაობთ",
+    locationBadge: "თბილისი, საქართველო",
     headingLineOne: "გააზრებული პროცესი,",
     headingLineTwo: "ხანგრძლივი შედეგი",
     paragraph:
-      "ჩვენ ვართ თბილისში დაფუძნებული ვებ დიზაინისა და დეველოპმენტის სტუდია, რომელიც ქმნის სწრაფ და გააზრებულ ვებსაიტებს საქართველოსა და მის ფარგლებს გარეთ მოქმედი ბიზნესებისთვის. ყოველი პროექტი იწყება სტრუქტურით და არა შაბლონით.",
-    location:
-      "დაფუძნებულია თბილისში, საქართველოში, ვემსახურებით ადგილობრივ და საერთაშორისო კლიენტებს.",
+      "ჩვენ ვართ ვებ დიზაინისა და დეველოპმენტის სტუდია, რომელიც აშენებულია მაღალი ღირებულების სერვის ბიზნესებისთვის, მაგალითად HVAC და გამწვანების კომპანიები, რომლებსაც სჭირდებათ ვებსაიტი, რომელიც რეალურად მოაქვს ზარებს. ჩვენ ვსწავლობთ თქვენი ინდუსტრიისთვის დამახასიათებელ პრობლემებს და შემდეგ ვქმნით საიტს, რომელიც სწრაფად იტვირთება, გააზრებულია დეტალებში და აგებულია კონვერტაციისთვის. თბილისიდან ვმუშაობთ კლიენტებთან საქართველოს მასშტაბით და მის ფარგლებს გარეთ.",
+    stats: [
+      { value: "5+", label: "წლიანი გამოცდილება" },
+      { value: "<3s", label: "გვერდის ჩატვირთვის დრო" },
+      { value: "EN / KA", label: "სრულად ორენოვანი" },
+    ],
     steps: [
       {
-        number: "01",
         title: "კვლევა",
         description:
-          "ჯერ ვსწავლობთ თქვენს მიზნებს, აუდიტორიასა და კონტენტს, სანამ დიზაინზე გადავალთ.",
+          "ჩვენ ვსწავლობთ თქვენი ინდუსტრიისთვის დამახასიათებელ პრობლემებს, იქნება ეს HVAC-ის განრიგი თუ გამწვანების სეზონურობა, სანამ დიზაინზე გადავალთ.",
       },
       {
-        number: "02",
         title: "დიზაინი",
         description:
-          "ვქმნით ვიზუალურ სისტემას, რომელიც ასახავს თქვენს ბრენდს და ამარტივებს ნავიგაციას.",
+          "ვქმნით ვიზუალურ სისტემას, რომელიც აგებულია ვიზიტორების ზარზე, ჯავშანზე თუ შეკვეთაზე მოსაყვანად.",
       },
       {
-        number: "03",
         title: "აწყობა და გაშვება",
         description:
-          "ვწერთ სუფთა და სწრაფ კოდს და ვუშვებთ საიტს, რომელიც ოპტიმიზირებულია საძიებო სისტემებისთვის.",
+          "ვწერთ სუფთა და სწრაფ კოდს და ვუშვებთ საიტს, რომელიც იტვირთება 3 წამზე ნაკლებში, საჭიროებისამებრ ინგლისურ და ქართულ ენებზე.",
+      },
+      {
+        title: "მხარდაჭერა და დახვეწა",
+        description:
+          "გაშვების შემდეგაც ვაკვირდებით საიტის მუშაობას, და შეგიძლიათ ნებისმიერ დროს დაჯავშნოთ განახლება, თუ რამის გამოსწორება დაგჭირდებათ.",
       },
     ],
     cta: "დაიწყეთ პროექტი",
   },
 };
 
+const stepIcons: LucideIcon[] = [Search, PenTool, Rocket, LifeBuoy];
+
 export interface AboutProps {
   locale?: Locale;
 }
 
 export default function About({ locale = "en" }: AboutProps) {
-  const t = content[locale];
+  const t: AboutContent = content[locale];
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
   const [reduceEffects, setReduceEffects] = useState(false);
@@ -122,7 +154,8 @@ export default function About({ locale = "en" }: AboutProps) {
     const el = sectionRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      (entries) => {
+        const entry = entries[0];
         if (entry.isIntersecting) {
           setInView(true);
           observer.disconnect();
@@ -144,101 +177,139 @@ export default function About({ locale = "en" }: AboutProps) {
       aria-label={t.ariaLabel}
     >
       <div className={styles.inner}>
-        <motion.div
-          className={styles.header}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          <motion.span
-            className={styles.eyebrow}
-            variants={fadeUp}
-            transition={{ duration: 0.5, ease: EASE }}
-          >
-            {t.eyebrow}
-          </motion.span>
-
-          <motion.h2
-            className={styles.heading}
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
-            <span>{t.headingLineOne}</span>
-            <span>{t.headingLineTwo}</span>
-          </motion.h2>
-
-          <motion.p
-            className={styles.paragraph}
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
-            {t.paragraph}
-          </motion.p>
-
-          <motion.p
-            className={styles.location}
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
-            {t.location}
-          </motion.p>
-
+        <div className={styles.grid}>
           <motion.div
-            variants={fadeUp}
-            transition={{ duration: 0.5, ease: EASE }}
+            className={styles.textCol}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger}
           >
-            <Button
-              href="#contact"
-              style={
-                {
-                  "--btn-bg": "oklch(55% 0.18 290)",
-                  "--btn-fg": "#fff",
-                  "--btn-fill": "oklch(30% 0.14 290)",
-                  "--btn-fill-fg": "#fff",
-                } as React.CSSProperties
-              }
-            >
-              {t.cta}
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        <div className={styles.panel}>
-          {showEffects && (
-            <Strands
-              colors={["#8b5cf6", "#e8702a", "#4922e5"]}
-              count={4}
-              speed={0.35}
-              amplitude={0.9}
-              thickness={0.55}
-              glow={2.4}
-              opacity={0.9}
-              intensity={0.6}
-            />
-          )}
-        </div>
-
-        <motion.div
-          className={styles.strip}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          {t.steps.map((step) => (
             <motion.div
-              key={step.number}
-              className={styles.stripItem}
+              className={styles.metaRow}
               variants={fadeUp}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <span className={styles.stepNumber}>{step.number}</span>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepText}>{step.description}</p>
+              <span className={styles.eyebrow}>{t.eyebrow}</span>
+              <span className={styles.locationBadge}>
+                <MapPin size={13} strokeWidth={2} />
+                {t.locationBadge}
+              </span>
             </motion.div>
-          ))}
-        </motion.div>
+
+            <motion.h2
+              className={styles.heading}
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: EASE }}
+            >
+              <span>{t.headingLineOne}</span>
+              <span>{t.headingLineTwo}</span>
+            </motion.h2>
+
+            <motion.p
+              className={styles.paragraph}
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: EASE }}
+            >
+              {t.paragraph}
+            </motion.p>
+
+            <motion.dl
+              className={styles.statsRow}
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: EASE }}
+            >
+              {t.stats.map((stat: AboutStat) => (
+                <div key={stat.label} className={styles.statItem}>
+                  <dt className={styles.statLabel}>{stat.label}</dt>
+                  <dd className={styles.statValue}>{stat.value}</dd>
+                </div>
+              ))}
+            </motion.dl>
+
+            <motion.div
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: EASE }}
+            >
+              <Button
+                href="#contact"
+                style={
+                  {
+                    "--btn-bg": "oklch(55% 0.18 290)",
+                    "--btn-fg": "#fff",
+                    "--btn-fill": "oklch(30% 0.14 290)",
+                    "--btn-fill-fg": "#fff",
+                  } as React.CSSProperties
+                }
+              >
+                {t.cta}
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          <div className={styles.divider} aria-hidden="true" />
+
+          <div className={styles.visual} aria-hidden="true">
+            {showEffects && (
+              <Strands
+                colors={["#F97316", "#7C3AED", "#06B6D4"]}
+                count={3}
+                speed={0.5}
+                amplitude={1}
+                waviness={1}
+                thickness={0.7}
+                glow={2.6}
+                taper={3}
+                spread={1}
+                intensity={0.6}
+                saturation={2}
+                opacity={1}
+                scale={1.5}
+                glass={false}
+                refraction={1}
+                dispersion={1}
+                glassSize={1}
+                hueShift={0}
+              />
+            )}
+          </div>
+        </div>
+
+        <motion.ol
+          className={styles.steps}
+          itemScope
+          itemType="https://schema.org/ItemList"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          {t.steps.map((step: AboutStep, index: number) => {
+            const Icon: LucideIcon = stepIcons[index];
+            return (
+              <motion.li
+                key={step.title}
+                className={styles.step}
+                itemProp="itemListElement"
+                itemScope
+                itemType="https://schema.org/ListItem"
+                variants={fadeUp}
+                transition={{ duration: 0.5, ease: EASE }}
+              >
+                <meta itemProp="position" content={String(index + 1)} />
+                <span className={styles.stepIcon}>
+                  <Icon size={20} strokeWidth={1.75} />
+                </span>
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle} itemProp="name">
+                    {step.title}
+                  </h3>
+                  <p className={styles.stepText}>{step.description}</p>
+                </div>
+              </motion.li>
+            );
+          })}
+        </motion.ol>
       </div>
     </section>
   );

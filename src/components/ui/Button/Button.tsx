@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import {
   forwardRef,
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -46,6 +47,36 @@ function coverDiameter(width: number, height: number, x: number, y: number) {
   );
 }
 
+function assignRef<T>(ref: Ref<T>, value: T | null) {
+  if (typeof ref === "function") {
+    ref(value);
+    return;
+  }
+  if (ref) {
+    (ref as MutableRefObject<T | null>).current = value;
+  }
+}
+
+function hasTextContent(node: ReactNode): boolean {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node).trim().length > 0;
+  }
+  if (Array.isArray(node)) {
+    return node.some(hasTextContent);
+  }
+  if (
+    node &&
+    typeof node === "object" &&
+    "props" in node &&
+    (node as { props?: { children?: ReactNode } }).props?.children !== undefined
+  ) {
+    return hasTextContent(
+      (node as { props: { children: ReactNode } }).props.children
+    );
+  }
+  return false;
+}
+
 type CommonProps = {
   children: ReactNode;
   className?: string;
@@ -72,9 +103,13 @@ export const Button = forwardRef<
   const nodeRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null);
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const [focusVisible, setFocusVisible] = useState(false);
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState(0);
-  const active = hovered || pressed;
+
+  const isDisabled =
+    "disabled" in props ? Boolean((props as NativeButtonProps).disabled) : false;
+  const active = !isDisabled && (hovered || pressed || focusVisible);
 
   const updateOrigin = useCallback((x: number, y: number) => {
     const node = nodeRef.current;
@@ -83,6 +118,13 @@ export const Button = forwardRef<
     setOrigin({ x, y });
     setSize(coverDiameter(rect.width, rect.height, x, y));
   }, []);
+
+  const updateOriginFromCenter = useCallback(() => {
+    const node = nodeRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    updateOrigin(rect.width / 2, rect.height / 2);
+  }, [updateOrigin]);
 
   useLayoutEffect(() => {
     const node = nodeRef.current;
@@ -96,26 +138,50 @@ export const Button = forwardRef<
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(node);
+
+    const fonts = document.fonts;
+    if (fonts?.ready) {
+      fonts.ready.then(measure).catch(() => undefined);
+    }
+
     return () => observer.disconnect();
   }, [active, origin.x, origin.y]);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") return;
+    const ariaLabel = (props as { "aria-label"?: string })["aria-label"];
+    const ariaLabelledBy = (props as { "aria-labelledby"?: string })[
+      "aria-labelledby"
+    ];
+    if (
+      hasTextContent(children) ||
+      ariaLabel?.trim() ||
+      ariaLabelledBy?.trim()
+    ) {
+      return;
+    }
+    console.warn(
+      "Button: provide visible label text or aria-label / aria-labelledby so the control has an accessible name."
+    );
+  }, [children, props]);
 
   const setRef = useCallback(
     (node: HTMLAnchorElement | HTMLButtonElement | null) => {
       nodeRef.current = node;
-      if (typeof forwardedRef === "function") forwardedRef(node);
-      else if (forwardedRef)
-        (forwardedRef as MutableRefObject<typeof node>).current = node;
+      assignRef(forwardedRef, node);
     },
     [forwardedRef]
   );
 
   const pointerHandlers = {
     onPointerEnter: (e: React.PointerEvent) => {
+      if (isDisabled) return;
       const rect = e.currentTarget.getBoundingClientRect();
       updateOrigin(e.clientX - rect.left, e.clientY - rect.top);
       setHovered(true);
     },
     onPointerMove: (e: React.PointerEvent) => {
+      if (isDisabled) return;
       const rect = e.currentTarget.getBoundingClientRect();
       updateOrigin(e.clientX - rect.left, e.clientY - rect.top);
     },
@@ -124,11 +190,42 @@ export const Button = forwardRef<
       setPressed(false);
     },
     onPointerDown: (e: React.PointerEvent) => {
+      if (isDisabled || e.button !== 0) return;
       const rect = e.currentTarget.getBoundingClientRect();
       updateOrigin(e.clientX - rect.left, e.clientY - rect.top);
       setPressed(true);
+      setHovered(true);
     },
     onPointerUp: () => setPressed(false),
+    onPointerCancel: () => setPressed(false),
+    onFocus: (e: React.FocusEvent) => {
+      if (isDisabled) return;
+      if (e.currentTarget.matches(":focus-visible")) {
+        updateOriginFromCenter();
+        setFocusVisible(true);
+      }
+    },
+    onBlur: () => {
+      setFocusVisible(false);
+      setPressed(false);
+    },
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (isDisabled || e.repeat || (e.key !== " " && e.key !== "Enter")) {
+        return;
+      }
+      if (e.key === " ") e.preventDefault();
+      updateOriginFromCenter();
+      setPressed(true);
+      setFocusVisible(true);
+    },
+    onKeyUp: (e: React.KeyboardEvent) => {
+      if (e.key === " " || e.key === "Enter") {
+        setPressed(false);
+        if (!e.currentTarget.matches(":focus-visible")) {
+          setFocusVisible(false);
+        }
+      }
+    },
   };
 
   const content = (
@@ -174,10 +271,11 @@ export const Button = forwardRef<
   return (
     <motion.button
       {...(props as NativeButtonProps)}
+      disabled={isDisabled}
       ref={setRef as Ref<HTMLButtonElement>}
       className={combinedClassName}
       style={style}
-      whileTap={{ scale: 0.97 }}
+      whileTap={isDisabled ? undefined : { scale: 0.97 }}
       {...pointerHandlers}
     >
       {content}
