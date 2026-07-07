@@ -86,8 +86,8 @@ export default function Hero({ locale }: { locale: Locale }) {
               {
                 "--btn-bg": "#fff",
                 "--btn-fg": "#050507",
-                "--btn-fill": "#050507",
-                "--btn-fill-fg": "#fff",
+                "--btn-fill": "oklch(83% 0.006 290)",
+                "--btn-fill-fg": "#050507",
               } as React.CSSProperties
             }
           >
@@ -102,8 +102,8 @@ export default function Hero({ locale }: { locale: Locale }) {
                 "--btn-fg": "#fff",
                 "--btn-border": "1px solid rgba(255,255,255,0.16)",
                 "--btn-blur": "blur(12px)",
-                "--btn-fill": "#fff",
-                "--btn-fill-fg": "#050507",
+                "--btn-fill": "oklch(44% 0.015 290)",
+                "--btn-fill-fg": "#fff",
               } as React.CSSProperties
             }
           >

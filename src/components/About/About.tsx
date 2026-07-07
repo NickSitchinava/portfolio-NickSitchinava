@@ -9,6 +9,9 @@ import {
   Rocket,
   LifeBuoy,
   MapPin,
+  Award,
+  Zap,
+  Languages,
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button/Button";
@@ -66,8 +69,8 @@ const content: Record<Locale, AboutContent> = {
     paragraph:
       "We're a web design and development studio built for high-ticket local service businesses, HVAC, landscaping, and similar trades, that need a website which actually brings in calls. We study the problems specific to your industry, then design and build a site to solve them: fast to load, considered in every detail, and built to convert. From Tbilisi, we build for clients across Georgia and abroad.",
     stats: [
-      { value: "5+", label: "Years of Experience" },
-      { value: "<3s", label: "Page Load Time" },
+      { value: "5+", label: "Years Experience" },
+      { value: "Sub-3s", label: "Page Load Time" },
       { value: "EN / KA", label: "Fully Bilingual" },
     ],
     steps: [
@@ -104,7 +107,7 @@ const content: Record<Locale, AboutContent> = {
       "ჩვენ ვართ ვებ დიზაინისა და დეველოპმენტის სტუდია, რომელიც აშენებულია მაღალი ღირებულების სერვის ბიზნესებისთვის, მაგალითად HVAC და გამწვანების კომპანიები, რომლებსაც სჭირდებათ ვებსაიტი, რომელიც რეალურად მოაქვს ზარებს. ჩვენ ვსწავლობთ თქვენი ინდუსტრიისთვის დამახასიათებელ პრობლემებს და შემდეგ ვქმნით საიტს, რომელიც სწრაფად იტვირთება, გააზრებულია დეტალებში და აგებულია კონვერტაციისთვის. თბილისიდან ვმუშაობთ კლიენტებთან საქართველოს მასშტაბით და მის ფარგლებს გარეთ.",
     stats: [
       { value: "5+", label: "წლიანი გამოცდილება" },
-      { value: "<3s", label: "გვერდის ჩატვირთვის დრო" },
+      { value: "Sub-3s", label: "გვერდის ჩატვირთვის დრო" },
       { value: "EN / KA", label: "სრულად ორენოვანი" },
     ],
     steps: [
@@ -134,6 +137,7 @@ const content: Record<Locale, AboutContent> = {
 };
 
 const stepIcons: LucideIcon[] = [Search, PenTool, Rocket, LifeBuoy];
+const statIcons: LucideIcon[] = [Award, Zap, Languages];
 
 export interface AboutProps {
   locale?: Locale;
@@ -219,12 +223,18 @@ export default function About({ locale = "en" }: AboutProps) {
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
             >
-              {t.stats.map((stat: AboutStat) => (
-                <div key={stat.label} className={styles.statItem}>
-                  <dt className={styles.statLabel}>{stat.label}</dt>
-                  <dd className={styles.statValue}>{stat.value}</dd>
-                </div>
-              ))}
+              {t.stats.map((stat: AboutStat, index: number) => {
+                const Icon: LucideIcon = statIcons[index];
+                return (
+                  <div key={stat.label} className={styles.statItem}>
+                    <span className={styles.statIcon} aria-hidden="true">
+                      <Icon size={16} strokeWidth={1.75} />
+                    </span>
+                    <dt className={styles.statValue}>{stat.value}</dt>
+                    <dd className={styles.statLabel}>{stat.label}</dd>
+                  </div>
+                );
+              })}
             </motion.dl>
 
             <motion.div
@@ -264,7 +274,7 @@ export default function About({ locale = "en" }: AboutProps) {
                 intensity={0.6}
                 saturation={2}
                 opacity={1}
-                scale={1.5}
+                scale={1}
                 glass={false}
                 refraction={1}
                 dispersion={1}
