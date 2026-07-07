@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, animate } from "framer-motion";
 import {
   Search,
   PenTool,
@@ -42,8 +42,14 @@ interface AboutStep {
   description: string;
 }
 
+type AboutStatKind = "count" | "toggle";
+
 interface AboutStat {
-  value: string;
+  kind: AboutStatKind;
+  value?: number;
+  prefix?: string;
+  suffix?: string;
+  toggleValues?: string[];
   label: string;
 }
 
@@ -69,9 +75,9 @@ const content: Record<Locale, AboutContent> = {
     paragraph:
       "We're a web design and development studio built for high-ticket local service businesses, HVAC, landscaping, and similar trades, that need a website which actually brings in calls. We study the problems specific to your industry, then design and build a site to solve them: fast to load, considered in every detail, and built to convert. From Tbilisi, we build for clients across Georgia and abroad.",
     stats: [
-      { value: "5+", label: "Years Experience" },
-      { value: "Sub-3s", label: "Page Load Time" },
-      { value: "EN / KA", label: "Fully Bilingual" },
+      { kind: "count", value: 5, suffix: "+", label: "Years Experience" },
+      { kind: "count", value: 3, prefix: "Sub-", suffix: "s", label: "Page Load Time" },
+      { kind: "toggle", toggleValues: ["EN", "KA"], label: "Fully Bilingual" },
     ],
     steps: [
       {
@@ -106,9 +112,9 @@ const content: Record<Locale, AboutContent> = {
     paragraph:
       "ჩვენ ვართ ვებ დიზაინისა და დეველოპმენტის სტუდია, რომელიც აშენებულია მაღალი ღირებულების სერვის ბიზნესებისთვის, მაგალითად HVAC და გამწვანების კომპანიები, რომლებსაც სჭირდებათ ვებსაიტი, რომელიც რეალურად მოაქვს ზარებს. ჩვენ ვსწავლობთ თქვენი ინდუსტრიისთვის დამახასიათებელ პრობლემებს და შემდეგ ვქმნით საიტს, რომელიც სწრაფად იტვირთება, გააზრებულია დეტალებში და აგებულია კონვერტაციისთვის. თბილისიდან ვმუშაობთ კლიენტებთან საქართველოს მასშტაბით და მის ფარგლებს გარეთ.",
     stats: [
-      { value: "5+", label: "წლიანი გამოცდილება" },
-      { value: "Sub-3s", label: "გვერდის ჩატვირთვის დრო" },
-      { value: "EN / KA", label: "სრულად ორენოვანი" },
+      { kind: "count", value: 5, suffix: "+", label: "წლიანი გამოცდილება" },
+      { kind: "count", value: 3, prefix: "Sub-", suffix: "s", label: "გვერდის ჩატვირთვის დრო" },
+      { kind: "toggle", toggleValues: ["EN", "KA"], label: "სრულად ორენოვანი" },
     ],
     steps: [
       {
@@ -138,6 +144,79 @@ const content: Record<Locale, AboutContent> = {
 
 const stepIcons: LucideIcon[] = [Search, PenTool, Rocket, LifeBuoy];
 const statIcons: LucideIcon[] = [Award, Zap, Languages];
+
+function AnimatedCount({
+  stat,
+  active,
+  reduceMotion,
+}: {
+  stat: AboutStat;
+  active: boolean;
+  reduceMotion: boolean;
+}) {
+  const target = stat.value ?? 0;
+  const [display, setDisplay] = useState(reduceMotion ? target : 0);
+
+  useEffect(() => {
+    if (!active) return;
+    if (reduceMotion) {
+      setDisplay(target);
+      return;
+    }
+    const controls = animate(0, target, {
+      duration: 1.4,
+      ease: EASE,
+      onUpdate: (value) => setDisplay(Math.round(value)),
+    });
+    return () => controls.stop();
+  }, [active, reduceMotion, target]);
+
+  return (
+    <>
+      {stat.prefix}
+      {display}
+      {stat.suffix}
+    </>
+  );
+}
+
+function BilingualToggle({
+  values,
+  active,
+  reduceMotion,
+}: {
+  values: string[];
+  active: boolean;
+  reduceMotion: boolean;
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!active || reduceMotion || values.length < 2) return;
+    const id = setInterval(() => {
+      setIndex((current) => (current + 1) % values.length);
+    }, 1800);
+    return () => clearInterval(id);
+  }, [active, reduceMotion, values.length]);
+
+  const current = values[reduceMotion ? 0 : index] ?? "";
+
+  return (
+    <span className={styles.statToggle}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={current}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.35, ease: EASE }}
+        >
+          {current}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 export interface AboutProps {
   locale?: Locale;
@@ -218,24 +297,64 @@ export default function About({ locale = "en" }: AboutProps) {
               {t.paragraph}
             </motion.p>
 
-            <motion.dl
-              className={styles.statsRow}
+            <motion.div
+              className={styles.statsTrack}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
             >
-              {t.stats.map((stat: AboutStat, index: number) => {
-                const Icon: LucideIcon = statIcons[index];
-                return (
-                  <div key={stat.label} className={styles.statItem}>
-                    <span className={styles.statIcon} aria-hidden="true">
-                      <Icon size={16} strokeWidth={1.75} />
+              <div className={styles.statsNumbers}>
+                {t.stats.map((stat) => (
+                  <span key={stat.label} className={styles.statCell}>
+                    <span className={styles.statNumber}>
+                      {stat.kind === "count" ? (
+                        <AnimatedCount stat={stat} active={inView} reduceMotion={reduceEffects} />
+                      ) : (
+                        <BilingualToggle
+                          values={stat.toggleValues ?? []}
+                          active={inView}
+                          reduceMotion={reduceEffects}
+                        />
+                      )}
                     </span>
-                    <dt className={styles.statValue}>{stat.value}</dt>
-                    <dd className={styles.statLabel}>{stat.label}</dd>
-                  </div>
-                );
-              })}
-            </motion.dl>
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.statsIconRow}>
+                <span className={styles.statsLine} aria-hidden="true" />
+                {showEffects && (
+                  <motion.span
+                    className={styles.statsPulse}
+                    animate={{ left: ["6%", "94%"] }}
+                    transition={{
+                      duration: 5,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+                {t.stats.map((stat, index) => {
+                  const Icon: LucideIcon = statIcons[index];
+                  return (
+                    <span key={stat.label} className={styles.statCell}>
+                      <span className={styles.statIconNode} aria-hidden="true">
+                        <Icon size={15} strokeWidth={1.75} />
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
+
+              <div className={styles.statsLabels}>
+                {t.stats.map((stat) => (
+                  <span key={stat.label} className={styles.statCell}>
+                    <span className={styles.statLabel}>{stat.label}</span>
+                  </span>
+                ))}
+              </div>
+            </motion.div>
 
             <motion.div
               variants={fadeUp}
