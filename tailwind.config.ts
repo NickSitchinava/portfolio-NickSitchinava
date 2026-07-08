@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     "./src/components/ArcRevealHero/**/*.{ts,tsx}",
     "./src/components/ui/origin-button.tsx",
+    "./src/components/ui/story-scroll.tsx",
   ],
   theme: {
     extend: {
