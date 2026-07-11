@@ -3,20 +3,22 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Code2, Layout, TrendingUp, type LucideIcon } from "lucide-react";
 import { FlowSection } from "@/components/ui/story-scroll";
+import { BorderRotate } from "@/components/ui/animated-gradient-border";
 import type { ServiceItem } from "@/i18n/dictionaries";
 import { useServicesCursor } from "./ServicesCursor";
+import { useServicesParallax } from "./ServicesParallax";
 import styles from "./services.module.css";
 
 const serviceIcons: LucideIcon[] = [Code2, Layout, TrendingUp];
 
 export interface ServiceCardTheme {
   stageBg: string;
-  ink: string;
-  inkMuted: string;
-  inkFaint: string;
-  panelBg: string;
-  panelBorder: string;
-  panelShadow: string;
+  stageInk: string;
+  cardBg: string;
+  cardInk: string;
+  cardInkMuted: string;
+  cardInkFaint: string;
+  borderColors: { primary: string; secondary: string; accent: string };
 }
 
 const stagger = {
@@ -82,8 +84,8 @@ function LearnMoreButton({
       style={{
         x: springX,
         y: springY,
-        background: theme.ink,
-        color: theme.stageBg,
+        background: theme.cardInk,
+        color: theme.cardBg,
       }}
       onPointerMove={handlePointerMove}
       onPointerEnter={() => cursor?.setActive(true)}
@@ -101,32 +103,6 @@ function LearnMoreButton({
   );
 }
 
-function GlassPanel({
-  theme,
-  children,
-}: {
-  theme: ServiceCardTheme;
-  children: React.ReactNode;
-}) {
-  const cursor = useServicesCursor();
-
-  return (
-    <div
-      className={styles.glassPanel}
-      style={{
-        background: theme.panelBg,
-        borderColor: theme.panelBorder,
-        boxShadow: theme.panelShadow,
-        color: theme.ink,
-      }}
-      onPointerEnter={() => cursor?.setActive(true)}
-      onPointerLeave={() => cursor?.setActive(false)}
-    >
-      {children}
-    </div>
-  );
-}
-
 export function ServiceCard({
   service,
   index,
@@ -141,15 +117,19 @@ export function ServiceCard({
   learnMoreLabel: string;
 }) {
   const Icon = serviceIcons[index % serviceIcons.length];
+  const cursor = useServicesCursor();
+  const scrollProgress = useServicesParallax();
+  const backLayerY = useTransform(scrollProgress, [0, 1], [0, -70]);
+  const cardY = useTransform(scrollProgress, [0, 1], [0, -22]);
 
   return (
     <FlowSection
       aria-label={service.title}
-      style={{ backgroundColor: theme.stageBg, color: theme.ink }}
+      style={{ backgroundColor: theme.stageBg, color: theme.stageInk }}
     >
       <div className={styles.stage}>
         <div className={styles.composition}>
-          <div className={styles.backLayer}>
+          <motion.div className={styles.backLayer} style={{ y: backLayerY }}>
             <span className={styles.iconBadge} aria-hidden="true">
               <Icon size={26} strokeWidth={1.5} />
             </span>
@@ -158,48 +138,60 @@ export function ServiceCard({
                 <CascadeChars text={service.title} />
               </span>
             </h3>
-          </div>
+          </motion.div>
 
-          <GlassPanel theme={theme}>
-            <div className={styles.panelHeader}>
-              <span className={styles.panelLabel} style={{ color: theme.inkFaint }}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <LearnMoreButton
-                href={`/${locale}/services/${service.slug}`}
-                label={learnMoreLabel}
-                theme={theme}
-              />
-            </div>
-
-            <p className={styles.panelText} style={{ color: theme.ink }}>
-              {service.description}
-            </p>
-            <p className={styles.panelDetails} style={{ color: theme.inkMuted }}>
-              {service.details}
-            </p>
-
-            <motion.ul
-              className={styles.panelFeatures}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={stagger}
+          <motion.div style={{ y: cardY }}>
+            <BorderRotate
+              animationMode="rotate-on-hover"
+              animationSpeed={7}
+              gradientColors={theme.borderColors}
+              backgroundColor={theme.cardBg}
+              borderWidth={1.5}
+              borderRadius={28}
+              className={styles.card}
+              onPointerEnter={() => cursor?.setActive(true)}
+              onPointerLeave={() => cursor?.setActive(false)}
             >
-              {service.features.map((feature) => (
-                <motion.li
-                  key={feature}
-                  className={styles.panelFeatureItem}
-                  style={{ color: theme.inkMuted }}
-                  variants={featureRow}
-                  transition={{ duration: 0.5, ease: EASE }}
-                >
-                  <Check size={14} strokeWidth={2.25} style={{ color: theme.inkFaint }} />
-                  <span>{feature}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </GlassPanel>
+              <div className={styles.cardHeader}>
+                <span className={styles.cardLabel} style={{ color: theme.cardInkFaint }}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <LearnMoreButton
+                  href={`/${locale}/services/${service.slug}`}
+                  label={learnMoreLabel}
+                  theme={theme}
+                />
+              </div>
+
+              <p className={styles.cardText} style={{ color: theme.cardInk }}>
+                {service.description}
+              </p>
+              <p className={styles.cardDetails} style={{ color: theme.cardInkMuted }}>
+                {service.details}
+              </p>
+
+              <motion.ul
+                className={styles.cardFeatures}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={stagger}
+              >
+                {service.features.map((feature) => (
+                  <motion.li
+                    key={feature}
+                    className={styles.cardFeatureItem}
+                    style={{ color: theme.cardInkMuted }}
+                    variants={featureRow}
+                    transition={{ duration: 0.5, ease: EASE }}
+                  >
+                    <Check size={14} strokeWidth={2.25} style={{ color: theme.cardInkFaint }} />
+                    <span>{feature}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </BorderRotate>
+          </motion.div>
         </div>
       </div>
     </FlowSection>

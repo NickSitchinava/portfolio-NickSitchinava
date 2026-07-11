@@ -67,14 +67,19 @@ export default function ServicesCursor({ children }: { children: React.ReactNode
               className={styles.dot}
               style={{ left: springX, top: springY }}
               animate={{ opacity: visible ? 1 : 0, scale: active ? 1.4 : 1 }}
-              transition={{ duration: 0.25, ease: EASE }}
+              transition={{ duration: 0.3, ease: EASE }}
             />
             <motion.div
               aria-hidden="true"
               className={styles.ring}
               style={{ left: springX, top: springY }}
-              animate={{ opacity: visible ? 1 : 0, scale: active ? 1.8 : 1 }}
-              transition={{ duration: 0.35, ease: EASE }}
+              animate={{
+                opacity: visible ? 1 : 0,
+                scale: active ? 0.32 : 1,
+                backgroundColor: active ? "rgba(29,29,31,0.95)" : "rgba(29,29,31,0)",
+                borderColor: active ? "rgba(29,29,31,0)" : "rgba(29,29,31,0.45)",
+              }}
+              transition={{ duration: 0.4, ease: EASE }}
             />
           </>
         )}

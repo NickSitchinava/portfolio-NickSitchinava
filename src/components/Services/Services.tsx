@@ -1,6 +1,7 @@
 import FlowArt from "@/components/ui/story-scroll";
 import "@/components/ui/story-scroll-entry.css";
 import ServicesCursor from "./ServicesCursor";
+import ServicesParallax from "./ServicesParallax";
 import { ServiceCard, type ServiceCardTheme } from "./ServiceCard";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
@@ -8,31 +9,31 @@ import styles from "./services.module.css";
 
 const panelThemes: ServiceCardTheme[] = [
   {
-    stageBg: "#050507",
-    ink: "#ffffff",
-    inkMuted: "#a3a3a8",
-    inkFaint: "#7a7a80",
-    panelBg: "rgba(255, 255, 255, 0.05)",
-    panelBorder: "rgba(255, 255, 255, 0.1)",
-    panelShadow: "inset 0 0 24px rgba(255, 255, 255, 0.05)",
+    stageBg: "#ffffff",
+    stageInk: "#1d1d1f",
+    cardBg: "#1d1d1f",
+    cardInk: "#ffffff",
+    cardInkMuted: "#a8a8ac",
+    cardInkFaint: "#7d7d82",
+    borderColors: { primary: "#3a3a3c", secondary: "#6e6e73", accent: "#d6d6d6" },
   },
   {
-    stageBg: "var(--color-bg)",
-    ink: "var(--color-text)",
-    inkMuted: "var(--color-muted)",
-    inkFaint: "#9a9a9a",
-    panelBg: "rgba(17, 17, 17, 0.04)",
-    panelBorder: "rgba(17, 17, 17, 0.08)",
-    panelShadow: "inset 0 0 20px rgba(17, 17, 17, 0.03)",
+    stageBg: "#f5f5f7",
+    stageInk: "#1d1d1f",
+    cardBg: "#ffffff",
+    cardInk: "#1d1d1f",
+    cardInkMuted: "#707070",
+    cardInkFaint: "#474747",
+    borderColors: { primary: "#d6d6d6", secondary: "#a8a8ac", accent: "#1d1d1f" },
   },
   {
-    stageBg: "#050507",
-    ink: "#ffffff",
-    inkMuted: "#a3a3a8",
-    inkFaint: "#7a7a80",
-    panelBg: "rgba(255, 255, 255, 0.05)",
-    panelBorder: "rgba(255, 255, 255, 0.1)",
-    panelShadow: "inset 0 0 24px rgba(255, 255, 255, 0.05)",
+    stageBg: "#ffffff",
+    stageInk: "#1d1d1f",
+    cardBg: "#1d1d1f",
+    cardInk: "#ffffff",
+    cardInkMuted: "#a8a8ac",
+    cardInkFaint: "#7d7d82",
+    borderColors: { primary: "#3a3a3c", secondary: "#6e6e73", accent: "#d6d6d6" },
   },
 ];
 
@@ -59,18 +60,20 @@ export default function Services({ locale }: { locale: Locale }) {
       />
 
       <ServicesCursor>
-        <FlowArt aria-label={t.heading}>
-          {t.items.map((service, index) => (
-            <ServiceCard
-              key={service.slug}
-              service={service}
-              index={index}
-              locale={locale}
-              theme={panelThemes[index % panelThemes.length]}
-              learnMoreLabel={t.cta}
-            />
-          ))}
-        </FlowArt>
+        <ServicesParallax>
+          <FlowArt aria-label={t.heading}>
+            {t.items.map((service, index) => (
+              <ServiceCard
+                key={service.slug}
+                service={service}
+                index={index}
+                locale={locale}
+                theme={panelThemes[index % panelThemes.length]}
+                learnMoreLabel={t.cta}
+              />
+            ))}
+          </FlowArt>
+        </ServicesParallax>
       </ServicesCursor>
     </section>
   );
