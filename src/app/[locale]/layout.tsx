@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { ArcRevealHero } from "@/components/ArcRevealHero/ArcRevealHero";
-import GradualBlur from "@/components/ui/gradual-blur";
+import PageBottomBlur from "@/components/ui/PageBottomBlur";
 import { locales, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
 import "../globals.css";
@@ -90,16 +90,7 @@ export default async function LocaleLayout({
         <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
           {children}
         </ArcRevealHero>
-        <GradualBlur
-          target="page"
-          position="bottom"
-          height="7rem"
-          strength={2}
-          divCount={5}
-          curve="bezier"
-          exponential
-          opacity={1}
-        />
+        <PageBottomBlur />
       </body>
     </html>
   );

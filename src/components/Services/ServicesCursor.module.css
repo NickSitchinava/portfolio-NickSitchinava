@@ -1,0 +1,35 @@
+.scope {
+  position: relative;
+}
+
+@media (pointer: fine) {
+  .scope,
+  .scope * {
+    cursor: none;
+  }
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 1px solid;
+  pointer-events: none;
+  z-index: 999;
+}

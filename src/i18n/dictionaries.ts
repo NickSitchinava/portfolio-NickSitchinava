@@ -1,5 +1,13 @@
 import type { Locale } from "./config";
 
+export interface ServiceItem {
+  slug: string;
+  title: string;
+  description: string;
+  details: string;
+  features: string[];
+}
+
 export interface Dictionary {
   meta: {
     title: string;
@@ -26,7 +34,15 @@ export interface Dictionary {
   };
   services: {
     heading: string;
-    items: { title: string; description: string }[];
+    cta: string;
+    items: ServiceItem[];
+  };
+  serviceDetail: {
+    backLabel: string;
+    featuresHeading: string;
+    ctaHeading: string;
+    ctaText: string;
+    ctaButton: string;
   };
   projects: {
     heading: string;
@@ -89,20 +105,52 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     services: {
       heading: "Services",
+      cta: "Learn More",
       items: [
         {
+          slug: "website-development",
           title: "Website Development",
           description: "Custom-built websites, designed and coded from scratch.",
+          details:
+            "We design and hand-code every site to fit your business, no page builders, no bloated templates. Every layout, animation, and line of code exists for a reason: to load fast, look sharp, and turn visitors into calls.",
+          features: [
+            "Custom design, no templates",
+            "Hand-written, maintainable code",
+            "Optimized for speed and SEO from day one",
+          ],
         },
         {
+          slug: "landing-pages",
           title: "Landing Pages",
           description: "High-converting landing pages built for speed and clarity.",
+          details:
+            "A landing page has one job: convert. We strip away distractions and structure every section around a single, clear action, so visitors know exactly what to do next.",
+          features: [
+            "Focused, single-goal layouts",
+            "Built for A/B testing",
+            "Mobile-first, fast-loading design",
+          ],
         },
         {
+          slug: "seo-optimization",
           title: "SEO Optimization",
           description: "Clean, search-friendly code structured to rank well.",
+          details:
+            "Good SEO starts in the code, not after launch. We build every site with semantic markup, structured data, and performance baked in, so search engines and visitors both find what they need.",
+          features: [
+            "Semantic, accessible markup",
+            "Structured data and schema.org",
+            "Core Web Vitals optimization",
+          ],
         },
       ],
+    },
+    serviceDetail: {
+      backLabel: "Back to Services",
+      featuresHeading: "What's included",
+      ctaHeading: "Ready to start?",
+      ctaText: "Tell us about your project and we'll get back to you with next steps.",
+      ctaButton: "Start a Project",
     },
     projects: {
       heading: "Projects",
@@ -167,20 +215,53 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     services: {
       heading: "სერვისები",
+      cta: "დაწვრილებით",
       items: [
         {
+          slug: "website-development",
           title: "ვებსაიტის დეველოპმენტი",
           description: "ინდივიდუალურად აგებული ვებსაიტები, დაპროექტებული და კოდირებული ნულიდან.",
+          details:
+            "ჩვენ თითოეულ საიტს ვქმნით და ვწერთ ხელით თქვენი ბიზნესის შესაბამისად, არანაირი მზა შაბლონი და ზედმეტად დატვირთული კონსტრუქტორი. ყოველი განლაგება, ანიმაცია და კოდის სტრიქონი ემსახურება ერთ მიზანს: სწრაფად ჩაიტვირთოს, კარგად გამოიყურებოდეს და ვიზიტორი კლიენტად აქციოს.",
+          features: [
+            "ინდივიდუალური დიზაინი, არა შაბლონი",
+            "ხელით დაწერილი, ადვილად შენარჩუნებადი კოდი",
+            "სისწრაფესა და SEO-ზე ორიენტირებული პირველივე დღიდან",
+          ],
         },
         {
+          slug: "landing-pages",
           title: "ლენდინგ გვერდები",
           description: "მაღალკონვერტირებადი ლენდინგ გვერდები, აგებული სისწრაფისა და სიცხადისთვის.",
+          details:
+            "ლენდინგ გვერდს ერთი ამოცანა აქვს: კონვერტაცია. ჩვენ ვხსნით ყველა ზედმეტ დეტალს და ვაწყობთ თითოეულ სექციას ერთი, მკაფიო მოქმედების გარშემო, რათა ვიზიტორმა ზუსტად იცოდეს, რა უნდა გააკეთოს შემდეგ.",
+          features: [
+            "ერთ მიზანზე ორიენტირებული სტრუქტურა",
+            "მზადაა A/B ტესტირებისთვის",
+            "მობილურზე მორგებული, სწრაფად ჩატვირთვადი დიზაინი",
+          ],
         },
         {
+          slug: "seo-optimization",
           title: "SEO ოპტიმიზაცია",
-          description: "სუფთა, საძიებო სისტემებისთვის მოსახერხებელი კოდი, სტრუქტურირებული მაღალი პოზიციებისთვის.",
+          description:
+            "სუფთა, საძიებო სისტემებისთვის მოსახერხებელი კოდი, სტრუქტურირებული მაღალი პოზიციებისთვის.",
+          details:
+            "კარგი SEO იწყება კოდიდან და არა გაშვების შემდეგ. ჩვენ ვაგებთ თითოეულ საიტს სემანტიკური მარკაპით, სტრუქტურირებული მონაცემებით და გამართული წარმადობით, რათა საძიებო სისტემებმაც და ვიზიტორებმაც იპოვონ ის, რაც სჭირდებათ.",
+          features: [
+            "სემანტიკური, ხელმისაწვდომი მარკაპი",
+            "სტრუქტურირებული მონაცემები და schema.org",
+            "Core Web Vitals-ის ოპტიმიზაცია",
+          ],
         },
       ],
+    },
+    serviceDetail: {
+      backLabel: "სერვისებზე დაბრუნება",
+      featuresHeading: "რას მოიცავს",
+      ctaHeading: "მზად ხართ დასაწყებად?",
+      ctaText: "მოგვიყევით თქვენი პროექტის შესახებ და დაგიკავშირდებით შემდეგი ნაბიჯებისთვის.",
+      ctaButton: "დაიწყეთ პროექტი",
     },
     projects: {
       heading: "პროექტები",

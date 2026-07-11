@@ -1,0 +1,109 @@
+.main {
+  padding: calc(6rem + 4rem) 1.5rem var(--section-padding);
+  min-height: 70vh;
+}
+
+.inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin-bottom: 2.5rem;
+  transition: color 0.25s ease;
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.details {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-muted);
+  margin-bottom: 3rem;
+}
+
+.featuresHeading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 4rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.featureItem svg {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--color-accent);
+}
+
+.cta {
+  padding: 2.5rem;
+  border-radius: 20px;
+  background: var(--color-muted-bg);
+  text-align: center;
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ctaText {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  max-width: 42ch;
+  margin-left: auto;
+  margin-right: auto;
+}
