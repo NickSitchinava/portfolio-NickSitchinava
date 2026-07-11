@@ -1,0 +1,17 @@
+---
+source_file: "tsconfig.json"
+type: "concept"
+community: "Next.js Type References"
+location: "L25"
+tags:
+  - graphify/concept
+  - graphify/EXTRACTED
+  - community/Nextjs_Type_References
+---
+
+# next-env.d.ts
+
+## Connections
+- [[include]] - `extends` [EXTRACTED]
+
+#graphify/concept #graphify/EXTRACTED #community/Nextjs_Type_References

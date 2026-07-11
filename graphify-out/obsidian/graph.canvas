@@ -1,0 +1,3639 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "Page Routes & SEO",
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 720,
+      "color": "1"
+    },
+    {
+      "id": "n_src_components_ui_button_button_button",
+      "type": "file",
+      "file": "Button.md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_contact_contact_contact",
+      "type": "file",
+      "file": "Contact().md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_contact_contact",
+      "type": "file",
+      "file": "Contact.tsx.md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_dictionaries_dictionary",
+      "type": "file",
+      "file": "Dictionary.md",
+      "x": 620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_languageswitcher_ease",
+      "type": "file",
+      "file": "EASE_1.md",
+      "x": 820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_hero_hero_ease",
+      "type": "file",
+      "file": "EASE_2.md",
+      "x": 1020,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_footer_footer_footer",
+      "type": "file",
+      "file": "Footer().md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_footer_footer",
+      "type": "file",
+      "file": "Footer.tsx.md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_header_header",
+      "type": "file",
+      "file": "Header().md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_header",
+      "type": "file",
+      "file": "Header.tsx.md",
+      "x": 620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_hero_hero_hero",
+      "type": "file",
+      "file": "Hero().md",
+      "x": 820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_hero_hero",
+      "type": "file",
+      "file": "Hero.tsx.md",
+      "x": 1020,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_page_home",
+      "type": "file",
+      "file": "Home().md",
+      "x": 20,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_languageswitcher_languageswitcher",
+      "type": "file",
+      "file": "LanguageSwitcher().md",
+      "x": 220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_languageswitcher",
+      "type": "file",
+      "file": "LanguageSwitcher.tsx.md",
+      "x": 420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_config_locale",
+      "type": "file",
+      "file": "Locale_1.md",
+      "x": 620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_header_languageswitcher_options",
+      "type": "file",
+      "file": "OPTIONS.md",
+      "x": 820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_projects_projects_projects",
+      "type": "file",
+      "file": "Projects().md",
+      "x": 1020,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_projects_projects",
+      "type": "file",
+      "file": "Projects.tsx.md",
+      "x": 20,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_services_slug_page_servicedetailpage",
+      "type": "file",
+      "file": "ServiceDetailPage().md",
+      "x": 220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_config",
+      "type": "file",
+      "file": "config.ts.md",
+      "x": 420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_dictionaries_dictionaries",
+      "type": "file",
+      "file": "dictionaries.md",
+      "x": 620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_dictionaries",
+      "type": "file",
+      "file": "dictionaries.ts.md",
+      "x": 820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_hero_hero_fadeup",
+      "type": "file",
+      "file": "fadeUp_1.md",
+      "x": 1020,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_services_slug_page_generatemetadata",
+      "type": "file",
+      "file": "generateMetadata()_1.md",
+      "x": 20,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_page_generatestaticparams",
+      "type": "file",
+      "file": "generateStaticParams()_1.md",
+      "x": 220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_services_slug_page_generatestaticparams",
+      "type": "file",
+      "file": "generateStaticParams()_2.md",
+      "x": 420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_config_locales",
+      "type": "file",
+      "file": "locales.md",
+      "x": 620,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_page",
+      "type": "file",
+      "file": "page.tsx.md",
+      "x": 820,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_services_slug_page",
+      "type": "file",
+      "file": "page.tsx_1.md",
+      "x": 1020,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_sitemap_sitemap",
+      "type": "file",
+      "file": "sitemap().md",
+      "x": 20,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_sitemap",
+      "type": "file",
+      "file": "sitemap.ts.md",
+      "x": 220,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "type": "file",
+      "file": "useLoaderReveal().md",
+      "x": 420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "App Layout & Fonts",
+      "x": 1400,
+      "y": 0,
+      "width": 1320,
+      "height": 620,
+      "color": "2"
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero_arcrevealgreeting",
+      "type": "file",
+      "file": "ArcRevealGreeting.md",
+      "x": 1420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "type": "file",
+      "file": "ArcRevealHero().md",
+      "x": 1620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero",
+      "type": "file",
+      "file": "ArcRevealHero.tsx.md",
+      "x": 1820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero_arcrevealheroprops",
+      "type": "file",
+      "file": "ArcRevealHeroProps.md",
+      "x": 2020,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_buttonhtmlattributesformotion",
+      "type": "file",
+      "file": "ButtonHTMLAttributesForMotion.md",
+      "x": 2220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero_default_greetings",
+      "type": "file",
+      "file": "DEFAULT_GREETINGS.md",
+      "x": 2420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_fill_ease",
+      "type": "file",
+      "file": "FILL_EASE_1.md",
+      "x": 1420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_loadercontext",
+      "type": "file",
+      "file": "LoaderContext.tsx.md",
+      "x": 1620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_loadercontext_loaderrevealcontext",
+      "type": "file",
+      "file": "LoaderRevealContext.md",
+      "x": 1820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_loadercontext_loaderrevealstate",
+      "type": "file",
+      "file": "LoaderRevealState.md",
+      "x": 2020,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout_localelayout",
+      "type": "file",
+      "file": "LocaleLayout().md",
+      "x": 2220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_originbutton",
+      "type": "file",
+      "file": "OriginButton.md",
+      "x": 2420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_originbuttonprops",
+      "type": "file",
+      "file": "OriginButtonProps.md",
+      "x": 1420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_arcrevealhero_arcrevealhero_phase",
+      "type": "file",
+      "file": "Phase.md",
+      "x": 1620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_assignref",
+      "type": "file",
+      "file": "assignRef()_1.md",
+      "x": 1820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_utils_cn",
+      "type": "file",
+      "file": "cn().md",
+      "x": 2020,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout_generatemetadata",
+      "type": "file",
+      "file": "generateMetadata().md",
+      "x": 2220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout_generatestaticparams",
+      "type": "file",
+      "file": "generateStaticParams().md",
+      "x": 2420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_getcoverdiameter",
+      "type": "file",
+      "file": "getCoverDiameter().md",
+      "x": 1420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button_hastextcontent",
+      "type": "file",
+      "file": "hasTextContent()_1.md",
+      "x": 1620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout_inter",
+      "type": "file",
+      "file": "inter.md",
+      "x": 1820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout",
+      "type": "file",
+      "file": "layout.tsx.md",
+      "x": 2020,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_origin_button",
+      "type": "file",
+      "file": "origin-button.tsx.md",
+      "x": 2220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_locale_layout_playfair",
+      "type": "file",
+      "file": "playfair.md",
+      "x": 2420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_react",
+      "type": "file",
+      "file": "react.md",
+      "x": 1420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_react",
+      "type": "file",
+      "file": "react_1.md",
+      "x": 1620,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_utils",
+      "type": "file",
+      "file": "utils.ts.md",
+      "x": 1820,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "Services Card Components",
+      "x": 2800,
+      "y": 0,
+      "width": 1320,
+      "height": 620,
+      "color": "3"
+    },
+    {
+      "id": "n_src_components_services_servicecard_cascadechars",
+      "type": "file",
+      "file": "CascadeChars().md",
+      "x": 2820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor_cursorcontext",
+      "type": "file",
+      "file": "CursorContext.md",
+      "x": 3020,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor_cursorcontextvalue",
+      "type": "file",
+      "file": "CursorContextValue.md",
+      "x": 3220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_ease",
+      "type": "file",
+      "file": "EASE_3.md",
+      "x": 3420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor_ease",
+      "type": "file",
+      "file": "EASE_4.md",
+      "x": 3620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_flowart",
+      "type": "file",
+      "file": "FlowArt().md",
+      "x": 3820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_flowartprops",
+      "type": "file",
+      "file": "FlowArtProps.md",
+      "x": 2820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_flowsection",
+      "type": "file",
+      "file": "FlowSection().md",
+      "x": 3020,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_flowsectionprops",
+      "type": "file",
+      "file": "FlowSectionProps.md",
+      "x": 3220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_glasspanel",
+      "type": "file",
+      "file": "GlassPanel().md",
+      "x": 3420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_learnmorebutton",
+      "type": "file",
+      "file": "LearnMoreButton().md",
+      "x": 3620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_servicecard",
+      "type": "file",
+      "file": "ServiceCard().md",
+      "x": 3820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard",
+      "type": "file",
+      "file": "ServiceCard.tsx.md",
+      "x": 2820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_servicecardtheme",
+      "type": "file",
+      "file": "ServiceCardTheme.md",
+      "x": 3020,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_i18n_dictionaries_serviceitem",
+      "type": "file",
+      "file": "ServiceItem.md",
+      "x": 3220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_services_services",
+      "type": "file",
+      "file": "Services().md",
+      "x": 3420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_services",
+      "type": "file",
+      "file": "Services.tsx.md",
+      "x": 3620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor_servicescursor",
+      "type": "file",
+      "file": "ServicesCursor().md",
+      "x": 3820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor",
+      "type": "file",
+      "file": "ServicesCursor.tsx.md",
+      "x": 2820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_childcount",
+      "type": "file",
+      "file": "childCount().md",
+      "x": 3020,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll_cx",
+      "type": "file",
+      "file": "cx().md",
+      "x": 3220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_featurerow",
+      "type": "file",
+      "file": "featureRow.md",
+      "x": 3420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_services_panelthemes",
+      "type": "file",
+      "file": "panelThemes.md",
+      "x": 3620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_serviceicons",
+      "type": "file",
+      "file": "serviceIcons.md",
+      "x": 3820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicecard_stagger",
+      "type": "file",
+      "file": "stagger_1.md",
+      "x": 2820,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_story_scroll",
+      "type": "file",
+      "file": "story-scroll.tsx.md",
+      "x": 3020,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_services_servicescursor_useservicescursor",
+      "type": "file",
+      "file": "useServicesCursor().md",
+      "x": 3220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "Dev Dependencies & ESLint",
+      "x": 4200,
+      "y": 0,
+      "width": 1100,
+      "height": 620,
+      "color": "4"
+    },
+    {
+      "id": "n_package_devdependencies_tailwindcss_postcss",
+      "type": "file",
+      "file": "@tailwindcsspostcss.md",
+      "x": 4220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tailwindcss_postcss",
+      "type": "file",
+      "file": "@tailwindcsspostcss_1.md",
+      "x": 4420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_types_node",
+      "type": "file",
+      "file": "@typesnode.md",
+      "x": 4620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_types_node",
+      "type": "file",
+      "file": "@typesnode_1.md",
+      "x": 4820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_types_react",
+      "type": "file",
+      "file": "@typesreact.md",
+      "x": 5020,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_types_react",
+      "type": "file",
+      "file": "@typesreact_1.md",
+      "x": 4220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_types_react_dom",
+      "type": "file",
+      "file": "@typesreact-dom.md",
+      "x": 4420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_types_react_dom",
+      "type": "file",
+      "file": "@typesreact-dom_1.md",
+      "x": 4620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_autoprefixer",
+      "type": "file",
+      "file": "autoprefixer.md",
+      "x": 4820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_autoprefixer",
+      "type": "file",
+      "file": "autoprefixer_1.md",
+      "x": 5020,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies",
+      "type": "file",
+      "file": "devDependencies.md",
+      "x": 4220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_eslint",
+      "type": "file",
+      "file": "eslint.md",
+      "x": 4420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_eslint",
+      "type": "file",
+      "file": "eslint_1.md",
+      "x": 4620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_eslint_config_next",
+      "type": "file",
+      "file": "eslint-config-next.md",
+      "x": 4820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_eslint_config_next",
+      "type": "file",
+      "file": "eslint-config-next_1.md",
+      "x": 5020,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_postcss",
+      "type": "file",
+      "file": "postcss.md",
+      "x": 4220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_postcss",
+      "type": "file",
+      "file": "postcss_1.md",
+      "x": 4420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_tailwindcss",
+      "type": "file",
+      "file": "tailwindcss.md",
+      "x": 4620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tailwindcss",
+      "type": "file",
+      "file": "tailwindcss_1.md",
+      "x": 4820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_devdependencies_typescript",
+      "type": "file",
+      "file": "typescript.md",
+      "x": 5020,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_typescript",
+      "type": "file",
+      "file": "typescript_1.md",
+      "x": 4220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "Animation & Motion Libraries",
+      "x": 5380,
+      "y": 0,
+      "width": 1100,
+      "height": 620,
+      "color": "5"
+    },
+    {
+      "id": "n_package_dependencies_gsap_react",
+      "type": "file",
+      "file": "@gsapreact.md",
+      "x": 5400,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_gsap_react",
+      "type": "file",
+      "file": "@gsapreact_1.md",
+      "x": 5600,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_clsx",
+      "type": "file",
+      "file": "clsx.md",
+      "x": 5800,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_clsx",
+      "type": "file",
+      "file": "clsx_1.md",
+      "x": 6000,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies",
+      "type": "file",
+      "file": "dependencies.md",
+      "x": 6200,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_framer_motion",
+      "type": "file",
+      "file": "framer-motion.md",
+      "x": 5400,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_framer_motion",
+      "type": "file",
+      "file": "framer-motion_1.md",
+      "x": 5600,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_gsap",
+      "type": "file",
+      "file": "gsap.md",
+      "x": 5800,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_gsap",
+      "type": "file",
+      "file": "gsap_1.md",
+      "x": 6000,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_lucide_react",
+      "type": "file",
+      "file": "lucide-react.md",
+      "x": 6200,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lucide_react",
+      "type": "file",
+      "file": "lucide-react_1.md",
+      "x": 5400,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_motion",
+      "type": "file",
+      "file": "motion.md",
+      "x": 5600,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_motion",
+      "type": "file",
+      "file": "motion_1.md",
+      "x": 5800,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_next",
+      "type": "file",
+      "file": "next.md",
+      "x": 6000,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_next",
+      "type": "file",
+      "file": "next_1.md",
+      "x": 6200,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_ogl",
+      "type": "file",
+      "file": "ogl.md",
+      "x": 5400,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ogl",
+      "type": "file",
+      "file": "ogl_1.md",
+      "x": 5600,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_react_dom",
+      "type": "file",
+      "file": "react-dom.md",
+      "x": 5800,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_react_dom",
+      "type": "file",
+      "file": "react-dom_1.md",
+      "x": 6000,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_dependencies_tailwind_merge",
+      "type": "file",
+      "file": "tailwind-merge.md",
+      "x": 6200,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tailwind_merge",
+      "type": "file",
+      "file": "tailwind-merge_1.md",
+      "x": 5400,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g5",
+      "type": "group",
+      "label": "TypeScript Config & Refs",
+      "x": 0,
+      "y": 800,
+      "width": 1100,
+      "height": 620,
+      "color": "6"
+    },
+    {
+      "id": "n_ref_src",
+      "type": "file",
+      "file": ".src.md",
+      "x": 20,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_paths",
+      "type": "file",
+      "file": "unnamed.md",
+      "x": 220,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_allowjs",
+      "type": "file",
+      "file": "allowJs.md",
+      "x": 420,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions",
+      "type": "file",
+      "file": "compilerOptions.md",
+      "x": 620,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_dom",
+      "type": "file",
+      "file": "dom.md",
+      "x": 820,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_dom_iterable",
+      "type": "file",
+      "file": "dom.iterable.md",
+      "x": 20,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_esmoduleinterop",
+      "type": "file",
+      "file": "esModuleInterop.md",
+      "x": 220,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_esnext",
+      "type": "file",
+      "file": "esnext.md",
+      "x": 420,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_incremental",
+      "type": "file",
+      "file": "incremental.md",
+      "x": 620,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_isolatedmodules",
+      "type": "file",
+      "file": "isolatedModules.md",
+      "x": 820,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_jsx",
+      "type": "file",
+      "file": "jsx.md",
+      "x": 20,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_lib",
+      "type": "file",
+      "file": "lib.md",
+      "x": 220,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_module",
+      "type": "file",
+      "file": "module.md",
+      "x": 420,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_moduleresolution",
+      "type": "file",
+      "file": "moduleResolution.md",
+      "x": 620,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_noemit",
+      "type": "file",
+      "file": "noEmit.md",
+      "x": 820,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_paths",
+      "type": "file",
+      "file": "paths.md",
+      "x": 20,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_plugins",
+      "type": "file",
+      "file": "plugins.md",
+      "x": 220,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_resolvejsonmodule",
+      "type": "file",
+      "file": "resolveJsonModule.md",
+      "x": 420,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_skiplibcheck",
+      "type": "file",
+      "file": "skipLibCheck.md",
+      "x": 620,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_strict",
+      "type": "file",
+      "file": "strict.md",
+      "x": 820,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_compileroptions_target",
+      "type": "file",
+      "file": "target.md",
+      "x": 20,
+      "y": 1200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g6",
+      "type": "group",
+      "label": "About Section Components",
+      "x": 1400,
+      "y": 800,
+      "width": 1100,
+      "height": 520,
+      "color": "1"
+    },
+    {
+      "id": "n_src_components_about_about_about",
+      "type": "file",
+      "file": "About().md",
+      "x": 1420,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about",
+      "type": "file",
+      "file": "About.tsx.md",
+      "x": 1620,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_aboutcontent",
+      "type": "file",
+      "file": "AboutContent.md",
+      "x": 1820,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_aboutprops",
+      "type": "file",
+      "file": "AboutProps.md",
+      "x": 2020,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_aboutstat",
+      "type": "file",
+      "file": "AboutStat.md",
+      "x": 2220,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_aboutstatkind",
+      "type": "file",
+      "file": "AboutStatKind.md",
+      "x": 1420,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_aboutstep",
+      "type": "file",
+      "file": "AboutStep.md",
+      "x": 1620,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_animatedcount",
+      "type": "file",
+      "file": "AnimatedCount().md",
+      "x": 1820,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_bilingualtoggle",
+      "type": "file",
+      "file": "BilingualToggle().md",
+      "x": 2020,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_ease",
+      "type": "file",
+      "file": "EASE.md",
+      "x": 2220,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_locale",
+      "type": "file",
+      "file": "Locale.md",
+      "x": 1420,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_strands",
+      "type": "file",
+      "file": "Strands.md",
+      "x": 1620,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_content",
+      "type": "file",
+      "file": "content.md",
+      "x": 1820,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_fadeup",
+      "type": "file",
+      "file": "fadeUp.md",
+      "x": 2020,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_stagger",
+      "type": "file",
+      "file": "stagger.md",
+      "x": 2220,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_staticons",
+      "type": "file",
+      "file": "statIcons.md",
+      "x": 1420,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_about_about_stepicons",
+      "type": "file",
+      "file": "stepIcons.md",
+      "x": 1620,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g7",
+      "type": "group",
+      "label": "Gradual Blur UI Effect",
+      "x": 2800,
+      "y": 800,
+      "width": 880,
+      "height": 520,
+      "color": "2"
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_curve_functions",
+      "type": "file",
+      "file": "CURVE_FUNCTIONS.md",
+      "x": 2820,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_default_config",
+      "type": "file",
+      "file": "DEFAULT_CONFIG.md",
+      "x": 3020,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_pagebottomblur_ease",
+      "type": "file",
+      "file": "EASE_5.md",
+      "x": 3220,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_gradualblur",
+      "type": "file",
+      "file": "GradualBlur().md",
+      "x": 3420,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_gradualblurmemo",
+      "type": "file",
+      "file": "GradualBlurMemo.md",
+      "x": 2820,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_gradualblurprops",
+      "type": "file",
+      "file": "GradualBlurProps.md",
+      "x": 3020,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_presets",
+      "type": "file",
+      "file": "PRESETS.md",
+      "x": 3220,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_pagebottomblur_pagebottomblur",
+      "type": "file",
+      "file": "PageBottomBlur().md",
+      "x": 3420,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_pagebottomblur",
+      "type": "file",
+      "file": "PageBottomBlur.tsx.md",
+      "x": 2820,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_debounce",
+      "type": "file",
+      "file": "debounce().md",
+      "x": 3020,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_getgradientdirection",
+      "type": "file",
+      "file": "getGradientDirection().md",
+      "x": 3220,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur",
+      "type": "file",
+      "file": "gradual-blur.tsx.md",
+      "x": 3420,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_mergeconfigs",
+      "type": "file",
+      "file": "mergeConfigs().md",
+      "x": 2820,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_useintersectionobserver",
+      "type": "file",
+      "file": "useIntersectionObserver().md",
+      "x": 3020,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_gradual_blur_useresponsivedimension",
+      "type": "file",
+      "file": "useResponsiveDimension().md",
+      "x": 3220,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g8",
+      "type": "group",
+      "label": "Next.js Type References",
+      "x": 4200,
+      "y": 800,
+      "width": 880,
+      "height": 420,
+      "color": "3"
+    },
+    {
+      "id": "n_ref_mts",
+      "type": "file",
+      "file": ".mts.md",
+      "x": 4220,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_ts",
+      "type": "file",
+      "file": ".ts.md",
+      "x": 4420,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_tsx",
+      "type": "file",
+      "file": ".tsx.md",
+      "x": 4620,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_next_dev_types_ts",
+      "type": "file",
+      "file": ".nextdevtypes.ts.md",
+      "x": 4820,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_next_types_ts",
+      "type": "file",
+      "file": ".nexttypes.ts.md",
+      "x": 4220,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_exclude",
+      "type": "file",
+      "file": "exclude.md",
+      "x": 4420,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig_include",
+      "type": "file",
+      "file": "include.md",
+      "x": 4620,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_next_env_d_ts",
+      "type": "file",
+      "file": "next-env.d.ts.md",
+      "x": 4820,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_node_modules",
+      "type": "file",
+      "file": "node_modules.md",
+      "x": 4220,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tsconfig",
+      "type": "file",
+      "file": "tsconfig.json.md",
+      "x": 4420,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g9",
+      "type": "group",
+      "label": "Button UI Component",
+      "x": 5380,
+      "y": 800,
+      "width": 880,
+      "height": 420,
+      "color": "4"
+    },
+    {
+      "id": "n_src_components_ui_button_button_anchorprops",
+      "type": "file",
+      "file": "AnchorProps.md",
+      "x": 5400,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button",
+      "type": "file",
+      "file": "Button.tsx.md",
+      "x": 5600,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_buttonprops",
+      "type": "file",
+      "file": "ButtonProps.md",
+      "x": 5800,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_commonprops",
+      "type": "file",
+      "file": "CommonProps.md",
+      "x": 6000,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_fill_ease",
+      "type": "file",
+      "file": "FILL_EASE.md",
+      "x": 5400,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_motionconflictinghandlers",
+      "type": "file",
+      "file": "MotionConflictingHandlers.md",
+      "x": 5600,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_nativebuttonprops",
+      "type": "file",
+      "file": "NativeButtonProps.md",
+      "x": 5800,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_assignref",
+      "type": "file",
+      "file": "assignRef().md",
+      "x": 6000,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_coverdiameter",
+      "type": "file",
+      "file": "coverDiameter().md",
+      "x": 5400,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_button_button_hastextcontent",
+      "type": "file",
+      "file": "hasTextContent().md",
+      "x": 5600,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g10",
+      "type": "group",
+      "label": "Package Scripts & Metadata",
+      "x": 0,
+      "y": 1500,
+      "width": 660,
+      "height": 420,
+      "color": "5"
+    },
+    {
+      "id": "n_package_scripts_build",
+      "type": "file",
+      "file": "build.md",
+      "x": 20,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_scripts_dev",
+      "type": "file",
+      "file": "dev.md",
+      "x": 220,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_scripts_lint",
+      "type": "file",
+      "file": "lint.md",
+      "x": 420,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_name",
+      "type": "file",
+      "file": "name.md",
+      "x": 20,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package",
+      "type": "file",
+      "file": "package.json.md",
+      "x": 220,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_private",
+      "type": "file",
+      "file": "private.md",
+      "x": 420,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_scripts",
+      "type": "file",
+      "file": "scripts.md",
+      "x": 20,
+      "y": 1740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_scripts_start",
+      "type": "file",
+      "file": "start.md",
+      "x": 220,
+      "y": 1740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_package_version",
+      "type": "file",
+      "file": "version.md",
+      "x": 420,
+      "y": 1740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g11",
+      "type": "group",
+      "label": "Glow Horizon Visual Effect",
+      "x": 1400,
+      "y": 1500,
+      "width": 660,
+      "height": 420,
+      "color": "6"
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_arc",
+      "type": "file",
+      "file": "Arc().md",
+      "x": 1420,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_ease",
+      "type": "file",
+      "file": "EASE_6.md",
+      "x": 1620,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_glowhorizon",
+      "type": "file",
+      "file": "GlowHorizon().md",
+      "x": 1820,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_glowhorizonprops",
+      "type": "file",
+      "file": "GlowHorizonProps.md",
+      "x": 1420,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_glowhorizonvariant",
+      "type": "file",
+      "file": "GlowHorizonVariant.md",
+      "x": 1620,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon_variants",
+      "type": "file",
+      "file": "VARIANTS.md",
+      "x": 1820,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_glow_horizon",
+      "type": "file",
+      "file": "glow-horizon.tsx.md",
+      "x": 1420,
+      "y": 1740,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g12",
+      "type": "group",
+      "label": "Project Identity & Docs",
+      "x": 2800,
+      "y": 1500,
+      "width": 660,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_public_images_logo_geometric_mark",
+      "type": "file",
+      "file": "Abstract Geometric S-Mark Design.md",
+      "x": 2820,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_readme_geist_font",
+      "type": "file",
+      "file": "Geist Font.md",
+      "x": 3020,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_readme_nextjs_framework",
+      "type": "file",
+      "file": "Next.js Framework.md",
+      "x": 3220,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_readme_nextjs_project",
+      "type": "file",
+      "file": "Next.js Portfolio Project.md",
+      "x": 2820,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_public_images_logo_brand_identity",
+      "type": "file",
+      "file": "Portfolio Brand Identity Logo.md",
+      "x": 3020,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_readme_vercel_deployment",
+      "type": "file",
+      "file": "Vercel Deployment Platform.md",
+      "x": 3220,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g13",
+      "type": "group",
+      "label": "Graphify Knowledge Graph",
+      "x": 4200,
+      "y": 1500,
+      "width": 660,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n__agents_rules_graphify_graphify_knowledge_graph",
+      "type": "file",
+      "file": "Graphify Knowledge Graph Rule.md",
+      "x": 4220,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n__agents_rules_graphify_graphify_query_pattern",
+      "type": "file",
+      "file": "Graphify Query Pattern.md",
+      "x": 4420,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n__agents_rules_graphify_graphify_update_pattern",
+      "type": "file",
+      "file": "Graphify Update Pattern.md",
+      "x": 4620,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n__agents_workflows_graphify_graphify_workflow",
+      "type": "file",
+      "file": "Graphify Workflow.md",
+      "x": 4220,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n__agents_workflows_graphify_knowledge_graph_pipeline",
+      "type": "file",
+      "file": "Knowledge Graph Pipeline.md",
+      "x": 4420,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g14",
+      "type": "group",
+      "label": "Strands Visual Component",
+      "x": 5380,
+      "y": 1500,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_components_strands_strands_strands",
+      "type": "file",
+      "file": "Strands().md",
+      "x": 5400,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_strands_strands",
+      "type": "file",
+      "file": "Strands.tsx.md",
+      "x": 5600,
+      "y": 1580,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_strands_strands_strandsprops",
+      "type": "file",
+      "file": "StrandsProps.md",
+      "x": 5400,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_strands_strands_buildpalette",
+      "type": "file",
+      "file": "buildPalette().md",
+      "x": 5600,
+      "y": 1660,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g15",
+      "type": "group",
+      "label": "i18n Middleware & Routing",
+      "x": 0,
+      "y": 2000,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_middleware_config",
+      "type": "file",
+      "file": "config_1.md",
+      "x": 20,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_middleware_middleware",
+      "type": "file",
+      "file": "middleware().md",
+      "x": 220,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_middleware",
+      "type": "file",
+      "file": "middleware.ts.md",
+      "x": 20,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_middleware_resolvelocale",
+      "type": "file",
+      "file": "resolveLocale().md",
+      "x": 220,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g16",
+      "type": "group",
+      "label": "ESLint Configuration",
+      "x": 1400,
+      "y": 2000,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_eslint_config",
+      "type": "file",
+      "file": "eslint.config.mjs.md",
+      "x": 1420,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_eslint_config_eslintconfig",
+      "type": "file",
+      "file": "eslintConfig.md",
+      "x": 1620,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g17",
+      "type": "group",
+      "label": "Next.js Configuration",
+      "x": 2800,
+      "y": 2000,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_next_config",
+      "type": "file",
+      "file": "next.config.ts.md",
+      "x": 2820,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_next_config_nextconfig",
+      "type": "file",
+      "file": "nextConfig.md",
+      "x": 3020,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g18",
+      "type": "group",
+      "label": "PostCSS Configuration",
+      "x": 4200,
+      "y": 2000,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_postcss_config_config",
+      "type": "file",
+      "file": "config.md",
+      "x": 4220,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_postcss_config",
+      "type": "file",
+      "file": "postcss.config.mjs.md",
+      "x": 4420,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g19",
+      "type": "group",
+      "label": "Robots.txt & Crawl Rules",
+      "x": 5380,
+      "y": 2000,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_src_app_robots_robots",
+      "type": "file",
+      "file": "robots().md",
+      "x": 5400,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_robots",
+      "type": "file",
+      "file": "robots.ts.md",
+      "x": 5600,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g20",
+      "type": "group",
+      "label": "Tailwind CSS Configuration",
+      "x": 0,
+      "y": 2480,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_tailwind_config_config",
+      "type": "file",
+      "file": "config_2.md",
+      "x": 20,
+      "y": 2560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tailwind_config",
+      "type": "file",
+      "file": "tailwind.config.ts.md",
+      "x": 220,
+      "y": 2560,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_eslint_config_eslint_config_eslintconfig",
+      "fromNode": "n_eslint_config",
+      "toNode": "n_eslint_config_eslintconfig",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_next_config_next_config_nextconfig",
+      "fromNode": "n_next_config",
+      "toNode": "n_next_config_nextconfig",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_dependencies",
+      "fromNode": "n_package",
+      "toNode": "n_package_dependencies",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_devdependencies",
+      "fromNode": "n_package",
+      "toNode": "n_package_devdependencies",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_name",
+      "fromNode": "n_package",
+      "toNode": "n_package_name",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_private",
+      "fromNode": "n_package",
+      "toNode": "n_package_private",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_scripts",
+      "fromNode": "n_package",
+      "toNode": "n_package_scripts",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_package_version",
+      "fromNode": "n_package",
+      "toNode": "n_package_version",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_scripts_package_scripts_build",
+      "fromNode": "n_package_scripts",
+      "toNode": "n_package_scripts_build",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_scripts_package_scripts_dev",
+      "fromNode": "n_package_scripts",
+      "toNode": "n_package_scripts_dev",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_scripts_package_scripts_lint",
+      "fromNode": "n_package_scripts",
+      "toNode": "n_package_scripts_lint",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_scripts_package_scripts_start",
+      "fromNode": "n_package_scripts",
+      "toNode": "n_package_scripts_start",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_clsx",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_clsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_framer_motion",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_framer_motion",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_gsap",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_gsap",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_gsap_react",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_gsap_react",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_lucide_react",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_lucide_react",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_motion",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_motion",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_next",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_next",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_ogl",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_ogl",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_react",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_react",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_react_dom",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_react_dom",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_package_dependencies_tailwind_merge",
+      "fromNode": "n_package_dependencies",
+      "toNode": "n_package_dependencies_tailwind_merge",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_gsap_react_gsap_react",
+      "fromNode": "n_package_dependencies_gsap_react",
+      "toNode": "n_gsap_react",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_clsx_clsx",
+      "fromNode": "n_package_dependencies_clsx",
+      "toNode": "n_clsx",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_framer_motion_framer_motion",
+      "fromNode": "n_package_dependencies_framer_motion",
+      "toNode": "n_framer_motion",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_gsap_gsap",
+      "fromNode": "n_package_dependencies_gsap",
+      "toNode": "n_gsap",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_lucide_react_lucide_react",
+      "fromNode": "n_package_dependencies_lucide_react",
+      "toNode": "n_lucide_react",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_motion_motion",
+      "fromNode": "n_package_dependencies_motion",
+      "toNode": "n_motion",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_next_next",
+      "fromNode": "n_package_dependencies_next",
+      "toNode": "n_next",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_ogl_ogl",
+      "fromNode": "n_package_dependencies_ogl",
+      "toNode": "n_ogl",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_react_react",
+      "fromNode": "n_package_dependencies_react",
+      "toNode": "n_react",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_react_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "fromNode": "n_package_dependencies_react",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_react_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "fromNode": "n_package_dependencies_react",
+      "toNode": "n_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_react_src_components_ui_origin_button_hastextcontent",
+      "fromNode": "n_package_dependencies_react",
+      "toNode": "n_src_components_ui_origin_button_hastextcontent",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_react_dom_react_dom",
+      "fromNode": "n_package_dependencies_react_dom",
+      "toNode": "n_react_dom",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_dependencies_tailwind_merge_tailwind_merge",
+      "fromNode": "n_package_dependencies_tailwind_merge",
+      "toNode": "n_tailwind_merge",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_autoprefixer",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_autoprefixer",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_eslint",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_eslint",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_eslint_config_next",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_eslint_config_next",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_postcss",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_postcss",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_tailwindcss",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_tailwindcss",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_tailwindcss_postcss",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_tailwindcss_postcss",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_types_node",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_types_node",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_types_react",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_types_react",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_types_react_dom",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_types_react_dom",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_package_devdependencies_typescript",
+      "fromNode": "n_package_devdependencies",
+      "toNode": "n_package_devdependencies_typescript",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_tailwindcss_postcss_tailwindcss_postcss",
+      "fromNode": "n_package_devdependencies_tailwindcss_postcss",
+      "toNode": "n_tailwindcss_postcss",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_types_node_types_node",
+      "fromNode": "n_package_devdependencies_types_node",
+      "toNode": "n_types_node",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_types_react_types_react",
+      "fromNode": "n_package_devdependencies_types_react",
+      "toNode": "n_types_react",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_types_react_dom_types_react_dom",
+      "fromNode": "n_package_devdependencies_types_react_dom",
+      "toNode": "n_types_react_dom",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_autoprefixer_autoprefixer",
+      "fromNode": "n_package_devdependencies_autoprefixer",
+      "toNode": "n_autoprefixer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_eslint_eslint",
+      "fromNode": "n_package_devdependencies_eslint",
+      "toNode": "n_eslint",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_eslint_config_next_eslint_config_next",
+      "fromNode": "n_package_devdependencies_eslint_config_next",
+      "toNode": "n_eslint_config_next",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_postcss_postcss",
+      "fromNode": "n_package_devdependencies_postcss",
+      "toNode": "n_postcss",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_tailwindcss_tailwindcss",
+      "fromNode": "n_package_devdependencies_tailwindcss",
+      "toNode": "n_tailwindcss",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_package_devdependencies_typescript_typescript",
+      "fromNode": "n_package_devdependencies_typescript",
+      "toNode": "n_typescript",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_postcss_config_postcss_config_config",
+      "fromNode": "n_postcss_config",
+      "toNode": "n_postcss_config_config",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_app_locale_layout_generatemetadata",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_app_locale_layout_generatemetadata",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_app_locale_layout_generatestaticparams",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_app_locale_layout_generatestaticparams",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_app_locale_layout_inter",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_app_locale_layout_inter",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_app_locale_layout_localelayout",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_app_locale_layout_localelayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_app_locale_layout_playfair",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_app_locale_layout_playfair",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_components_arcrevealhero_arcrevealhero",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_components_ui_pagebottomblur",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_components_ui_pagebottomblur",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_i18n_config",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_i18n_config_locale",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_i18n_config_locales",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_i18n_config_locales",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_i18n_dictionaries",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_layout_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_app_locale_layout",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_app_locale_page_generatestaticparams",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_app_locale_page_generatestaticparams",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_app_locale_page_home",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_app_locale_page_home",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_about_about",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_about_about",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_contact_contact",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_contact_contact",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_contact_contact_contact",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_contact_contact_contact",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_footer_footer",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_footer_footer",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_footer_footer_footer",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_footer_footer_footer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_header_header",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_header_header",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_header_header_header",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_header_header_header",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_hero_hero",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_hero_hero",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_hero_hero_hero",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_hero_hero_hero",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_projects_projects",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_projects_projects",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_projects_projects_projects",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_projects_projects_projects",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_components_services_services",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_components_services_services",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_i18n_config",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_i18n_config_locale",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_page_src_i18n_config_locales",
+      "fromNode": "n_src_app_locale_page",
+      "toNode": "n_src_i18n_config_locales",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_app_locale_services_slug_page_generatemetadata",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_app_locale_services_slug_page_generatemetadata",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_app_locale_services_slug_page_generatestaticparams",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_app_locale_services_slug_page_generatestaticparams",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_app_locale_services_slug_page_servicedetailpage",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_app_locale_services_slug_page_servicedetailpage",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_footer_footer",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_footer_footer",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_footer_footer_footer",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_footer_footer_footer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_header_header",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_header_header",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_header_header_header",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_header_header_header",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_ui_button_button",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_ui_button_button",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_components_ui_button_button_button",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_components_ui_button_button_button",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_i18n_config",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_i18n_config_locale",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_i18n_config_locales",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_i18n_config_locales",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_i18n_dictionaries",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_locale_services_slug_page_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_app_locale_services_slug_page",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_robots_src_app_robots_robots",
+      "fromNode": "n_src_app_robots",
+      "toNode": "n_src_app_robots_robots",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_sitemap_src_app_sitemap_sitemap",
+      "fromNode": "n_src_app_sitemap",
+      "toNode": "n_src_app_sitemap_sitemap",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_sitemap_src_i18n_config",
+      "fromNode": "n_src_app_sitemap",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_sitemap_src_i18n_config_locales",
+      "fromNode": "n_src_app_sitemap",
+      "toNode": "n_src_i18n_config_locales",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_about",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_about",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_aboutcontent",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_aboutcontent",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_aboutprops",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_aboutprops",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_aboutstat",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_aboutstat",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_aboutstatkind",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_aboutstatkind",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_aboutstep",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_aboutstep",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_animatedcount",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_animatedcount",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_bilingualtoggle",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_bilingualtoggle",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_content",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_content",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_ease",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_ease",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_fadeup",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_fadeup",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_locale",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_locale",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_stagger",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_stagger",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_staticons",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_staticons",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_stepicons",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_stepicons",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_about_about_strands",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_about_about_strands",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_ui_button_button",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_ui_button_button",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_about_about_src_components_ui_button_button_button",
+      "fromNode": "n_src_components_about_about",
+      "toNode": "n_src_components_ui_button_button_button",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_arcrevealhero_arcrevealgreeting",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealgreeting",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_arcrevealhero_arcrevealheroprops",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealheroprops",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_arcrevealhero_default_greetings",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_default_greetings",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_arcrevealhero_phase",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_arcrevealhero_phase",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_loadercontext",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_loadercontext",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_components_arcrevealhero_loadercontext_loaderrevealcontext",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_components_arcrevealhero_loadercontext_loaderrevealcontext",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_lib_utils",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_lib_utils",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_src_lib_utils_cn",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_lib_utils_cn",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_arcrevealhero_arcrevealhero_src_lib_utils_cn",
+      "fromNode": "n_src_components_arcrevealhero_arcrevealhero_arcrevealhero",
+      "toNode": "n_src_lib_utils_cn",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_src_components_arcrevealhero_loadercontext_loaderrevealcontext",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext",
+      "toNode": "n_src_components_arcrevealhero_loadercontext_loaderrevealcontext",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_src_components_arcrevealhero_loadercontext_loaderrevealstate",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext",
+      "toNode": "n_src_components_arcrevealhero_loadercontext_loaderrevealstate",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext",
+      "toNode": "n_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_src_components_hero_hero",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext",
+      "toNode": "n_src_components_hero_hero",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_useloaderreveal_src_components_hero_hero",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "toNode": "n_src_components_hero_hero",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_arcrevealhero_loadercontext_useloaderreveal_src_components_hero_hero_hero",
+      "fromNode": "n_src_components_arcrevealhero_loadercontext_useloaderreveal",
+      "toNode": "n_src_components_hero_hero_hero",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_contact_contact_src_components_contact_contact_contact",
+      "fromNode": "n_src_components_contact_contact",
+      "toNode": "n_src_components_contact_contact_contact",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_contact_contact_src_i18n_config",
+      "fromNode": "n_src_components_contact_contact",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_contact_contact_src_i18n_config_locale",
+      "fromNode": "n_src_components_contact_contact",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_contact_contact_src_i18n_dictionaries",
+      "fromNode": "n_src_components_contact_contact",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_contact_contact_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_components_contact_contact",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_footer_footer_src_components_footer_footer_footer",
+      "fromNode": "n_src_components_footer_footer",
+      "toNode": "n_src_components_footer_footer_footer",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_footer_footer_src_i18n_config",
+      "fromNode": "n_src_components_footer_footer",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_footer_footer_src_i18n_config_locale",
+      "fromNode": "n_src_components_footer_footer",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_footer_footer_src_i18n_dictionaries",
+      "fromNode": "n_src_components_footer_footer",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_footer_footer_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_components_footer_footer",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_components_header_header_header",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_components_header_header_header",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_components_header_languageswitcher",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_components_header_languageswitcher",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_components_ui_button_button",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_components_ui_button_button",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_components_ui_button_button_button",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_components_ui_button_button_button",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_i18n_config",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_i18n_config_locale",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_i18n_dictionaries",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_header_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_components_header_header",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_languageswitcher_src_components_header_languageswitcher_ease",
+      "fromNode": "n_src_components_header_languageswitcher",
+      "toNode": "n_src_components_header_languageswitcher_ease",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_languageswitcher_src_components_header_languageswitcher_languageswitcher",
+      "fromNode": "n_src_components_header_languageswitcher",
+      "toNode": "n_src_components_header_languageswitcher_languageswitcher",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_languageswitcher_src_components_header_languageswitcher_options",
+      "fromNode": "n_src_components_header_languageswitcher",
+      "toNode": "n_src_components_header_languageswitcher_options",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_languageswitcher_src_i18n_config",
+      "fromNode": "n_src_components_header_languageswitcher",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_header_languageswitcher_src_i18n_config_locale",
+      "fromNode": "n_src_components_header_languageswitcher",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_hero_hero_ease",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_hero_hero_ease",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_hero_hero_fadeup",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_hero_hero_fadeup",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_hero_hero_hero",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_hero_hero_hero",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_ui_button_button",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_ui_button_button",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_ui_button_button_button",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_ui_button_button_button",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_ui_glow_horizon",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_ui_glow_horizon",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_components_ui_glow_horizon_glowhorizon",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_components_ui_glow_horizon_glowhorizon",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_i18n_config",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_i18n_config_locale",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_i18n_dictionaries",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_hero_hero_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_components_hero_hero",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_projects_projects_src_components_projects_projects_projects",
+      "fromNode": "n_src_components_projects_projects",
+      "toNode": "n_src_components_projects_projects_projects",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_projects_projects_src_i18n_config",
+      "fromNode": "n_src_components_projects_projects",
+      "toNode": "n_src_i18n_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_projects_projects_src_i18n_config_locale",
+      "fromNode": "n_src_components_projects_projects",
+      "toNode": "n_src_i18n_config_locale",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_projects_projects_src_i18n_dictionaries",
+      "fromNode": "n_src_components_projects_projects",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_projects_projects_src_i18n_dictionaries_dictionaries",
+      "fromNode": "n_src_components_projects_projects",
+      "toNode": "n_src_i18n_dictionaries_dictionaries",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_cascadechars",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_cascadechars",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_ease",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_ease",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_featurerow",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_featurerow",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_glasspanel",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_glasspanel",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_learnmorebutton",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_learnmorebutton",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_servicecard",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_servicecard",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_servicecardtheme",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_servicecardtheme",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_serviceicons",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_serviceicons",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicecard_stagger",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicecard_stagger",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicescursor",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicescursor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_servicescursor_useservicescursor",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_servicescursor_useservicescursor",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_ui_story_scroll",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_ui_story_scroll",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_ui_story_scroll_flowsection",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_ui_story_scroll_flowsection",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_i18n_dictionaries",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_i18n_dictionaries",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_i18n_dictionaries_serviceitem",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_i18n_dictionaries_serviceitem",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_src_components_services_services",
+      "fromNode": "n_src_components_services_servicecard",
+      "toNode": "n_src_components_services_services",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_servicecardtheme_src_components_services_services",
+      "fromNode": "n_src_components_services_servicecard_servicecardtheme",
+      "toNode": "n_src_components_services_services",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_learnmorebutton_src_components_services_servicescursor_useservicescursor",
+      "fromNode": "n_src_components_services_servicecard_learnmorebutton",
+      "toNode": "n_src_components_services_servicescursor_useservicescursor",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_glasspanel_src_components_services_servicescursor_useservicescursor",
+      "fromNode": "n_src_components_services_servicecard_glasspanel",
+      "toNode": "n_src_components_services_servicescursor_useservicescursor",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_servicecard_servicecard_src_components_services_services",
+      "fromNode": "n_src_components_services_servicecard_servicecard",
+      "toNode": "n_src_components_services_services",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_src_components_services_services_src_components_services_services_panelthemes",
+      "fromNode": "n_src_components_services_services",
+      "toNode": "n_src_components_services_services_panelthemes",
+      "label": "contains [EXTRACTED]"
+    }
+  ]
+}

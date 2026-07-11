@@ -1,0 +1,17 @@
+---
+source_file: "src/components/ui/glow-horizon.tsx"
+type: "code"
+community: "Glow Horizon Visual Effect"
+location: "L6"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Glow_Horizon_Visual_Effect
+---
+
+# EASE
+
+## Connections
+- [[glow-horizon.tsx]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Glow_Horizon_Visual_Effect
