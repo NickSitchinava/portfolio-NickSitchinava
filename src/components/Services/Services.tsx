@@ -9,17 +9,8 @@ import styles from "./services.module.css";
 
 const panelThemes: ServiceCardTheme[] = [
   {
-    stageBg: "#ffffff",
-    stageInk: "#1d1d1f",
-    cardBg: "#1d1d1f",
-    cardInk: "#ffffff",
-    cardInkMuted: "#a8a8ac",
-    cardInkFaint: "#7d7d82",
-    borderColors: { primary: "#3a3a3c", secondary: "#6e6e73", accent: "#d6d6d6" },
-  },
-  {
-    stageBg: "#f5f5f7",
-    stageInk: "#1d1d1f",
+    stageBg: "#1d1d1f",
+    stageInk: "#ffffff",
     cardBg: "#ffffff",
     cardInk: "#1d1d1f",
     cardInkMuted: "#707070",
@@ -27,13 +18,22 @@ const panelThemes: ServiceCardTheme[] = [
     borderColors: { primary: "#d6d6d6", secondary: "#a8a8ac", accent: "#1d1d1f" },
   },
   {
-    stageBg: "#ffffff",
+    stageBg: "#f5f5f7",
     stageInk: "#1d1d1f",
     cardBg: "#1d1d1f",
     cardInk: "#ffffff",
     cardInkMuted: "#a8a8ac",
     cardInkFaint: "#7d7d82",
     borderColors: { primary: "#3a3a3c", secondary: "#6e6e73", accent: "#d6d6d6" },
+  },
+  {
+    stageBg: "#1d1d1f",
+    stageInk: "#ffffff",
+    cardBg: "#ffffff",
+    cardInk: "#1d1d1f",
+    cardInkMuted: "#707070",
+    cardInkFaint: "#474747",
+    borderColors: { primary: "#d6d6d6", secondary: "#a8a8ac", accent: "#1d1d1f" },
   },
 ];
 

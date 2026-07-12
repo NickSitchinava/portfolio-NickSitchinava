@@ -6,23 +6,31 @@ type AnimationMode = 'auto-rotate' | 'rotate-on-hover' | 'stop-rotate-on-hover';
 interface BorderRotateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
   children: ReactNode;
   className?: string;
+
+  // Animation customization
   animationMode?: AnimationMode;
-  animationSpeed?: number;
+  animationSpeed?: number; // Duration in seconds
+
+  // Color customization
   gradientColors?: {
     primary: string;
     secondary: string;
     accent: string;
   };
   backgroundColor?: string;
+
+  // Border customization
   borderWidth?: number;
   borderRadius?: number;
+
+  // Container styling
   style?: CSSProperties;
 }
 
 const defaultGradientColors = {
-  primary: '#1d1d1f',
-  secondary: '#707070',
-  accent: '#d6d6d6',
+  primary: '#584827',
+  secondary: '#c7a03c',
+  accent: '#f9de90'
 };
 
 const BorderRotate: React.FC<BorderRotateProps> = ({
@@ -31,12 +39,13 @@ const BorderRotate: React.FC<BorderRotateProps> = ({
   animationMode = 'auto-rotate',
   animationSpeed = 5,
   gradientColors = defaultGradientColors,
-  backgroundColor = '#ffffff',
-  borderWidth = 1.5,
-  borderRadius = 28,
+  backgroundColor = '#2d230f',
+  borderWidth = 2,
+  borderRadius = 20,
   style = {},
   ...props
 }) => {
+  // Get animation class based on mode
   const getAnimationClass = () => {
     switch (animationMode) {
       case 'auto-rotate':

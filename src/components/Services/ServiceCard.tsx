@@ -142,8 +142,8 @@ export function ServiceCard({
 
           <motion.div style={{ y: cardY }}>
             <BorderRotate
-              animationMode="rotate-on-hover"
-              animationSpeed={7}
+              animationMode="auto-rotate"
+              animationSpeed={8}
               gradientColors={theme.borderColors}
               backgroundColor={theme.cardBg}
               borderWidth={1.5}
