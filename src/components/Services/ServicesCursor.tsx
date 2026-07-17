@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import styles from "./ServicesCursor.module.css";
 
 interface CursorContextValue {
@@ -20,7 +20,9 @@ export default function ServicesCursor({ children }: { children: React.ReactNode
   const containerRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
-  const [enabled, setEnabled] = useState(false);
+  const [pointerFine, setPointerFine] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const enabled = pointerFine && !prefersReducedMotion;
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -28,7 +30,7 @@ export default function ServicesCursor({ children }: { children: React.ReactNode
   const springY = useSpring(y, { stiffness: 500, damping: 42, mass: 0.4 });
 
   useEffect(() => {
-    setEnabled(window.matchMedia("(pointer: fine)").matches);
+    setPointerFine(window.matchMedia("(pointer: fine)").matches);
   }, []);
 
   useEffect(() => {

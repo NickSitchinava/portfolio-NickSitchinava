@@ -1,5 +1,7 @@
 .scope {
   position: relative;
+  --z-cursor-ring: 60;
+  --z-cursor-dot: 61;
 }
 
 @media (pointer: fine) {
@@ -20,7 +22,7 @@
   background: #1d1d1f;
   box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
   pointer-events: none;
-  z-index: 1000;
+  z-index: var(--z-cursor-dot);
 }
 
 .ring {
@@ -34,5 +36,5 @@
   border: 1.5px solid;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
   pointer-events: none;
-  z-index: 999;
+  z-index: var(--z-cursor-ring);
 }

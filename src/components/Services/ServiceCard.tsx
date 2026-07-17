@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Code2, Layout, TrendingUp, type LucideIcon } from "lucide-react";
 import { FlowSection } from "@/components/ui/story-scroll";
 import { BorderRotate } from "@/components/ui/animated-gradient-border";
@@ -14,10 +14,10 @@ const serviceIcons: LucideIcon[] = [Code2, Layout, TrendingUp];
 export interface ServiceCardTheme {
   stageBg: string;
   stageInk: string;
+  stageInkMuted: string;
+  stageInkFaint: string;
   cardBg: string;
   cardInk: string;
-  cardInkMuted: string;
-  cardInkFaint: string;
   borderColors: { primary: string; secondary: string; accent: string };
 }
 
@@ -59,6 +59,7 @@ function LearnMoreButton({
   theme: ServiceCardTheme;
 }) {
   const cursor = useServicesCursor();
+  const prefersReducedMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 280, damping: 22, mass: 0.4 });
@@ -67,6 +68,7 @@ function LearnMoreButton({
   const arrowY = useTransform(springY, (value) => value * 0.5);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLAnchorElement>) => {
+    if (prefersReducedMotion) return;
     const rect = event.currentTarget.getBoundingClientRect();
     x.set(event.clientX - rect.left - rect.width / 2);
     y.set(event.clientY - rect.top - rect.height / 2);
@@ -78,28 +80,38 @@ function LearnMoreButton({
   };
 
   return (
-    <motion.a
-      href={href}
-      className={styles.learnMore}
-      style={{
-        x: springX,
-        y: springY,
-        background: theme.cardInk,
-        color: theme.cardBg,
-      }}
-      onPointerMove={handlePointerMove}
-      onPointerEnter={() => cursor?.setActive(true)}
-      onPointerLeave={() => {
-        reset();
-        cursor?.setActive(false);
-      }}
-      whileTap={{ scale: 0.95 }}
+    <BorderRotate
+      animationMode="auto-rotate"
+      animationSpeed={8}
+      gradientColors={theme.borderColors}
+      backgroundColor={theme.cardBg}
+      borderWidth={1.5}
+      borderRadius={999}
+      className={styles.learnMoreFrame}
     >
-      <span>{label}</span>
-      <motion.span className={styles.learnMoreIcon} style={{ x: arrowX, y: arrowY }}>
-        <ArrowUpRight size={14} strokeWidth={2.25} />
-      </motion.span>
-    </motion.a>
+      <motion.a
+        href={href}
+        className={styles.learnMore}
+        style={{
+          x: springX,
+          y: springY,
+          background: theme.cardInk,
+          color: theme.cardBg,
+        }}
+        onPointerMove={handlePointerMove}
+        onPointerEnter={() => cursor?.setActive(true)}
+        onPointerLeave={() => {
+          reset();
+          cursor?.setActive(false);
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span>{label}</span>
+        <motion.span className={styles.learnMoreIcon} style={{ x: arrowX, y: arrowY }}>
+          <ArrowUpRight size={14} strokeWidth={2.25} />
+        </motion.span>
+      </motion.a>
+    </BorderRotate>
   );
 }
 
@@ -117,7 +129,6 @@ export function ServiceCard({
   learnMoreLabel: string;
 }) {
   const Icon = serviceIcons[index % serviceIcons.length];
-  const cursor = useServicesCursor();
   const scrollProgress = useServicesParallax();
   const backLayerY = useTransform(scrollProgress, [0, 1], [0, -70]);
   const cardY = useTransform(scrollProgress, [0, 1], [0, -22]);
@@ -140,57 +151,45 @@ export function ServiceCard({
             </h3>
           </motion.div>
 
-          <motion.div style={{ y: cardY }}>
-            <BorderRotate
-              animationMode="auto-rotate"
-              animationSpeed={8}
-              gradientColors={theme.borderColors}
-              backgroundColor={theme.cardBg}
-              borderWidth={1.5}
-              borderRadius={28}
-              className={styles.card}
-              onPointerEnter={() => cursor?.setActive(true)}
-              onPointerLeave={() => cursor?.setActive(false)}
+          <motion.div className={styles.content} style={{ y: cardY, borderColor: theme.borderColors.primary }}>
+            <div className={styles.cardHeader}>
+              <span className={styles.cardLabel} style={{ color: theme.stageInkFaint }}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <LearnMoreButton
+                href={`/${locale}/services/${service.slug}`}
+                label={learnMoreLabel}
+                theme={theme}
+              />
+            </div>
+
+            <p className={styles.cardText} style={{ color: theme.stageInk }}>
+              {service.description}
+            </p>
+            <p className={styles.cardDetails} style={{ color: theme.stageInkMuted }}>
+              {service.details}
+            </p>
+
+            <motion.ul
+              className={styles.cardFeatures}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={stagger}
             >
-              <div className={styles.cardHeader}>
-                <span className={styles.cardLabel} style={{ color: theme.cardInkFaint }}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <LearnMoreButton
-                  href={`/${locale}/services/${service.slug}`}
-                  label={learnMoreLabel}
-                  theme={theme}
-                />
-              </div>
-
-              <p className={styles.cardText} style={{ color: theme.cardInk }}>
-                {service.description}
-              </p>
-              <p className={styles.cardDetails} style={{ color: theme.cardInkMuted }}>
-                {service.details}
-              </p>
-
-              <motion.ul
-                className={styles.cardFeatures}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={stagger}
-              >
-                {service.features.map((feature) => (
-                  <motion.li
-                    key={feature}
-                    className={styles.cardFeatureItem}
-                    style={{ color: theme.cardInkMuted }}
-                    variants={featureRow}
-                    transition={{ duration: 0.5, ease: EASE }}
-                  >
-                    <Check size={14} strokeWidth={2.25} style={{ color: theme.cardInkFaint }} />
-                    <span>{feature}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </BorderRotate>
+              {service.features.map((feature) => (
+                <motion.li
+                  key={feature}
+                  className={styles.cardFeatureItem}
+                  style={{ color: theme.stageInkMuted }}
+                  variants={featureRow}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  <Check size={14} strokeWidth={2.25} style={{ color: theme.stageInkFaint }} />
+                  <span>{feature}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </motion.div>
         </div>
       </div>

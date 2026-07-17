@@ -50,6 +50,7 @@
   letter-spacing: -0.02em;
   line-height: 1.05;
   font-size: clamp(2.25rem, 6vw, 4.25rem);
+  text-wrap: balance;
 }
 
 .cascadeWrap {
@@ -89,11 +90,12 @@
   }
 }
 
-.card {
+.content {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid;
 }
 
 .cardHeader {
@@ -105,16 +107,24 @@
 
 .cardLabel {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.learnMoreFrame {
+  display: inline-flex;
+  align-items: center;
 }
 
 .learnMore {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
+  min-height: 44px;
   padding: 0.65rem 1.1rem;
   border-radius: 999px;
   font-family: var(--font-body);
@@ -138,6 +148,7 @@
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .cardDetails {
@@ -147,12 +158,13 @@
   font-size: clamp(0.9rem, 1.2vw, 1rem);
   font-weight: 400;
   line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .cardFeatures {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.75rem;
   list-style: none;
   margin: 0.25rem 0 0;
   padding: 0;
@@ -181,7 +193,34 @@
 
 @media (max-width: 640px) {
   .learnMore {
-    padding: 0.55rem 0.95rem;
+    min-height: 44px;
+    padding: 0.5rem 0.95rem;
     font-size: 0.8rem;
+  }
+}
+
+.progress {
+  position: fixed;
+  top: 50%;
+  right: clamp(1rem, 3vw, 2rem);
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.progressDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #808080;
+  mix-blend-mode: difference;
+}
+
+@media (max-width: 780px) {
+  .progress {
+    display: none;
   }
 }

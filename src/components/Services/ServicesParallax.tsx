@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useRef } from "react";
-import { useScroll, useMotionValue, type MotionValue } from "framer-motion";
+import { useMotionValue, useReducedMotion, useScroll, type MotionValue } from "framer-motion";
 
 const ParallaxContext = createContext<MotionValue<number> | null>(null);
 
@@ -13,14 +13,17 @@ export function useServicesParallax(): MotionValue<number> {
 
 export default function ServicesParallax({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
+  const staticProgress = useMotionValue(0);
+  const progress = prefersReducedMotion ? staticProgress : scrollYProgress;
 
   return (
     <div ref={ref}>
-      <ParallaxContext.Provider value={scrollYProgress}>{children}</ParallaxContext.Provider>
+      <ParallaxContext.Provider value={progress}>{children}</ParallaxContext.Provider>
     </div>
   );
 }
