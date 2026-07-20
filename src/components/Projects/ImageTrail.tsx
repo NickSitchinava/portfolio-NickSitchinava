@@ -1,6 +1,14 @@
 "use client";
 
-import { Children, useCallback, useEffect, useMemo, useRef } from "react";
+import {
+  Children,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import {
   AnimationSequence,
   motion,
@@ -9,7 +17,6 @@ import {
   useAnimate,
   useAnimationFrame,
 } from "framer-motion";
-import { v4 as uuidv4 } from "uuid";
 import { useMouseVector } from "./use-mouse-vector";
 import styles from "./ImageTrail.module.css";
 
@@ -27,15 +34,57 @@ interface ImageTrailProps {
   velocityDependentSpawn?: boolean;
 }
 
-interface TrailItem {
-  id: string;
-  x: number;
-  y: number;
-  rotation: number;
-  animationSequence: TrailAnimationSequence;
-  scale: number;
-  child: React.ReactNode;
+const IDLE_DELAY = 900;
+const IDLE_PERIOD_X = 6200;
+const IDLE_PERIOD_Y = 5100;
+const IDLE_SPAWN_INTERVAL = 220;
+const IDLE_MIN_DISTANCE = 44;
+
+interface TrailSlotHandle {
+  trigger: (x: number, y: number, rotation: number, zIndex: number) => void;
 }
+
+interface TrailSlotProps {
+  child: React.ReactNode;
+  animationSequence: TrailAnimationSequence;
+}
+
+const TrailSlot = forwardRef<TrailSlotHandle, TrailSlotProps>(
+  ({ child, animationSequence }, ref) => {
+    const [scope, animate] = useAnimate();
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        trigger(x, y, rotation, zIndex) {
+          const node = scope.current;
+          if (!node) return;
+
+          node.style.zIndex = String(zIndex);
+
+          const sequence = [
+            [node, { left: x, top: y, rotate: rotation, opacity: 1, scale: 0 }, { duration: 0 }],
+            ...animationSequence.map((segment) => [node, ...segment]),
+          ] as AnimationSequence;
+
+          animate(sequence);
+        },
+      }),
+      [animate, animationSequence]
+    );
+
+    return (
+      <motion.div
+        ref={scope}
+        className={styles.trailItem}
+        style={{ opacity: 0, scale: 0 }}
+      >
+        {child}
+      </motion.div>
+    );
+  }
+);
+TrailSlot.displayName = "TrailSlot";
 
 const ImageTrail = ({
   children,
@@ -49,47 +98,115 @@ const ImageTrail = ({
   interval = 100,
   minDistance = 40,
 }: ImageTrailProps) => {
-  const trailRef = useRef<TrailItem[]>([]);
   const lastAddedTimeRef = useRef<number>(0);
   const { position: mousePosition } = useMouseVector(containerRef);
   const lastMousePosRef = useRef(mousePosition);
   const lastSpawnPosRef = useRef(mousePosition);
-  const currentIndexRef = useRef(0);
+  const nextSlotRef = useRef(0);
+  const zCounterRef = useRef(1);
+  const isHoveringRef = useRef(false);
+  const isVisibleRef = useRef(true);
+  const idleSinceRef = useRef<number | null>(null);
+  const slotRefs = useRef<(TrailSlotHandle | null)[]>([]);
 
   const childrenArray = useMemo(() => Children.toArray(children), [children]);
 
-  const addToTrail = useCallback(
-    (mousePos: { x: number; y: number }) => {
-      const newItem: TrailItem = {
-        id: uuidv4(),
-        x: mousePos.x,
-        y: mousePos.y,
-        rotation: (Math.random() - 0.5) * rotationRange * 2,
-        animationSequence,
-        scale: 1,
-        child: childrenArray[currentIndexRef.current],
-      };
+  useEffect(() => {
+    const node = containerRef?.current;
+    if (!node) return;
 
-      currentIndexRef.current =
-        (currentIndexRef.current + 1) % childrenArray.length;
+    const handleEnter = () => {
+      isHoveringRef.current = true;
+      idleSinceRef.current = null;
+    };
+    const handleLeave = () => {
+      isHoveringRef.current = false;
+      idleSinceRef.current = null;
+    };
 
-      if (newOnTop) {
-        trailRef.current.push(newItem);
-      } else {
-        trailRef.current.unshift(newItem);
-      }
+    node.addEventListener("pointerenter", handleEnter);
+    node.addEventListener("pointerleave", handleLeave);
+    return () => {
+      node.removeEventListener("pointerenter", handleEnter);
+      node.removeEventListener("pointerleave", handleLeave);
+    };
+  }, [containerRef]);
+
+  useEffect(() => {
+    const node = containerRef?.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (!entry.isIntersecting) {
+          idleSinceRef.current = null;
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [containerRef]);
+
+  const spawn = useCallback(
+    (x: number, y: number) => {
+      if (childrenArray.length === 0) return;
+
+      const rotation = (Math.random() - 0.5) * rotationRange * 2;
+      const zIndex = newOnTop ? zCounterRef.current++ : 0;
+      const slot = slotRefs.current[nextSlotRef.current];
+      slot?.trigger(x, y, rotation, zIndex);
+
+      nextSlotRef.current = (nextSlotRef.current + 1) % childrenArray.length;
     },
-    [childrenArray, rotationRange, animationSequence, newOnTop]
+    [childrenArray.length, rotationRange, newOnTop]
   );
 
-  const removeFromTrail = useCallback((itemId: string) => {
-    const index = trailRef.current.findIndex((item) => item.id === itemId);
-    if (index !== -1) {
-      trailRef.current.splice(index, 1);
-    }
-  }, []);
-
   useAnimationFrame((time) => {
+    if (!isHoveringRef.current) {
+      if (!isVisibleRef.current) {
+        idleSinceRef.current = null;
+        return;
+      }
+
+      if (idleSinceRef.current === null) {
+        idleSinceRef.current = time;
+      }
+
+      const elapsed = time - idleSinceRef.current;
+      if (elapsed < IDLE_DELAY) return;
+
+      const node = containerRef?.current;
+      const width = node?.clientWidth ?? 0;
+      const height = node?.clientHeight ?? 0;
+      if (width === 0 || height === 0) return;
+
+      const t = elapsed - IDLE_DELAY;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const rangeX = width * 0.32;
+      const rangeY = height * 0.28;
+
+      const idlePos = {
+        x: centerX + Math.sin((t / IDLE_PERIOD_X) * Math.PI * 2) * rangeX,
+        y:
+          centerY +
+          Math.sin((t / IDLE_PERIOD_Y) * Math.PI * 2 + Math.PI / 3) * rangeY,
+      };
+
+      if (time - lastAddedTimeRef.current < IDLE_SPAWN_INTERVAL) return;
+
+      const dx = idlePos.x - lastSpawnPosRef.current.x;
+      const dy = idlePos.y - lastSpawnPosRef.current.y;
+      if (Math.hypot(dx, dy) < IDLE_MIN_DISTANCE) return;
+
+      lastAddedTimeRef.current = time;
+      lastSpawnPosRef.current = idlePos;
+      spawn(idlePos.x, idlePos.y);
+      return;
+    }
+
     if (
       lastMousePosRef.current.x === mousePosition.x &&
       lastMousePosRef.current.y === mousePosition.y
@@ -98,63 +215,30 @@ const ImageTrail = ({
     }
     lastMousePosRef.current = mousePosition;
 
-    const currentTime = time;
-    if (currentTime - lastAddedTimeRef.current < interval) {
-      return;
-    }
+    if (time - lastAddedTimeRef.current < interval) return;
 
     const dx = mousePosition.x - lastSpawnPosRef.current.x;
     const dy = mousePosition.y - lastSpawnPosRef.current.y;
-    const distance = Math.hypot(dx, dy);
-    if (distance < minDistance) {
-      return;
-    }
+    if (Math.hypot(dx, dy) < minDistance) return;
 
-    lastAddedTimeRef.current = currentTime;
+    lastAddedTimeRef.current = time;
     lastSpawnPosRef.current = mousePosition;
-    addToTrail(mousePosition);
+    spawn(mousePosition.x, mousePosition.y);
   });
 
   return (
     <div className={styles.trailWrap}>
-      {trailRef.current.map((item) => (
-        <TrailItemView key={item.id} item={item} onComplete={removeFromTrail} />
+      {childrenArray.map((child, index) => (
+        <TrailSlot
+          key={index}
+          ref={(handle) => {
+            slotRefs.current[index] = handle;
+          }}
+          child={child}
+          animationSequence={animationSequence}
+        />
       ))}
     </div>
-  );
-};
-
-interface TrailItemProps {
-  item: TrailItem;
-  onComplete: (id: string) => void;
-}
-
-const TrailItemView = ({ item, onComplete }: TrailItemProps) => {
-  const [scope, animate] = useAnimate();
-
-  useEffect(() => {
-    const sequence = item.animationSequence.map((segment) => [
-      scope.current,
-      ...segment,
-    ]);
-    animate(sequence as AnimationSequence).then(() => {
-      onComplete(item.id);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <motion.div
-      ref={scope}
-      className={styles.trailItem}
-      style={{
-        left: item.x,
-        top: item.y,
-        rotate: item.rotation,
-      }}
-    >
-      {item.child}
-    </motion.div>
   );
 };
 
