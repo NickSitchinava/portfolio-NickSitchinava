@@ -1,8 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import { Link2, Lock } from "lucide-react";
 import { ImageTrail } from "./ImageTrail";
 import Antigravity from "./Antigravity";
+import { VideoMorphingDialog } from "@/components/ui/video-morphing-dialog";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import styles from "./projects.module.css";
@@ -16,6 +19,52 @@ const TRAIL_IMAGES = [
   { src: "/images/projects/fdash-hero.webp", alt: "F-Dash finance dashboard" },
   { src: "/images/projects/fdash-detail.webp", alt: "F-Dash finance dashboard detail" },
   { src: "/images/projects/company-landing-hero.webp", alt: "Company landing page" },
+];
+
+interface DeliveryLink {
+  title: string;
+  description: string;
+  region: string;
+  duration: string;
+  href?: string;
+  previewSrc: string;
+  private?: boolean;
+}
+
+const DELIVERY_LINKS: DeliveryLink[] = [
+  {
+    title: "Nick Sitchinava",
+    description: "Personal portfolio site",
+    region: "Georgia",
+    duration: "1–2 weeks",
+    href: "https://nick-sitchinava.vercel.app/",
+    previewSrc: "/images/previews/nick-portfolio.webp",
+  },
+  {
+    title: "George Sitchinava",
+    description: "Personal portfolio site",
+    region: "Georgia",
+    duration: "2–3 weeks",
+    href: "https://georgesitchinava.vercel.app/",
+    previewSrc: "/images/previews/george-portfolio.webp",
+  },
+  {
+    title: "F-Dash",
+    description: "Finance dashboard",
+    region: "Europe",
+    duration: "13–15 weeks",
+    href: "https://f-dash.vercel.app/",
+    previewSrc: "/images/previews/fdash.webp",
+  },
+  {
+    title: "Company landing page",
+    description: "Marketing landing page",
+    region: "Private",
+    duration: "Under NDA",
+    href: undefined,
+    previewSrc: "/images/previews/company-landing.webp",
+    private: true,
+  },
 ];
 
 export default function Projects({ locale }: { locale: Locale }) {
@@ -72,30 +121,70 @@ export default function Projects({ locale }: { locale: Locale }) {
               &ldquo;
             </span>
             <p className={styles.quoteText}>
-              Clean, well-finished work with a true creative eye, always flexible and quick to respond.
+              They understood exactly what we needed and delivered a site that felt custom-built for our business, not templated.
             </p>
             <footer className={styles.quoteAttribution}>
-              &mdash; Adrien Pin, founding partner @Merci-Michel
+              &mdash; Local client, HVAC services
             </footer>
           </blockquote>
         </div>
       </div>
 
       <div className={styles.deliveryStrip}>
-        <div className={styles.deliveryIntro}>
-          <span className={styles.deliveryEyebrow}>Latest delivery</span>
-          <p className={styles.deliveryText}>New projects typically start within 2 weeks.</p>
+        <div className={styles.deliveryVideoCell}>
+          <VideoMorphingDialog videoSrc="/videos/showreel.mp4" label="Showreel" />
         </div>
 
-        {t.items.map((project) => (
-          <div key={project.title} className={styles.deliveryRow}>
-            <p className={styles.deliveryTitle}>{project.description}</p>
-            <div className={styles.deliveryMeta}>
-              <span className={styles.metaTag}>{project.title}</span>
+        {DELIVERY_LINKS.map((link) => {
+          const card = (
+            <div className={styles.deliveryCard}>
+              <div className={styles.deliveryCardTop}>
+                <span className={styles.deliveryCardTitle}>{link.title}</span>
+                {link.private ? (
+                  <Lock size={14} strokeWidth={2} className={styles.deliveryCardIcon} />
+                ) : (
+                  <Link2 size={14} strokeWidth={2} className={styles.deliveryCardIcon} />
+                )}
+              </div>
+
+              <p className={styles.deliveryCardDescription}>{link.description}</p>
+
+              <div className={styles.deliveryCardMeta}>
+                <span className={styles.deliveryCardChip}>{link.region}</span>
+                <span className={styles.deliveryCardChip}>{link.duration}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+
+          if (link.private || !link.href) {
+            return (
+              <div key={link.title} className={`${styles.deliveryLink} ${styles.deliveryLinkPrivate}`}>
+                {card}
+              </div>
+            );
+          }
+
+          return (
+            <LinkPreview
+              key={link.title}
+              url={link.href}
+              imageSrc={link.previewSrc}
+              imageAlt={link.title}
+              peekWidth={220}
+              peekHeight={140}
+            >
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.deliveryLink}
+              >
+                {card}
+              </a>
+            </LinkPreview>
+          );
+        })}
       </div>
     </section>
   );
-}
+} 
