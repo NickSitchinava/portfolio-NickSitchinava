@@ -1,7 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link2, Lock } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { ImageTrail } from "./ImageTrail";
 import Antigravity from "./Antigravity";
 import { VideoMorphingDialog } from "@/components/ui/video-morphing-dialog";
@@ -10,6 +13,8 @@ import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import styles from "./projects.module.css";
 import trailStyles from "./ImageTrail.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TRAIL_IMAGES = [
   { src: "/images/projects/nick-portfolio-hero.webp", alt: "Nick Sitchinava portfolio" },
@@ -70,11 +75,73 @@ const DELIVERY_LINKS: DeliveryLink[] = [
 export default function Projects({ locale }: { locale: Locale }) {
   const t = dictionaries[locale].projects;
   const trailContainerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const trailPanelRef = useRef<HTMLDivElement>(null);
+  const quotePanelRef = useRef<HTMLDivElement>(null);
+  const [enableParallax, setEnableParallax] = useState(false);
+
+  useEffect(() => {
+    setEnableParallax(
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+        window.innerWidth >= 901
+    );
+  }, []);
+
+  useGSAP(
+    () => {
+      if (
+        !enableParallax ||
+        !gridRef.current ||
+        !trailPanelRef.current ||
+        !quotePanelRef.current
+      ) {
+        return;
+      }
+
+      const trailTween = gsap.fromTo(
+        trailPanelRef.current,
+        { y: 34 },
+        {
+          y: -34,
+          ease: "none",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+
+      const quoteTween = gsap.fromTo(
+        quotePanelRef.current,
+        { y: -18 },
+        {
+          y: 18,
+          ease: "none",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+
+      return () => {
+        trailTween.scrollTrigger?.kill();
+        trailTween.kill();
+        quoteTween.scrollTrigger?.kill();
+        quoteTween.kill();
+      };
+    },
+    { scope: gridRef, dependencies: [enableParallax] }
+  );
 
   return (
     <section id="projects" className={styles.projects} aria-label={t.heading}>
-      <div className={styles.grid}>
-        <div className={styles.trailPanel}>
+      <div className={styles.grid} ref={gridRef}>
+        <div className={styles.trailPanel} ref={trailPanelRef}>
           <h2 className={styles.trailHeading}>See for yourself</h2>
           <div className={styles.trailWindow} ref={trailContainerRef}>
             <ImageTrail
@@ -96,7 +163,7 @@ export default function Projects({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className={styles.quotePanel}>
+        <div className={styles.quotePanel} ref={quotePanelRef}>
           <div className={styles.quoteBg} aria-hidden="true">
             <Antigravity
               count={280}
@@ -187,4 +254,4 @@ export default function Projects({ locale }: { locale: Locale }) {
       </div>
     </section>
   );
-} 
+}

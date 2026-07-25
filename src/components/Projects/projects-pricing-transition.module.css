@@ -1,0 +1,27 @@
+.headingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 72vh;
+  padding: 4rem 1.5rem;
+}
+
+.introHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.introLine {
+  display: block;
+  will-change: transform, opacity;
+}

@@ -1,5 +1,50 @@
 import type { Locale } from "./config";
 
+export interface PricingCalculatorDictionary {
+  eyebrow: string;
+  heading: string;
+  subhead: string;
+  placeholder: string;
+  steps: {
+    projectType: {
+      title: string;
+      options: Record<"landing" | "website" | "portfolio", { label: string }>;
+    };
+    size: {
+      title: string;
+      options: {
+        landing: Record<"short" | "standard" | "long", { label: string; description: string }>;
+        website: Record<"small" | "medium" | "large", { label: string; description: string }>;
+        portfolio: Record<"small" | "medium" | "large", { label: string; description: string }>;
+      };
+    };
+    creativity: {
+      title: string;
+      options: Record<"standard" | "enhanced" | "creative", { label: string; description: string }>;
+    };
+    timeline: {
+      title: string;
+      options: Record<"flexible" | "asap", { label: string }>;
+    };
+    seo: {
+      title: string;
+      yes: string;
+      no: string;
+    };
+    content: {
+      title: string;
+      options: Record<"client" | "assistance", string>;
+    };
+  };
+  result: {
+    timeLabel: string;
+    priceLabel: string;
+    weeksUnit: string;
+    loadingRate: string;
+    ctaButton: string;
+  };
+}
+
 export interface ServiceItem {
   slug: string;
   title: string;
@@ -48,6 +93,7 @@ export interface Dictionary {
     heading: string;
     items: { title: string; description: string }[];
   };
+  pricingCalculator: PricingCalculatorDictionary;
   contact: {
     heading: string;
     text: string;
@@ -160,6 +206,80 @@ export const dictionaries: Record<Locale, Dictionary> = {
         { title: "Project Three", description: "A short description of this project goes here." },
       ],
     },
+    pricingCalculator: {
+      eyebrow: "Get an Estimate",
+      heading: "Let's talk / about your / project.",
+      subhead:
+        "Most projects will be priced according to your needs, but we can still give a clear idea of timelines and budget.",
+      placeholder: "Select an option",
+      steps: {
+        projectType: {
+          title: "What are you building?",
+          options: {
+            landing: { label: "Landing Page" },
+            website: { label: "Website" },
+            portfolio: { label: "Portfolio" },
+          },
+        },
+        size: {
+          title: "How big is it?",
+          options: {
+            landing: {
+              short: { label: "Short", description: "Up to 4 sections" },
+              standard: { label: "Standard", description: "5 to 8 sections" },
+              long: { label: "Long", description: "9 to 12 sections" },
+            },
+            website: {
+              small: { label: "Small", description: "1 to 5 page templates" },
+              medium: { label: "Medium", description: "6 to 10 page templates" },
+              large: { label: "Large", description: "11 to 20 page templates" },
+            },
+            portfolio: {
+              small: { label: "Small", description: "1 to 5 page templates" },
+              medium: { label: "Medium", description: "6 to 10 page templates" },
+              large: { label: "Large", description: "11 to 20 page templates" },
+            },
+          },
+        },
+        creativity: {
+          title: "How much creative direction?",
+          options: {
+            standard: { label: "Standard", description: "Clean and functional" },
+            enhanced: { label: "Enhanced", description: "Refined motion and details" },
+            creative: {
+              label: "Creative",
+              description: "Full custom interactive experience",
+            },
+          },
+        },
+        timeline: {
+          title: "What's your timeline?",
+          options: {
+            flexible: { label: "Flexible" },
+            asap: { label: "ASAP" },
+          },
+        },
+        seo: {
+          title: "Do you need SEO optimization?",
+          yes: "Yes",
+          no: "No",
+        },
+        content: {
+          title: "Who's providing the content?",
+          options: {
+            client: "I'll provide content",
+            assistance: "I need content assistance",
+          },
+        },
+      },
+      result: {
+        timeLabel: "Estimated development timeline",
+        priceLabel: "Estimated price range",
+        weeksUnit: "weeks",
+        loadingRate: "Calculating...",
+        ctaButton: "Start a Conversation",
+      },
+    },
     contact: {
       heading: "Contact",
       text: "Have a project in mind? Send me a message and let's talk about it.",
@@ -270,6 +390,80 @@ export const dictionaries: Record<Locale, Dictionary> = {
         { title: "პროექტი მეორე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
         { title: "პროექტი მესამე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
       ],
+    },
+    pricingCalculator: {
+      eyebrow: "მიიღეთ შეფასება",
+      heading: "მოდით ვისაუბროთ / თქვენს / პროექტზე",
+      subhead:
+        "პროექტების უმეტესობის ფასი განისაზღვრება ინდივიდუალურად, თუმცა შეგვიძლია მოგცეთ ნათელი წარმოდგენა ვადებსა და ბიუჯეტზე.",
+      placeholder: "აირჩიეთ ვარიანტი",
+      steps: {
+        projectType: {
+          title: "რას ქმნით?",
+          options: {
+            landing: { label: "ლენდინგ გვერდი" },
+            website: { label: "ვებსაიტი" },
+            portfolio: { label: "პორტფოლიო" },
+          },
+        },
+        size: {
+          title: "რა მოცულობისაა?",
+          options: {
+            landing: {
+              short: { label: "მოკლე", description: "4 სექციამდე" },
+              standard: { label: "სტანდარტული", description: "5-დან 8 სექციამდე" },
+              long: { label: "გრძელი", description: "9-დან 12 სექციამდე" },
+            },
+            website: {
+              small: { label: "პატარა", description: "1-დან 5 გვერდამდე" },
+              medium: { label: "საშუალო", description: "6-დან 10 გვერდამდე" },
+              large: { label: "დიდი", description: "11-დან 20 გვერდამდე" },
+            },
+            portfolio: {
+              small: { label: "პატარა", description: "1-დან 5 გვერდამდე" },
+              medium: { label: "საშუალო", description: "6-დან 10 გვერდამდე" },
+              large: { label: "დიდი", description: "11-დან 20 გვერდამდე" },
+            },
+          },
+        },
+        creativity: {
+          title: "რამდენად შემოქმედებითი მიდგომაა საჭირო?",
+          options: {
+            standard: { label: "სტანდარტული", description: "სუფთა და ფუნქციური" },
+            enhanced: { label: "გაუმჯობესებული", description: "დახვეწილი ანიმაცია და დეტალები" },
+            creative: {
+              label: "შემოქმედებითი",
+              description: "სრულად ინდივიდუალური ინტერაქტიული გამოცდილება",
+            },
+          },
+        },
+        timeline: {
+          title: "რა ვადაშია საჭირო?",
+          options: {
+            flexible: { label: "მოქნილი" },
+            asap: { label: "სასწრაფოდ" },
+          },
+        },
+        seo: {
+          title: "გჭირდებათ SEO ოპტიმიზაცია?",
+          yes: "დიახ",
+          no: "არა",
+        },
+        content: {
+          title: "ვინ უზრუნველყოფს კონტენტს?",
+          options: {
+            client: "მე მოვამზადებ კონტენტს",
+            assistance: "მჭირდება კონტენტში დახმარება",
+          },
+        },
+      },
+      result: {
+        timeLabel: "სავარაუდო შესრულების ვადა",
+        priceLabel: "სავარაუდო ფასის დიაპაზონი",
+        weeksUnit: "კვირა",
+        loadingRate: "მიმდინარეობს გამოთვლა...",
+        ctaButton: "დაიწყეთ საუბარი",
+      },
     },
     contact: {
       heading: "კონტაქტი",

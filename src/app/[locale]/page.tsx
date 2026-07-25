@@ -2,7 +2,8 @@ import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
 import About from "@/components/About/About";
 import Services from "@/components/Services/Services";
-import Projects from "@/components/Projects/Projects";
+import ProjectsPricingTransition from "@/components/Projects/ProjectsPricingTransition";
+import PricingCalculator from "@/components/PricingCalculator/PricingCalculator";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import { locales, type Locale } from "@/i18n/config";
@@ -25,7 +26,8 @@ export default async function Home({
         <Hero locale={locale} />
         <About locale={locale} />
         <Services locale={locale} />
-        <Projects locale={locale} />
+        <ProjectsPricingTransition locale={locale} />
+        <PricingCalculator locale={locale} />
         <Contact locale={locale} />
       </main>
       <Footer locale={locale} />
