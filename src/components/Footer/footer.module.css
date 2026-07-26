@@ -20,8 +20,8 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: #0a0a0c;
+  color: #f5f5f7;
   font-family: var(--font-body);
 }
 
@@ -38,8 +38,8 @@
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in oklch, var(--color-accent) 16%, transparent) 0%,
-    color-mix(in oklch, var(--color-accent) 6%, transparent) 40%,
+    color-mix(in oklch, var(--color-accent) 22%, transparent) 0%,
+    color-mix(in oklch, var(--color-accent) 8%, transparent) 40%,
     transparent 70%
   );
   animation: breathe 8s ease-in-out infinite alternate;
@@ -64,12 +64,12 @@
   background-size: 60px 60px;
   background-image: linear-gradient(
       to right,
-      color-mix(in oklch, var(--color-text) 4%, transparent) 1px,
+      rgba(255, 255, 255, 0.05) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      color-mix(in oklch, var(--color-text) 4%, transparent) 1px,
+      rgba(255, 255, 255, 0.05) 1px,
       transparent 1px
     );
   mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
@@ -91,10 +91,10 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px color-mix(in oklch, var(--color-text) 6%, transparent);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
   background: linear-gradient(
     180deg,
-    color-mix(in oklch, var(--color-text) 10%, transparent) 0%,
+    rgba(255, 255, 255, 0.12) 0%,
     transparent 60%
   );
   -webkit-background-clip: text;
@@ -109,13 +109,13 @@
   width: 100%;
   overflow: hidden;
   transform: rotate(-2deg) scale(1.1);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  background: color-mix(in oklch, var(--color-bg) 70%, transparent);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 10, 12, 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   padding: 1rem 0;
-  box-shadow: 0 20px 50px oklch(0% 0 0 / 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 .marqueeTrack {
@@ -127,7 +127,7 @@
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 @keyframes marquee {
@@ -176,8 +176,8 @@
   line-height: 1.05;
   background: linear-gradient(
     180deg,
-    var(--color-text) 0%,
-    color-mix(in oklch, var(--color-text) 45%, transparent) 100%
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.45) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -216,15 +216,15 @@
   justify-content: center;
   gap: 0.6rem;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(
     145deg,
-    color-mix(in oklch, var(--color-text) 3%, transparent) 0%,
-    color-mix(in oklch, var(--color-text) 1%, transparent) 100%
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%
   );
-  box-shadow: 0 10px 30px -10px color-mix(in oklch, var(--color-bg) 50%, transparent),
-    inset 0 1px 1px color-mix(in oklch, var(--color-text) 10%, transparent);
-  color: var(--color-text);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
   font-family: var(--font-body);
   font-weight: 600;
   white-space: nowrap;
@@ -234,9 +234,14 @@
 }
 
 .pill:hover {
-  border-color: color-mix(in oklch, var(--color-text) 20%, transparent);
-  box-shadow: 0 20px 40px -10px color-mix(in oklch, var(--color-bg) 70%, transparent),
-    inset 0 1px 1px color-mix(in oklch, var(--color-text) 20%, transparent);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
 
 .pillPrimary {
@@ -253,11 +258,11 @@
   padding: 0.65rem 1.35rem;
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .pillSecondary:hover {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .bottomBar {
@@ -279,7 +284,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .craftedBadge {
@@ -288,7 +293,7 @@
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 0.65rem 1.35rem;
   cursor: default;
 }
@@ -299,12 +304,12 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .heart {
   display: inline-flex;
-  color: #e0405a;
+  color: #ff5c72;
   animation: heartbeat 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
@@ -330,13 +335,13 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--color-border);
-  color: var(--color-muted);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.6);
   flex-shrink: 0;
 }
 
 .backToTop:hover {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .backToTop svg {
