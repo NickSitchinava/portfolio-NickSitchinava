@@ -4,7 +4,9 @@ import { ArcRevealHero } from "@/components/ArcRevealHero/ArcRevealHero";
 import PageBottomBlur from "@/components/ui/PageBottomBlur";
 import { locales, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
+import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
 import "../globals.css";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -82,16 +84,17 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
-      <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
-          {children}
-        </ArcRevealHero>
-        <PageBottomBlur />
-      </body>
+   <body>
+      <SmoothScroll />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
+        {children}
+      </ArcRevealHero>
+      <PageBottomBlur />
+    </body>
     </html>
   );
 }
