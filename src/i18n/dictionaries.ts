@@ -53,6 +53,27 @@ export interface ServiceItem {
   features: string[];
 }
 
+export interface FooterDictionary {
+  giantText: string;
+  heading: string;
+  marquee: string[];
+  primaryCta: string;
+  secondaryCta: string;
+  nav: {
+    about: string;
+    services: string;
+    projects: string;
+    contact: string;
+  };
+  legal: {
+    privacy: string;
+    terms: string;
+  };
+  crafted: string;
+  rights: string;
+  backToTop: string;
+}
+
 export interface Dictionary {
   meta: {
     title: string;
@@ -98,9 +119,7 @@ export interface Dictionary {
     heading: string;
     text: string;
   };
-  footer: {
-    rights: string;
-  };
+  footer: FooterDictionary;
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
@@ -285,7 +304,31 @@ export const dictionaries: Record<Locale, Dictionary> = {
       text: "Have a project in mind? Send me a message and let's talk about it.",
     },
     footer: {
+      giantText: "DESIGN",
+      heading: "Let's build something worth finding.",
+      marquee: [
+        "Custom Websites",
+        "Landing Pages",
+        "SEO Optimized",
+        "Built to Convert",
+        "Fast Load Times",
+        "Bilingual by Default",
+      ],
+      primaryCta: "Start a Project",
+      secondaryCta: "View Our Work",
+      nav: {
+        about: "About",
+        services: "Services",
+        projects: "Projects",
+        contact: "Contact",
+      },
+      legal: {
+        privacy: "Privacy Policy",
+        terms: "Terms of Service",
+      },
+      crafted: "Crafted with",
       rights: "All rights reserved.",
+      backToTop: "Back to top",
     },
   },
   ka: {
@@ -470,7 +513,31 @@ export const dictionaries: Record<Locale, Dictionary> = {
       text: "გაქვთ პროექტის იდეა? მომწერეთ და ვისაუბროთ.",
     },
     footer: {
+      giantText: "დიზაინი",
+      heading: "მოდით შევქმნათ რაღაც აღმოსაჩენი.",
+      marquee: [
+        "ინდივიდუალური ვებსაიტები",
+        "ლენდინგ გვერდები",
+        "SEO ოპტიმიზაცია",
+        "აგებული კონვერტაციისთვის",
+        "სწრაფი ჩატვირთვა",
+        "ორენოვანი ნაგულისხმევად",
+      ],
+      primaryCta: "დაიწყეთ პროექტი",
+      secondaryCta: "ნახეთ ჩვენი ნამუშევრები",
+      nav: {
+        about: "ჩვენ შესახებ",
+        services: "სერვისები",
+        projects: "პროექტები",
+        contact: "კონტაქტი",
+      },
+      legal: {
+        privacy: "კონფიდენციალურობის პოლიტიკა",
+        terms: "მომსახურების პირობები",
+      },
+      crafted: "შექმნილია",
       rights: "ყველა უფლება დაცულია.",
+      backToTop: "ზემოთ დაბრუნება",
     },
   },
 };

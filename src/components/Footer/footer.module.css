@@ -1,6 +1,388 @@
+.curtain {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+}
+
+.spacer {
+  height: 22vh;
+  background: var(--color-bg);
+}
+
 .footer {
-  padding: 2rem 1.5rem;
-  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.aurora {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 80vw;
+  height: 60vh;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklch, var(--color-accent) 16%, transparent) 0%,
+    color-mix(in oklch, var(--color-accent) 6%, transparent) 40%,
+    transparent 70%
+  );
+  animation: breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-size: 60px 60px;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklch, var(--color-text) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--color-text) 4%, transparent) 1px,
+      transparent 1px
+    );
+  mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+}
+
+.giantText {
+  position: absolute;
+  bottom: -5vh;
+  left: 50%;
+  z-index: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 22vw;
+  line-height: 0.75;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklch, var(--color-text) 6%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--color-text) 10%, transparent) 0%,
+    transparent 60%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.marqueeStrip {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  transform: rotate(-2deg) scale(1.1);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in oklch, var(--color-bg) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 1rem 0;
+  box-shadow: 0 20px 50px oklch(0% 0 0 / 0.08);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
   color: var(--color-muted);
-  font-size: 0.85rem;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marqueeItem {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 0 1.5rem;
+}
+
+.marqueeDot {
+  color: var(--color-accent);
+}
+
+.center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 64rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 0 1.5rem;
+}
+
+.heading {
+  margin: 0 0 3rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  background: linear-gradient(
+    180deg,
+    var(--color-text) 0%,
+    color-mix(in oklch, var(--color-text) 45%, transparent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.primaryRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.secondaryRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--color-text) 3%, transparent) 0%,
+    color-mix(in oklch, var(--color-text) 1%, transparent) 100%
+  );
+  box-shadow: 0 10px 30px -10px color-mix(in oklch, var(--color-bg) 50%, transparent),
+    inset 0 1px 1px color-mix(in oklch, var(--color-text) 10%, transparent);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.pill:hover {
+  border-color: color-mix(in oklch, var(--color-text) 20%, transparent);
+  box-shadow: 0 20px 40px -10px color-mix(in oklch, var(--color-bg) 70%, transparent),
+    inset 0 1px 1px color-mix(in oklch, var(--color-text) 20%, transparent);
+}
+
+.pillPrimary {
+  padding: 1.1rem 2.25rem;
+  font-size: 0.95rem;
+}
+
+.pillPrimary svg {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.pillSecondary {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.pillSecondary:hover {
+  color: var(--color-text);
+}
+
+.bottomBar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0 1.5rem 2.5rem;
+}
+
+.copyright {
+  order: 2;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.craftedBadge {
+  order: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  padding: 0.65rem 1.35rem;
+  cursor: default;
+}
+
+.craftedText {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.heart {
+  display: inline-flex;
+  color: #e0405a;
+  animation: heartbeat 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15%,
+  45% {
+    transform: scale(1.2);
+  }
+  30% {
+    transform: scale(1);
+  }
+}
+
+.backToTop {
+  order: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.backToTop:hover {
+  color: var(--color-text);
+}
+
+.backToTop svg {
+  transition: transform 0.3s ease;
+}
+
+.backToTop:hover svg {
+  transform: translateY(-3px);
+}
+
+@media (min-width: 720px) {
+  .bottomBar {
+    flex-direction: row;
+    padding: 0 3rem 2.5rem;
+  }
+
+  .copyright {
+    order: 1;
+  }
+
+  .craftedBadge {
+    order: 2;
+  }
+
+  .backToTop {
+    order: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .marqueeTrack,
+  .heart,
+  .pill,
+  .backToTop svg {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .giantText {
+    font-size: 30vw;
+  }
+
+  .spacer {
+    height: 12vh;
+  }
 }
