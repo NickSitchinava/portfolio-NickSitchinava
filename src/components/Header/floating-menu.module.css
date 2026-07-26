@@ -1,0 +1,139 @@
+.wrapper {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 60;
+  pointer-events: auto;
+}
+
+.shell {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px var(--color-border), 0 10px 30px oklch(0% 0 0 / 0.14);
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+.shellBg {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  background: #ffffff;
+}
+
+.shellReveal {
+  position: absolute;
+  left: 50%;
+  z-index: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  transform: translateX(-50%) translateZ(0);
+  will-change: top;
+}
+
+.menuItems {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48px;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  overflow: hidden;
+}
+
+.menuLink {
+  display: block;
+  height: 1.9rem;
+  overflow: hidden;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.9rem;
+}
+
+.menuLinkRow {
+  display: flex;
+  justify-content: center;
+}
+
+.charMask {
+  display: inline-block;
+  height: 1.9rem;
+  overflow: hidden;
+}
+
+.charFlip {
+  display: flex;
+  flex-direction: column;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.charLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.9rem;
+  line-height: 1.9rem;
+}
+
+.toggleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.toggleLabel {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.burger {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.burgerLine {
+  position: absolute;
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .charFlip {
+    transition: none !important;
+  }
+}

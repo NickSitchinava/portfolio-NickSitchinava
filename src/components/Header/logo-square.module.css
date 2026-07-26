@@ -1,0 +1,31 @@
+.wrapper {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 60;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: #111111;
+  box-shadow: 0 10px 30px oklch(0% 0 0 / 0.18);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.square:hover {
+  transform: scale(1.05);
+}
+
+.square:active {
+  transform: scale(0.96);
+}
+
+.square img {
+  display: block;
+  filter: brightness(0) invert(1);
+}

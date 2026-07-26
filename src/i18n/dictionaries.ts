@@ -82,12 +82,13 @@ export interface Dictionary {
     keywords: string[];
   };
   loaderGreetings: string[];
-  header: {
+   header: {
     about: string;
     services: string;
     projects: string;
     contact: string;
     cta: string;
+    menuLabel: string;
   };
   hero: {
     eyebrow: string;
@@ -151,12 +152,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Built for SEO.",
       "Clean. Fast. Found.",
     ],
-    header: {
+     header: {
       about: "About",
       services: "Services",
       projects: "Projects",
       contact: "Contact",
       cta: "Start a Project",
+      menuLabel: "Menu",
     },
     hero: {
       eyebrow: "Web Design & Development Agency",
@@ -365,6 +367,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       projects: "პროექტები",
       contact: "კონტაქტი",
       cta: "დაიწყეთ პროექტი",
+      menuLabel: "მენიუ",
     },
     hero: {
       eyebrow: "ვებ დიზაინისა და დეველოპმენტის სააგენტო",
