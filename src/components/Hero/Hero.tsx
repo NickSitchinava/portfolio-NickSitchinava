@@ -1,12 +1,29 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import GlowHorizon from "@/components/ui/glow-horizon";
-import { useLoaderReveal } from "@/components/ArcRevealHero/LoaderContext";
 import { Button } from "@/components/ui/Button/Button";
+import InkReveal from "@/components/Hero/InkReveal";
+import MeshText from "@/components/Hero/MeshText";
+import HeroCursor from "@/components/Hero/HeroCursor";
+import { useLoaderReveal } from "@/components/ArcRevealHero/LoaderContext";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import styles from "./Hero.module.css";
+
+const HEADLINE_FONT_SIZE = 96;
+const HEADLINE_FONT_WEIGHT = 600;
+const HEADLINE_FONT_FAMILY = "Poppins";
+
+function measureLineWidths(lines: string[], fontSize: number): number[] {
+  if (typeof document === "undefined") return lines.map(() => 0);
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return lines.map(() => 0);
+  ctx.font = `${HEADLINE_FONT_WEIGHT} ${fontSize}px ${HEADLINE_FONT_FAMILY}, sans-serif`;
+  return lines.map((line) => ctx.measureText(line).width);
+}
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -15,14 +32,52 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const BG_IMAGE_URL = "/images/HeroBG.webp";
+
 export default function Hero({ locale }: { locale: Locale }) {
   const isRevealed = useLoaderReveal();
   const animate = isRevealed ? "visible" : "hidden";
   const t = dictionaries[locale].hero;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const headlineLines = t.headlineLines ?? [t.headlinePrefix + t.headlineEmphasis];
+  const [lineWidths, setLineWidths] = useState<number[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const measure = () => {
+      if (cancelled) return;
+      setLineWidths(measureLineWidths(headlineLines, HEADLINE_FONT_SIZE));
+    };
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(measure).catch(measure);
+    } else {
+      measure();
+    }
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headlineLines.join("|")]);
 
   return (
-    <section id="home" className={styles.hero} aria-label="Introduction">
-      <GlowHorizon variant="top" className={styles.glow} />
+    <section id="home" ref={sectionRef} className={styles.hero} aria-label="Introduction">
+      <HeroCursor containerRef={sectionRef} />
+
+      <div className={styles.canvasLayer} aria-hidden="true">
+        <Image
+          src={BG_IMAGE_URL}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.bgImage}
+        />
+        <InkReveal className={styles.inkCanvas} maskColor={[244, 243, 240]} brushSize={160} />
+      </div>
 
       <div className={styles.content}>
         <div className={styles.textBlock}>
@@ -36,16 +91,38 @@ export default function Hero({ locale }: { locale: Locale }) {
             {t.eyebrow}
           </motion.span>
 
-          <motion.h1
+          <motion.div
             className={styles.headline}
             initial="hidden"
             animate={animate}
             variants={fadeUp}
             transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
           >
-            {t.headlinePrefix}
-            <em>{t.headlineEmphasis}</em>
-          </motion.h1>
+            {headlineLines.map((line, index) => {
+              const measuredWidth = lineWidths?.[index] ?? 0;
+              const boxWidth = measuredWidth > 0 ? measuredWidth * 1.18 + 48 : undefined;
+              return (
+                <div
+                  key={index}
+                  className={styles.headlineLine}
+                  style={boxWidth ? { width: `min(94vw, ${boxWidth}px)` } : undefined}
+                >
+                  {lineWidths && (
+                    <MeshText
+                      text={line}
+                      color="#111111"
+                      fontFamily={HEADLINE_FONT_FAMILY}
+                      fontWeight={HEADLINE_FONT_WEIGHT}
+                      colorSplit={false}
+                      fontSize={HEADLINE_FONT_SIZE}
+                      force={16}
+                    />
+                  )}
+                  <span className={styles.headlineSrOnly}>{line}</span>
+                </div>
+              );
+            })}
+          </motion.div>
 
           <motion.p
             className={styles.subhead}
@@ -84,10 +161,10 @@ export default function Hero({ locale }: { locale: Locale }) {
             className={styles.primaryCta}
             style={
               {
-                "--btn-bg": "#fff",
-                "--btn-fg": "#050507",
-                "--btn-fill": "oklch(83% 0.006 290)",
-                "--btn-fill-fg": "#050507",
+                "--btn-bg": "#111111",
+                "--btn-fg": "#f4f3f0",
+                "--btn-fill": "var(--color-accent)",
+                "--btn-fill-fg": "#111111",
               } as React.CSSProperties
             }
           >
@@ -98,33 +175,17 @@ export default function Hero({ locale }: { locale: Locale }) {
             className={styles.secondaryCta}
             style={
               {
-                "--btn-bg": "rgba(255,255,255,0.06)",
-                "--btn-fg": "#fff",
-                "--btn-border": "1px solid rgba(255,255,255,0.16)",
-                "--btn-blur": "blur(12px)",
-                "--btn-fill": "oklch(44% 0.015 290)",
-                "--btn-fill-fg": "#fff",
+                "--btn-bg": "rgba(17,17,17,0.05)",
+                "--btn-fg": "#111111",
+                "--btn-border": "1px solid rgba(17,17,17,0.14)",
+                "--btn-fill": "#111111",
+                "--btn-fill-fg": "#f4f3f0",
               } as React.CSSProperties
             }
           >
             {t.secondaryCta}
           </Button>
         </motion.div>
-      </div>
-
-      <div className={styles.waveDivider} aria-hidden="true">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path
-            className={styles.waveBack}
-            d="M0,82 C220,24 380,124 620,72 C860,20 1040,112 1440,52 L1440,120 L0,120 Z"
-            fill="oklch(32% 0.06 290 / 0.35)"
-          />
-          <path
-            className={styles.waveFront}
-            d="M0,64 C240,118 470,8 720,34 C980,60 1180,132 1440,70 L1440,120 L0,120 Z"
-            fill="var(--color-bg)"
-          />
-        </svg>
       </div>
     </section>
   );

@@ -91,14 +91,15 @@ export interface Dictionary {
     menuLabel: string;
   };
   hero: {
-    eyebrow: string;
-    headlinePrefix: string;
-    headlineEmphasis: string;
-    subhead: string;
-    chips: string[];
-    primaryCta: string;
-    secondaryCta: string;
-  };
+  eyebrow: string;
+  headlinePrefix: string;
+  headlineEmphasis: string;
+  headlineLines: string[];
+  subhead: string;
+  chips: string[];
+  primaryCta: string;
+  secondaryCta: string;
+};
   services: {
     heading: string;
     cta: string;
@@ -164,6 +165,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "Web Design & Development Agency",
       headlinePrefix: "We build ",
       headlineEmphasis: "websites that convert",
+      headlineLines: ["We build", "websites that", "convert"],
       subhead:
         "Custom website design, landing pages, and web app development for startups and growing businesses.",
       chips: ["Website Design", "Landing Pages", "Web Applications"],
@@ -373,6 +375,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "ვებ დიზაინისა და დეველოპმენტის სააგენტო",
       headlinePrefix: "ჩვენ ვქმნით ",
       headlineEmphasis: "ვებსაიტებს, რომლებიც კონვერტირებენ",
+      headlineLines: ["ჩვენ ვქმნით", "ვებსაიტებს, რომლებიც", "კონვერტირებენ"],
       subhead:
         "ინდივიდუალური ვებსაიტის დიზაინი, ლენდინგ გვერდები და ვებ აპლიკაციების დეველოპმენტი სტარტაპებისა და მზარდი ბიზნესებისთვის.",
       chips: ["ვებსაიტის დიზაინი", "ლენდინგ გვერდები", "ვებ აპლიკაციები"],

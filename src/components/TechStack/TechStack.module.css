@@ -1,0 +1,92 @@
+.techStack {
+  position: relative;
+  background: var(--color-bg);
+  padding: 4.5rem 1.5rem;
+}
+
+.inner {
+  position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 1.75rem;
+}
+
+.divider {
+  height: 1px;
+  margin: 1.5rem auto;
+  max-width: 30rem;
+  background: var(--color-border);
+  mask-image: linear-gradient(to right, transparent, black, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black, transparent);
+}
+
+.slider {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+  color: var(--color-text);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.item:hover {
+  opacity: 0.9;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.itemLabel {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none !important;
+  }
+
+  .slider {
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .itemLabel {
+    font-size: 0.85rem;
+  }
+}

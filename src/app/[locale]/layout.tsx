@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Poppins } from "next/font/google";
 import { ArcRevealHero } from "@/components/ArcRevealHero/ArcRevealHero";
 import PageBottomBlur from "@/components/ui/PageBottomBlur";
 import { locales, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
 import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
 import "../globals.css";
-
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +16,13 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -83,18 +89,18 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
-   <body>
-      <SmoothScroll />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
-        {children}
-      </ArcRevealHero>
-      <PageBottomBlur />
-    </body>
+    <html lang={locale} className={`${inter.variable} ${playfair.variable} ${poppins.variable}`}>
+      <body>
+        <SmoothScroll />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <ArcRevealHero greetings={t.loaderGreetings.map((text) => ({ text, lang: locale }))}>
+          {children}
+        </ArcRevealHero>
+        <PageBottomBlur />
+      </body>
     </html>
   );
 }

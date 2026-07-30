@@ -1,25 +1,48 @@
 .hero {
-  --wave-height: clamp(48px, 9vw, 110px);
   position: relative;
   min-height: 100svh;
   display: flex;
   overflow: hidden;
-  background: #050507;
-  padding: 6rem 1.5rem calc(4rem + var(--wave-height));
+  background: #f4f3f0;
+  padding: 8rem 1.5rem 5rem;
 }
 
-.glow {
+@media (pointer: fine) {
+  .hero,
+  .hero * {
+    cursor: none;
+  }
+}
+
+.canvasLayer {
+  position: absolute;
+  inset: 0;
   z-index: 0;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inkCanvas {
+  z-index: 1;
 }
 
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 3rem;
+  pointer-events: none;
 }
 
 .textBlock {
@@ -27,41 +50,56 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 42rem;
+  max-width: 56rem;
+  pointer-events: none;
 }
 
 .eyebrow {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(17, 17, 17, 0.55);
+  pointer-events: none;
 }
 
 .headline {
-  font-family: var(--font-inter), sans-serif;
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  line-height: 1.08;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   margin-top: 1.1rem;
+  pointer-events: none;
 }
 
-.headline em {
-  font-family: var(--font-playfair), serif;
-  font-style: italic;
-  font-weight: 500;
+.headlineLine {
+  position: relative;
+  width: min(90vw, 34rem);
+  height: clamp(3.4rem, 8vw, 6.4rem);
+  pointer-events: none;
+}
+
+.headlineSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .subhead {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(1rem, 1.3vw, 1.1rem);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(17, 17, 17, 0.62);
   max-width: 32rem;
   margin: 0;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
+  pointer-events: none;
 }
 
 .chips {
@@ -74,15 +112,16 @@
   margin: 0;
   margin-top: 1.75rem;
   padding: 0;
+  pointer-events: none;
 }
 
 .chip {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(17, 17, 17, 0.7);
+  background: rgba(17, 17, 17, 0.04);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   padding: 0.4rem 0.95rem;
   border-radius: 999px;
 }
@@ -93,15 +132,13 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2.5rem;
+  pointer-events: auto;
 }
 
 .primaryCta {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 500;
-  color: #050507;
-  background: #fff;
   padding: 0.85rem 1.75rem;
   border-radius: 999px;
   text-decoration: none;
@@ -110,7 +147,6 @@
 
 .primaryCta:hover {
   transform: translateY(-2px);
-  opacity: 0.9;
 }
 
 .primaryCta:active {
@@ -118,13 +154,9 @@
 }
 
 .secondaryCta {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 500;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(12px);
   padding: 0.85rem 1.75rem;
   border-radius: 999px;
   text-decoration: none;
@@ -133,25 +165,21 @@
 
 .secondaryCta:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .secondaryCta:active {
   transform: scale(0.97);
 }
 
-.waveDivider {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  z-index: 2;
-  height: var(--wave-height);
-  pointer-events: none;
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta,
+  .secondaryCta {
+    transition: none !important;
+  }
 }
 
-.waveDivider svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+@media (max-width: 640px) {
+  .hero {
+    padding: 7rem 1.25rem 3.5rem;
+  }
 }

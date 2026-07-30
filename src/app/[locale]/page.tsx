@@ -1,5 +1,6 @@
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
+import TechStack from "@/components/TechStack/TechStack";
 import About from "@/components/About/About";
 import Services from "@/components/Services/Services";
 import ProjectsPricingTransition from "@/components/Projects/ProjectsPricingTransition";
@@ -24,6 +25,7 @@ export default async function Home({
       <Header locale={locale} />
       <main>
         <Hero locale={locale} />
+        <TechStack />
         <About locale={locale} />
         <Services locale={locale} />
         <ProjectsPricingTransition locale={locale} />
