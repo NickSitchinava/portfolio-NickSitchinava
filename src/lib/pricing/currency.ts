@@ -1,6 +1,6 @@
 import { FALLBACK_GEL_TO_USD_RATE, USD_ROUNDING_STEP } from "./config";
 
-const RATE_API_URL = "https://api.frankfurter.app/latest?from=GEL&to=USD";
+const RATE_API_URL = "https://open.er-api.com/v6/latest/GEL";
 const FETCH_TIMEOUT_MS = 2500;
 
 let cachedRate: number | null = null;
