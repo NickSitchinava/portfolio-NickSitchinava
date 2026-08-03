@@ -79,12 +79,27 @@ export default function Projects({ locale }: { locale: Locale }) {
   const trailPanelRef = useRef<HTMLDivElement>(null);
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [enableParallax, setEnableParallax] = useState(false);
+  const [quoteInView, setQuoteInView] = useState(false);
 
   useEffect(() => {
     setEnableParallax(
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
         window.innerWidth >= 901
     );
+  }, []);
+
+  useEffect(() => {
+    const node = quotePanelRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setQuoteInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setQuoteInView(entry.isIntersecting),
+      { rootMargin: "200px", threshold: 0.05 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
   useGSAP(
@@ -142,13 +157,12 @@ export default function Projects({ locale }: { locale: Locale }) {
     <section id="projects" className={styles.projects} aria-label={t.heading}>
       <div className={styles.grid} ref={gridRef}>
         <div className={styles.trailPanel} ref={trailPanelRef}>
-          <h2 className={styles.trailHeading}>See for yourself</h2>
+          <h2 className={styles.trailHeading}>{t.trailHeading}</h2>
           <div className={styles.trailWindow} ref={trailContainerRef}>
             <ImageTrail
               containerRef={trailContainerRef}
               interval={90}
               minDistance={60}
-              rotationRange={12}
               newOnTop
             >
               {TRAIL_IMAGES.map((image) => (
@@ -165,34 +179,32 @@ export default function Projects({ locale }: { locale: Locale }) {
 
         <div className={styles.quotePanel} ref={quotePanelRef}>
           <div className={styles.quoteBg} aria-hidden="true">
-            <Antigravity
-              count={280}
-              magnetRadius={4.5}
-              ringRadius={5}
-              waveSpeed={0.4}
-              waveAmplitude={1}
-              particleSize={1.1}
-              lerpSpeed={0.05}
-              color="#5b4bda"
-              autoAnimate
-              particleVariance={1}
-              rotationSpeed={0}
-              depthFactor={1}
-              pulseSpeed={3}
-              particleShape="capsule"
-              fieldStrength={10}
-            />
+            {quoteInView && (
+              <Antigravity
+                count={280}
+                magnetRadius={4.5}
+                ringRadius={5}
+                waveSpeed={0.4}
+                waveAmplitude={1}
+                particleSize={1.1}
+                lerpSpeed={0.05}
+                color="#5b4bda"
+                autoAnimate
+                particleVariance={1}
+                rotationSpeed={0}
+                depthFactor={1}
+                pulseSpeed={3}
+                particleShape="capsule"
+                fieldStrength={10}
+              />
+            )}
           </div>
           <blockquote className={styles.quote}>
             <span className={styles.quoteMark} aria-hidden="true">
               &ldquo;
             </span>
-            <p className={styles.quoteText}>
-              They understood exactly what we needed and delivered a site that felt custom-built for our business, not templated.
-            </p>
-            <footer className={styles.quoteAttribution}>
-              &mdash; Local client, HVAC services
-            </footer>
+            <p className={styles.quoteText}>{t.problemStatement}</p>
+            <footer className={styles.quoteAttribution}>{t.problemAttribution}</footer>
           </blockquote>
         </div>
       </div>

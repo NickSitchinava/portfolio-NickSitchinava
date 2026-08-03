@@ -2,36 +2,21 @@
 
 import {
   Children,
-  forwardRef,
   useCallback,
   useEffect,
-  useImperativeHandle,
   useMemo,
   useRef,
 } from "react";
-import {
-  AnimationSequence,
-  motion,
-  Target,
-  Transition,
-  useAnimate,
-  useAnimationFrame,
-} from "framer-motion";
 import { useMouseVector } from "./use-mouse-vector";
 import styles from "./ImageTrail.module.css";
-
-type TrailSegment = [Target, Transition];
-type TrailAnimationSequence = TrailSegment[];
 
 interface ImageTrailProps {
   children: React.ReactNode;
   containerRef?: React.RefObject<HTMLElement | null>;
   newOnTop?: boolean;
-  rotationRange?: number;
-  animationSequence?: TrailAnimationSequence;
   interval?: number;
   minDistance?: number;
-  velocityDependentSpawn?: boolean;
+  tailLength?: number;
 }
 
 const IDLE_DELAY = 900;
@@ -40,76 +25,43 @@ const IDLE_PERIOD_Y = 5100;
 const IDLE_SPAWN_INTERVAL = 220;
 const IDLE_MIN_DISTANCE = 44;
 
-interface TrailSlotHandle {
-  trigger: (x: number, y: number, rotation: number, zIndex: number) => void;
-}
-
-interface TrailSlotProps {
-  child: React.ReactNode;
-  animationSequence: TrailAnimationSequence;
-}
-
-const TrailSlot = forwardRef<TrailSlotHandle, TrailSlotProps>(
-  ({ child, animationSequence }, ref) => {
-    const [scope, animate] = useAnimate();
-
-    useImperativeHandle(
-      ref,
-      () => ({
-        trigger(x, y, rotation, zIndex) {
-          const node = scope.current;
-          if (!node) return;
-
-          node.style.zIndex = String(zIndex);
-
-          const sequence = [
-            [node, { left: x, top: y, rotate: rotation, opacity: 1, scale: 0 }, { duration: 0 }],
-            ...animationSequence.map((segment) => [node, ...segment]),
-          ] as AnimationSequence;
-
-          animate(sequence);
-        },
-      }),
-      [animate, animationSequence]
-    );
-
-    return (
-      <motion.div
-        ref={scope}
-        className={styles.trailItem}
-        style={{ opacity: 0, scale: 0 }}
-      >
-        {child}
-      </motion.div>
-    );
-  }
-);
-TrailSlot.displayName = "TrailSlot";
-
 const ImageTrail = ({
   children,
   newOnTop = true,
-  rotationRange = 15,
   containerRef,
-  animationSequence = [
-    [{ scale: 1.2 }, { duration: 0.1, ease: "circOut" }],
-    [{ scale: 0 }, { duration: 0.5, ease: "circIn" }],
-  ],
   interval = 100,
   minDistance = 40,
+  tailLength = 5,
 }: ImageTrailProps) => {
   const lastAddedTimeRef = useRef<number>(0);
   const { position: mousePosition } = useMouseVector(containerRef);
   const lastMousePosRef = useRef(mousePosition);
   const lastSpawnPosRef = useRef(mousePosition);
-  const nextSlotRef = useRef(0);
-  const zCounterRef = useRef(1);
+  const globalIndexRef = useRef(0);
   const isHoveringRef = useRef(false);
   const isVisibleRef = useRef(true);
   const idleSinceRef = useRef<number | null>(null);
-  const slotRefs = useRef<(TrailSlotHandle | null)[]>([]);
+  const slotElsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const rafIdRef = useRef(0);
 
   const childrenArray = useMemo(() => Children.toArray(children), [children]);
+
+  useEffect(() => {
+    const node = containerRef?.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (!entry.isIntersecting) {
+          idleSinceRef.current = null;
+        }
+      },
+      { threshold: 0.1, rootMargin: "150px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [containerRef]);
 
   useEffect(() => {
     const node = containerRef?.current;
@@ -132,111 +84,126 @@ const ImageTrail = ({
     };
   }, [containerRef]);
 
-  useEffect(() => {
-    const node = containerRef?.current;
-    if (!node || typeof IntersectionObserver === "undefined") return;
+  const activate = useCallback(
+    (index: number, x: number, y: number) => {
+      const el = slotElsRef.current[index];
+      if (!el) return;
+      el.style.left = `${x}px`;
+      el.style.top = `${y}px`;
+      el.style.zIndex = String((globalIndexRef.current % childrenArray.length) + 1);
+      el.dataset.status = "active";
+    },
+    [childrenArray.length]
+  );
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisibleRef.current = entry.isIntersecting;
-        if (!entry.isIntersecting) {
-          idleSinceRef.current = null;
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [containerRef]);
+  const deactivate = useCallback((index: number) => {
+    const el = slotElsRef.current[index];
+    if (!el) return;
+    el.dataset.status = "inactive";
+  }, []);
 
   const spawn = useCallback(
     (x: number, y: number) => {
       if (childrenArray.length === 0) return;
 
-      const rotation = (Math.random() - 0.5) * rotationRange * 2;
-      const zIndex = newOnTop ? zCounterRef.current++ : 0;
-      const slot = slotRefs.current[nextSlotRef.current];
-      slot?.trigger(x, y, rotation, zIndex);
+      const len = childrenArray.length;
+      const leadIndex = globalIndexRef.current % len;
+      const tailIndex = (((globalIndexRef.current - tailLength) % len) + len) % len;
 
-      nextSlotRef.current = (nextSlotRef.current + 1) % childrenArray.length;
+      activate(leadIndex, x, y);
+      if (globalIndexRef.current >= tailLength) {
+        deactivate(tailIndex);
+      }
+
+      globalIndexRef.current++;
     },
-    [childrenArray.length, rotationRange, newOnTop]
+    [childrenArray.length, tailLength, activate, deactivate]
   );
 
-  useAnimationFrame((time) => {
-    if (!isHoveringRef.current) {
+  useEffect(() => {
+    const tick = (time: number) => {
+      rafIdRef.current = requestAnimationFrame(tick);
+
       if (!isVisibleRef.current) {
         idleSinceRef.current = null;
         return;
       }
 
-      if (idleSinceRef.current === null) {
-        idleSinceRef.current = time;
+      if (!isHoveringRef.current) {
+        if (idleSinceRef.current === null) {
+          idleSinceRef.current = time;
+        }
+
+        const elapsed = time - idleSinceRef.current;
+        if (elapsed < IDLE_DELAY) return;
+
+        const node = containerRef?.current;
+        const width = node?.clientWidth ?? 0;
+        const height = node?.clientHeight ?? 0;
+        if (width === 0 || height === 0) return;
+
+        const t = elapsed - IDLE_DELAY;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const rangeX = width * 0.32;
+        const rangeY = height * 0.28;
+
+        const idlePos = {
+          x: centerX + Math.sin((t / IDLE_PERIOD_X) * Math.PI * 2) * rangeX,
+          y:
+            centerY +
+            Math.sin((t / IDLE_PERIOD_Y) * Math.PI * 2 + Math.PI / 3) * rangeY,
+        };
+
+        if (time - lastAddedTimeRef.current < IDLE_SPAWN_INTERVAL) return;
+
+        const dx = idlePos.x - lastSpawnPosRef.current.x;
+        const dy = idlePos.y - lastSpawnPosRef.current.y;
+        if (Math.hypot(dx, dy) < IDLE_MIN_DISTANCE) return;
+
+        lastAddedTimeRef.current = time;
+        lastSpawnPosRef.current = idlePos;
+        spawn(idlePos.x, idlePos.y);
+        return;
       }
 
-      const elapsed = time - idleSinceRef.current;
-      if (elapsed < IDLE_DELAY) return;
+      if (
+        lastMousePosRef.current.x === mousePosition.x &&
+        lastMousePosRef.current.y === mousePosition.y
+      ) {
+        return;
+      }
+      lastMousePosRef.current = mousePosition;
 
-      const node = containerRef?.current;
-      const width = node?.clientWidth ?? 0;
-      const height = node?.clientHeight ?? 0;
-      if (width === 0 || height === 0) return;
+      if (time - lastAddedTimeRef.current < interval) return;
 
-      const t = elapsed - IDLE_DELAY;
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const rangeX = width * 0.32;
-      const rangeY = height * 0.28;
-
-      const idlePos = {
-        x: centerX + Math.sin((t / IDLE_PERIOD_X) * Math.PI * 2) * rangeX,
-        y:
-          centerY +
-          Math.sin((t / IDLE_PERIOD_Y) * Math.PI * 2 + Math.PI / 3) * rangeY,
-      };
-
-      if (time - lastAddedTimeRef.current < IDLE_SPAWN_INTERVAL) return;
-
-      const dx = idlePos.x - lastSpawnPosRef.current.x;
-      const dy = idlePos.y - lastSpawnPosRef.current.y;
-      if (Math.hypot(dx, dy) < IDLE_MIN_DISTANCE) return;
+      const dx = mousePosition.x - lastSpawnPosRef.current.x;
+      const dy = mousePosition.y - lastSpawnPosRef.current.y;
+      if (Math.hypot(dx, dy) < minDistance) return;
 
       lastAddedTimeRef.current = time;
-      lastSpawnPosRef.current = idlePos;
-      spawn(idlePos.x, idlePos.y);
-      return;
-    }
+      lastSpawnPosRef.current = mousePosition;
+      spawn(mousePosition.x, mousePosition.y);
+    };
 
-    if (
-      lastMousePosRef.current.x === mousePosition.x &&
-      lastMousePosRef.current.y === mousePosition.y
-    ) {
-      return;
-    }
-    lastMousePosRef.current = mousePosition;
-
-    if (time - lastAddedTimeRef.current < interval) return;
-
-    const dx = mousePosition.x - lastSpawnPosRef.current.x;
-    const dy = mousePosition.y - lastSpawnPosRef.current.y;
-    if (Math.hypot(dx, dy) < minDistance) return;
-
-    lastAddedTimeRef.current = time;
-    lastSpawnPosRef.current = mousePosition;
-    spawn(mousePosition.x, mousePosition.y);
-  });
+    rafIdRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafIdRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mousePosition, spawn, interval, minDistance, containerRef]);
 
   return (
     <div className={styles.trailWrap}>
       {childrenArray.map((child, index) => (
-        <TrailSlot
+        <div
           key={index}
-          ref={(handle) => {
-            slotRefs.current[index] = handle;
+          ref={(node) => {
+            slotElsRef.current[index] = node;
           }}
-          child={child}
-          animationSequence={animationSequence}
-        />
+          className={styles.trailItem}
+          data-status="inactive"
+        >
+          {child}
+        </div>
       ))}
     </div>
   );

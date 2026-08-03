@@ -139,10 +139,13 @@ export interface Dictionary {
     ctaText: string;
     ctaButton: string;
   };
-  projects: {
-    heading: string;
-    items: { title: string; description: string }[];
-  };
+ projects: {
+  heading: string;
+  trailHeading: string;
+  problemStatement: string;
+  problemAttribution: string;
+  items: { title: string; description: string }[];
+};
   pricingCalculator: PricingCalculatorDictionary;
   contact: ContactDictionary;
   footer: FooterDictionary;
@@ -245,14 +248,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaText: "Tell us about your project and we'll get back to you with next steps.",
       ctaButton: "Start a Project",
     },
-    projects: {
-      heading: "Projects",
-      items: [
-        { title: "Project One", description: "A short description of this project goes here." },
-        { title: "Project Two", description: "A short description of this project goes here." },
-        { title: "Project Three", description: "A short description of this project goes here." },
-      ],
-    },
+   projects: {
+  heading: "Projects",
+  trailHeading: "See for yourself",
+  problemStatement:
+    "Every business we work with has a problem a template can't fix. We dig into what's actually slowing down calls and bookings, then build the exact site that solves it.",
+  problemAttribution: "— How we approach every project",
+  items: [
+    { title: "Project One", description: "A short description of this project goes here." },
+    { title: "Project Two", description: "A short description of this project goes here." },
+    { title: "Project Three", description: "A short description of this project goes here." },
+  ],
+},
     pricingCalculator: {
       eyebrow: "Get an Estimate",
       heading: "Let's talk / about your / project.",
@@ -484,14 +491,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaText: "მოგვიყევით თქვენი პროექტის შესახებ და დაგიკავშირდებით შემდეგი ნაბიჯებისთვის.",
       ctaButton: "დაიწყეთ პროექტი",
     },
-    projects: {
-      heading: "პროექტები",
-      items: [
-        { title: "პროექტი პირველი", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-        { title: "პროექტი მეორე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-        { title: "პროექტი მესამე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-      ],
-    },
+ projects: {
+  heading: "პროექტები",
+  trailHeading: "ნახეთ თავად",
+  problemStatement:
+    "ყველა ბიზნესს, რომელთანაც ვმუშაობთ, აქვს პრობლემა, რომელსაც შაბლონი ვერ გადაწყვეტს. ჩვენ ღრმად ვსწავლობთ, რა ანელებს რეალურად ზარებსა და ჯავშნებს, და შემდეგ ვქმნით ზუსტად იმ საიტს, რომელიც ამას აგვარებს.",
+  problemAttribution: "— ჩვენი მიდგომა ყველა პროექტისადმი",
+  items: [
+    { title: "პროექტი პირველი", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+    { title: "პროექტი მეორე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+    { title: "პროექტი მესამე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+  ],
+},
     pricingCalculator: {
       eyebrow: "მიიღეთ შეფასება",
       heading: "მოდით ვისაუბროთ / თქვენს / პროექტზე",
