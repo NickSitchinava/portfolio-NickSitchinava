@@ -1,25 +1,343 @@
 .contact {
-  padding: var(--section-padding);
-  max-width: 600px;
+  position: relative;
+  background: var(--color-bg);
+  padding: clamp(5rem, 10vw, 8rem) 1.5rem;
+}
+
+.inner {
+  position: relative;
+  max-width: 1240px;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 4.5rem);
+}
+
+.topRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: start;
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  min-width: 0;
+  padding-top: 0.5rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  background: var(--color-muted-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
 }
 
 .heading {
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  color: var(--color-text);
+  margin: 0.65rem 0 0;
+}
+
+.headingWord {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .text {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.6;
   color: var(--color-muted);
-  font-size: 1rem;
+  max-width: 32ch;
+  margin: 0.75rem 0 0;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--color-text);
+  width: 100%;
+  max-width: 26rem;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px color-mix(in oklch, #22c55e 22%, transparent);
+  flex-shrink: 0;
+}
+
+.statusLabel {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.reachCol {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+  width: 100%;
+  padding-left: clamp(0.5rem, 2vw, 2rem);
+}
+
+.reachCard {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1a1a1a;
+  box-shadow: 0 32px 70px -30px oklch(0% 0 0 / 0.55);
+  padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  transition: border-color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.reachCard:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 40px 80px -28px oklch(0% 0 0 / 0.6);
+}
+
+.reachCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0) 18%,
+    rgba(255, 255, 255, 0) 82%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.reachCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.reachGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.reachContent {
+  position: relative;
+  z-index: 2;
+}
+
+.reachEyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 1.5rem;
 }
 
-.email {
-  font-size: 1.1rem;
-  font-weight: 600;
+.channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.channelRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.channelRow:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.channelLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0.9rem;
+  margin: 0 -0.9rem;
+  border-radius: 14px;
+  transition: background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.channelLink:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(2px);
+}
+
+.channelLink:active {
+  transform: translateX(2px) scale(0.99);
+}
+
+.channelIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: color-mix(in oklch, var(--color-accent) 20%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 32%, transparent);
   color: var(--color-accent);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.channelLink:hover .channelIcon {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.channelText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.channelLabel {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.channelValue {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.channelArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.6);
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.channelLink:hover .channelArrow {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: translate(2px, -2px);
+}
+
+.reachNote {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 1.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mapRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 22rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channelLink,
+  .channelArrow,
+  .channelIcon,
+  .reachGlow,
+  .reachCard {
+    transition: none !important;
+  }
+
+  .reachCard:hover {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .topRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .textCol {
+    align-items: flex-start;
+  }
+
+  .mapRow {
+    max-width: 26rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 4rem 1.25rem;
+  }
 }

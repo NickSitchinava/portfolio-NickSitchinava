@@ -74,6 +74,33 @@ export interface FooterDictionary {
   backToTop: string;
 }
 
+export interface ContactChannel {
+  label: string;
+  value: string;
+  href: string;
+}
+
+export interface ContactDictionary {
+  eyebrow: string;
+  headingLead: string;
+  headingAccent: string;
+  text: string;
+  statusLabel: string;
+  channelsEyebrow: string;
+  channelsNote: string;
+  channels: {
+    email: ContactChannel;
+    whatsapp: ContactChannel;
+    instagram: ContactChannel;
+  };
+  map: {
+    location: string;
+    coordinates: string;
+    liveLabel: string;
+    hintLabel: string;
+  };
+}
+
 export interface Dictionary {
   meta: {
     title: string;
@@ -117,10 +144,7 @@ export interface Dictionary {
     items: { title: string; description: string }[];
   };
   pricingCalculator: PricingCalculatorDictionary;
-  contact: {
-    heading: string;
-    text: string;
-  };
+  contact: ContactDictionary;
   footer: FooterDictionary;
 }
 
@@ -304,8 +328,36 @@ export const dictionaries: Record<Locale, Dictionary> = {
       },
     },
     contact: {
-      heading: "Contact",
-      text: "Have a project in mind? Send me a message and let's talk about it.",
+      eyebrow: "Get In Touch",
+      headingLead: "Let's build something",
+      headingAccent: "worth remembering.",
+      text: "Have a project in mind? Reach out through whichever channel is easiest, we usually reply within a day.",
+      statusLabel: "Available for new projects",
+      channelsEyebrow: "Reach Out Via",
+      channelsNote: "Prefer email for project inquiries, we respond fastest there.",
+      channels: {
+        email: {
+          label: "Email",
+          value: "contact.devbynick@gmail.com",
+          href: "mailto:contact.devbynick@gmail.com",
+        },
+        whatsapp: {
+          label: "WhatsApp",
+          value: "+995 551 318 885",
+          href: "https://wa.me/+995551318885",
+        },
+        instagram: {
+          label: "Instagram",
+          value: "@dev.by.nick",
+          href: "https://www.instagram.com/dev.by.nick/",
+        },
+      },
+      map: {
+        location: "Tbilisi, Georgia",
+        coordinates: "41.7151° N, 44.8271° E",
+        liveLabel: "Available",
+        hintLabel: "Click to expand",
+      },
     },
     footer: {
       giantText: "DESIGN",
@@ -515,8 +567,36 @@ export const dictionaries: Record<Locale, Dictionary> = {
       },
     },
     contact: {
-      heading: "კონტაქტი",
-      text: "გაქვთ პროექტის იდეა? მომწერეთ და ვისაუბროთ.",
+      eyebrow: "დაგვიკავშირდით",
+      headingLead: "მოდით შევქმნათ რაღაც",
+      headingAccent: "დასამახსოვრებელი.",
+      text: "გაქვთ პროექტის იდეა? დაგვიკავშირდით ნებისმიერი მოსახერხებელი არხით, ჩვეულებრივ ერთი დღის განმავლობაში ვპასუხობთ.",
+      statusLabel: "ხელმისაწვდომია ახალი პროექტებისთვის",
+      channelsEyebrow: "დაგვიკავშირდით",
+      channelsNote: "პროექტის შესახებ შეკითხვებისთვის გირჩევთ ელფოსტას, იქ ყველაზე სწრაფად ვპასუხობთ.",
+      channels: {
+        email: {
+          label: "ელფოსტა",
+          value: "contact.devbynick@gmail.com",
+          href: "mailto:contact.devbynick@gmail.com",
+        },
+        whatsapp: {
+          label: "WhatsApp",
+          value: "+995 551 318 885",
+          href: "https://wa.me/+995551318885",
+        },
+        instagram: {
+          label: "Instagram",
+          value: "@dev.by.nick",
+          href: "https://www.instagram.com/dev.by.nick/",
+        },
+      },
+      map: {
+        location: "თბილისი, საქართველო",
+        coordinates: "41.7151° N, 44.8271° E",
+        liveLabel: "ხელმისაწვდომი",
+        hintLabel: "დააჭირეთ გასაშლელად",
+      },
     },
     footer: {
       giantText: "დიზაინი",
