@@ -34,24 +34,42 @@ function MagneticPill({
       ).matches;
       if (prefersReducedMotion) return;
 
+      gsap.set(node, { willChange: "transform" });
+
+      let rafId = 0;
+      let targetX = 0;
+      let targetY = 0;
+
       const handleMove = (event: MouseEvent) => {
         const rect = node.getBoundingClientRect();
-        const x = event.clientX - rect.left - rect.width / 2;
-        const y = event.clientY - rect.top - rect.height / 2;
-        gsap.to(node, {
-          x: x * 0.3,
-          y: y * 0.3,
-          ease: "power2.out",
-          duration: 0.4,
-        });
+        targetX = (event.clientX - rect.left - rect.width / 2) * 0.3;
+        targetY = (event.clientY - rect.top - rect.height / 2) * 0.3;
+
+        if (!rafId) {
+          rafId = requestAnimationFrame(() => {
+            gsap.to(node, {
+              x: targetX,
+              y: targetY,
+              ease: "power2.out",
+              duration: 0.4,
+              overwrite: "auto",
+            });
+            rafId = 0;
+          });
+        }
       };
 
       const handleLeave = () => {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
         gsap.to(node, {
           x: 0,
           y: 0,
           ease: "elastic.out(1, 0.4)",
           duration: 1,
+          overwrite: "auto",
         });
       };
 
@@ -59,6 +77,7 @@ function MagneticPill({
       node.addEventListener("mouseleave", handleLeave);
 
       return () => {
+        if (rafId) cancelAnimationFrame(rafId);
         node.removeEventListener("mousemove", handleMove);
         node.removeEventListener("mouseleave", handleLeave);
       };
@@ -102,6 +121,10 @@ export default function Footer({ locale }: { locale: Locale }) {
         return;
       }
 
+      gsap.set([giantTextRef.current, headingRef.current, actionsRef.current], {
+        willChange: "transform, opacity",
+      });
+
       gsap.set(giantTextRef.current, { y: "10vh", scale: 0.85, opacity: 0 });
       gsap.set([headingRef.current, actionsRef.current], { y: 50, opacity: 0 });
 
@@ -131,10 +154,18 @@ export default function Footer({ locale }: { locale: Locale }) {
         },
       });
 
-      const refresh = () => ScrollTrigger.refresh();
+      let refreshScheduled = false;
+      const refresh = () => {
+        if (refreshScheduled) return;
+        refreshScheduled = true;
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+          refreshScheduled = false;
+        });
+      };
       document.fonts?.ready?.then(refresh).catch(() => undefined);
       window.addEventListener("load", refresh);
-      ScrollTrigger.refresh();
+      refresh();
 
       return () => {
         window.removeEventListener("load", refresh);

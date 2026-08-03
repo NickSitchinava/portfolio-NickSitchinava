@@ -49,6 +49,7 @@ export default function InkReveal({
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
   const dimsRef = useRef({ w: 0, h: 0 });
   const idleSinceRef = useRef<number | null>(null);
+  const inViewRef = useRef(true);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   const mc = maskColor;
@@ -59,6 +60,19 @@ export default function InkReveal({
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewRef.current = entry.isIntersecting;
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
   }, []);
 
   const resize = useCallback(() => {
@@ -198,10 +212,15 @@ export default function InkReveal({
     if (reducedMotion) return;
 
     let rafId = 0;
-    let lastSpawn = 0;
 
     const idleTick = (time: number) => {
       rafId = requestAnimationFrame(idleTick);
+
+      if (!inViewRef.current) {
+        idleSinceRef.current = null;
+        return;
+      }
+
       if (idleSinceRef.current === null) {
         idleSinceRef.current = time;
         return;
@@ -211,8 +230,6 @@ export default function InkReveal({
 
       const { w, h } = dimsRef.current;
       if (w === 0 || h === 0) return;
-      if (time - lastSpawn < 90) return;
-      lastSpawn = time;
 
       const t = (elapsed - IDLE_DELAY) * 0.001;
       const cx = w / 2 + Math.sin(t * 0.6) * w * 0.28;

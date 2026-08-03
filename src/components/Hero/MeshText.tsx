@@ -170,6 +170,20 @@ export default function MeshText(props: MeshTextProps) {
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const inViewRef = useRef(true);
+
+    useEffect(() => {
+        const wrapper = wrapperRef.current;
+        if (!wrapper || typeof IntersectionObserver === "undefined") return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                inViewRef.current = entry.isIntersecting;
+            },
+            { rootMargin: "200px" }
+        );
+        observer.observe(wrapper);
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -337,6 +351,7 @@ export default function MeshText(props: MeshTextProps) {
             inside: false,
         };
         const onMove = (e: PointerEvent) => {
+            if (!inViewRef.current) return;
             const rect = canvas.getBoundingClientRect();
             const withinBounds =
                 e.clientX >= rect.left &&
@@ -396,7 +411,22 @@ export default function MeshText(props: MeshTextProps) {
         window.addEventListener("pointerleave", onLeave);
 
         let rafId = 0;
+        let idleFrames = 0;
+
         const tick = () => {
+            if (!inViewRef.current) {
+                const anyDisplacement = disp.some((v) => Math.abs(v) > 0.001);
+                if (!anyDisplacement) {
+                    idleFrames++;
+                    if (idleFrames > 5) {
+                        rafId = requestAnimationFrame(tick);
+                        return;
+                    }
+                }
+            } else {
+                idleFrames = 0;
+            }
+
             cursor.vx *= 0.94;
             cursor.vy *= 0.94;
 

@@ -23,6 +23,7 @@
   background: #0a0a0c;
   color: #f5f5f7;
   font-family: var(--font-body);
+  contain: layout paint;
 }
 
 .aurora {
@@ -32,9 +33,9 @@
   z-index: 0;
   width: 80vw;
   height: 60vh;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(60px);
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 50%,
@@ -42,16 +43,17 @@
     color-mix(in oklch, var(--color-accent) 8%, transparent) 40%,
     transparent 70%
   );
+  will-change: transform, opacity;
   animation: breathe 8s ease-in-out infinite alternate;
 }
 
 @keyframes breathe {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) translateZ(0) scale(1);
     opacity: 0.55;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) translateZ(0) scale(1.1);
     opacity: 1;
   }
 }
@@ -84,7 +86,7 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   font-family: var(--font-body);
   font-size: 22vw;
   line-height: 0.75;
@@ -99,6 +101,7 @@
   );
   -webkit-background-clip: text;
   background-clip: text;
+  will-change: transform, opacity;
 }
 
 .marqueeStrip {
@@ -108,14 +111,13 @@
   z-index: 1;
   width: 100%;
   overflow: hidden;
-  transform: rotate(-2deg) scale(1.1);
+  transform: rotate(-2deg) scale(1.1) translateZ(0);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 10, 12, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(18, 18, 21, 0.92);
   padding: 1rem 0;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  isolation: isolate;
 }
 
 .marqueeTrack {
@@ -128,14 +130,16 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
@@ -182,6 +186,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: transform, opacity;
 }
 
 .actions {
@@ -190,6 +195,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  will-change: transform, opacity;
 }
 
 .primaryRow {
@@ -229,6 +235,7 @@
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
+  will-change: transform;
   transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
 }
@@ -311,6 +318,7 @@
   display: inline-flex;
   color: #ff5c72;
   animation: heartbeat 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform;
 }
 
 @keyframes heartbeat {
