@@ -226,14 +226,38 @@ export default function About({ locale = "en" }: AboutProps) {
   const t: AboutContent = content[locale];
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
-  const [reduceEffects, setReduceEffects] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
-    setReduceEffects(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-        window.innerWidth < 700
-    );
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    const evaluate = () => {
+      setReduceMotion(motionQuery.matches);
+    };
+    evaluate();
+
+    motionQuery.addEventListener("change", evaluate);
+    return () => {
+      motionQuery.removeEventListener("change", evaluate);
+    };
+  }, []);
+
+  useEffect(() => {
+    const compactQuery = window.matchMedia("(max-width: 900px)");
+
+    const evaluate = () => {
+      setIsCompact(compactQuery.matches);
+    };
+    evaluate();
+
+    compactQuery.addEventListener("change", evaluate);
+    return () => {
+      compactQuery.removeEventListener("change", evaluate);
+    };
+  }, []);
+
+  useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -250,7 +274,7 @@ export default function About({ locale = "en" }: AboutProps) {
     return () => observer.disconnect();
   }, []);
 
-  const showEffects = inView && !reduceEffects;
+  const showEffects = inView && !reduceMotion;
 
   return (
     <section
@@ -258,6 +282,7 @@ export default function About({ locale = "en" }: AboutProps) {
       id="about"
       className={styles.about}
       aria-label={t.ariaLabel}
+      lang={locale}
     >
       <div className={styles.inner}>
         <div className={styles.grid}>
@@ -307,12 +332,12 @@ export default function About({ locale = "en" }: AboutProps) {
                   <span key={stat.label} className={styles.statCell}>
                     <span className={styles.statNumber}>
                       {stat.kind === "count" ? (
-                        <AnimatedCount stat={stat} active={inView} reduceMotion={reduceEffects} />
+                        <AnimatedCount stat={stat} active={inView} reduceMotion={reduceMotion} />
                       ) : (
                         <BilingualToggle
                           values={stat.toggleValues ?? []}
                           active={inView}
-                          reduceMotion={reduceEffects}
+                          reduceMotion={reduceMotion}
                         />
                       )}
                     </span>
@@ -382,18 +407,18 @@ export default function About({ locale = "en" }: AboutProps) {
             {showEffects && (
               <Strands
                 colors={["#F97316", "#7C3AED", "#06B6D4"]}
-                count={3}
+                count={isCompact ? 2 : 3}
                 speed={0.5}
-                amplitude={1}
-                waviness={1}
-                thickness={0.7}
+                amplitude={isCompact ? 0.72 : 1}
+                waviness={isCompact ? 0.85 : 1}
+                thickness={isCompact ? 0.85 : 0.7}
                 glow={2.6}
-                taper={3}
-                spread={1}
+                taper={isCompact ? 4.5 : 3}
+                spread={isCompact ? 0.65 : 1}
                 intensity={0.6}
                 saturation={2}
                 opacity={1}
-                scale={1}
+                scale={isCompact ? 1.55 : 1}
                 glass={false}
                 refraction={1}
                 dispersion={1}
