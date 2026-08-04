@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button/Button";
 import InkReveal from "@/components/Hero/InkReveal";
 import MeshText from "@/components/Hero/MeshText";
@@ -12,9 +12,13 @@ import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import styles from "./Hero.module.css";
 
-const HEADLINE_FONT_SIZE = 96;
 const HEADLINE_FONT_WEIGHT = 600;
 const HEADLINE_FONT_FAMILY = "Poppins";
+const HEADLINE_MAX_FONT_SIZE = 96;
+const HEADLINE_MIN_FONT_SIZE = 30;
+const HEADLINE_VIEWPORT_MARGIN = 24;
+const HEADLINE_SAFETY_FACTOR = 0.88;
+const HEADLINE_BOX_BUFFER = 1.18;
 
 function measureLineWidths(lines: string[], fontSize: number): number[] {
   if (typeof document === "undefined") return lines.map(() => 0);
@@ -23,6 +27,24 @@ function measureLineWidths(lines: string[], fontSize: number): number[] {
   if (!ctx) return lines.map(() => 0);
   ctx.font = `${HEADLINE_FONT_WEIGHT} ${fontSize}px ${HEADLINE_FONT_FAMILY}, sans-serif`;
   return lines.map((line) => ctx.measureText(line).width);
+}
+
+function fitFontSizeToViewport(
+  lines: string[],
+  viewportWidth: number
+): number {
+  const availableWidth = Math.max(
+    viewportWidth - HEADLINE_VIEWPORT_MARGIN * 2,
+    1
+  );
+  const widthsAtMax = measureLineWidths(lines, HEADLINE_MAX_FONT_SIZE);
+  const widestAtMax = Math.max(...widthsAtMax, 1);
+  const scaled =
+    HEADLINE_MAX_FONT_SIZE *
+    (availableWidth / (widestAtMax * HEADLINE_BOX_BUFFER)) *
+    HEADLINE_SAFETY_FACTOR;
+  const cappedMax = HEADLINE_MAX_FONT_SIZE * HEADLINE_SAFETY_FACTOR;
+  return Math.min(cappedMax, Math.max(HEADLINE_MIN_FONT_SIZE, Math.floor(scaled)));
 }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -37,31 +59,44 @@ const BG_IMAGE_URL = "/images/HeroBG.webp";
 export default function Hero({ locale }: { locale: Locale }) {
   const isRevealed = useLoaderReveal();
   const animate = isRevealed ? "visible" : "hidden";
+  const prefersReducedMotion = useReducedMotion();
   const t = dictionaries[locale].hero;
   const sectionRef = useRef<HTMLElement>(null);
 
   const headlineLines = t.headlineLines ?? [t.headlinePrefix + t.headlineEmphasis];
+  const [fontSize, setFontSize] = useState<number | null>(null);
   const [lineWidths, setLineWidths] = useState<number[] | null>(null);
 
   useEffect(() => {
     let cancelled = false;
 
-    const measure = () => {
-      if (cancelled) return;
-      setLineWidths(measureLineWidths(headlineLines, HEADLINE_FONT_SIZE));
+    const recompute = () => {
+      if (cancelled || typeof window === "undefined") return;
+      const size = fitFontSizeToViewport(headlineLines, window.innerWidth);
+      setFontSize(size);
+      setLineWidths(measureLineWidths(headlineLines, size));
     };
 
     if (document.fonts?.ready) {
-      document.fonts.ready.then(measure).catch(measure);
+      document.fonts.ready.then(recompute).catch(recompute);
     } else {
-      measure();
+      recompute();
     }
 
+    window.addEventListener("resize", recompute);
     return () => {
       cancelled = true;
+      window.removeEventListener("resize", recompute);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headlineLines.join("|")]);
+
+  const ready = fontSize !== null && lineWidths !== null;
+  const lineHeightPx = ready ? Math.round(fontSize! * 1.32) : null;
+  const sharedBoxWidth =
+    ready && lineWidths!.length > 0
+      ? Math.ceil(Math.max(...lineWidths!) * HEADLINE_BOX_BUFFER)
+      : null;
 
   return (
     <section id="home" ref={sectionRef} className={styles.hero} aria-label="Introduction">
@@ -77,12 +112,14 @@ export default function Hero({ locale }: { locale: Locale }) {
           className={styles.bgImage}
         />
         <InkReveal className={styles.inkCanvas} maskColor={[244, 243, 240]} brushSize={160} />
+        <div className={styles.mobileScrim} aria-hidden="true" />
       </div>
 
       <div className={styles.content}>
         <div className={styles.textBlock}>
           <motion.span
             className={styles.eyebrow}
+            lang={locale}
             initial="hidden"
             animate={animate}
             variants={fadeUp}
@@ -99,26 +136,30 @@ export default function Hero({ locale }: { locale: Locale }) {
             transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
           >
             {headlineLines.map((line, index) => {
-              const measuredWidth = lineWidths?.[index] ?? 0;
-              const boxWidth = measuredWidth > 0 ? measuredWidth * 1.18 + 48 : undefined;
               return (
                 <div
                   key={index}
                   className={styles.headlineLine}
-                  style={boxWidth ? { width: `min(94vw, ${boxWidth}px)` } : undefined}
+                  style={{
+                    width: sharedBoxWidth ? `${sharedBoxWidth}px` : undefined,
+                    maxWidth: "100%",
+                    height: lineHeightPx ? `${lineHeightPx}px` : undefined,
+                  }}
                 >
-                  {lineWidths && (
+                  {ready && (
                     <MeshText
                       text={line}
                       color="#111111"
                       fontFamily={HEADLINE_FONT_FAMILY}
                       fontWeight={HEADLINE_FONT_WEIGHT}
                       colorSplit={false}
-                      fontSize={HEADLINE_FONT_SIZE}
-                      force={16}
+                      fontSize={fontSize!}
+                      force={prefersReducedMotion ? 0 : 16}
                     />
                   )}
-                  <span className={styles.headlineSrOnly}>{line}</span>
+                  <span lang={locale} className={styles.headlineSrOnly}>
+                    {line}
+                  </span>
                 </div>
               );
             })}
@@ -126,6 +167,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
           <motion.p
             className={styles.subhead}
+            lang={locale}
             initial="hidden"
             animate={animate}
             variants={fadeUp}
@@ -136,6 +178,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
           <motion.ul
             className={styles.chips}
+            lang={locale}
             initial="hidden"
             animate={animate}
             variants={fadeUp}

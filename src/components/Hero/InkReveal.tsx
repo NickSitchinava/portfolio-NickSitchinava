@@ -49,8 +49,8 @@ export default function InkReveal({
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
   const dimsRef = useRef({ w: 0, h: 0 });
   const idleSinceRef = useRef<number | null>(null);
-  const inViewRef = useRef(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [fineOnly, setFineOnly] = useState(true);
 
   const mc = maskColor;
 
@@ -63,17 +63,14 @@ export default function InkReveal({
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inViewRef.current = entry.isIntersecting;
-      },
-      { rootMargin: "200px" }
-    );
-    observer.observe(canvas);
-    return () => observer.disconnect();
+    const mq = window.matchMedia("(pointer: fine)");
+    const update = () => setFineOnly(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
+
+  const skipMask = reducedMotion || !fineOnly;
 
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -203,24 +200,20 @@ export default function InkReveal({
   startLoopRef.current = startLoop;
 
   useEffect(() => {
+    if (skipMask) return;
     resize();
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
-  }, [resize]);
+  }, [resize, skipMask]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (skipMask) return;
 
     let rafId = 0;
+    let lastSpawn = 0;
 
     const idleTick = (time: number) => {
       rafId = requestAnimationFrame(idleTick);
-
-      if (!inViewRef.current) {
-        idleSinceRef.current = null;
-        return;
-      }
-
       if (idleSinceRef.current === null) {
         idleSinceRef.current = time;
         return;
@@ -230,6 +223,8 @@ export default function InkReveal({
 
       const { w, h } = dimsRef.current;
       if (w === 0 || h === 0) return;
+      if (time - lastSpawn < 90) return;
+      lastSpawn = time;
 
       const t = (elapsed - IDLE_DELAY) * 0.001;
       const cx = w / 2 + Math.sin(t * 0.6) * w * 0.28;
@@ -239,7 +234,7 @@ export default function InkReveal({
     };
     rafId = requestAnimationFrame(idleTick);
     return () => cancelAnimationFrame(rafId);
-  }, [reducedMotion, stampAlong]);
+  }, [skipMask, stampAlong]);
 
   const getRelativePos = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -250,18 +245,8 @@ export default function InkReveal({
     idleSinceRef.current = performance.now();
   };
 
-  if (reducedMotion) {
-    return (
-      <div
-        className={className}
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `rgb(${mc[0]},${mc[1]},${mc[2]})`,
-          ...style,
-        }}
-      />
-    );
+  if (skipMask) {
+    return null;
   }
 
   return (
