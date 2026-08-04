@@ -53,10 +53,12 @@ function LearnMoreButton({
   href,
   label,
   theme,
+  locale,
 }: {
   href: string;
   label: string;
   theme: ServiceCardTheme;
+  locale: string;
 }) {
   const cursor = useServicesCursor();
   const prefersReducedMotion = useReducedMotion();
@@ -91,6 +93,7 @@ function LearnMoreButton({
     >
       <motion.a
         href={href}
+        lang={locale}
         className={styles.learnMore}
         style={{
           x: springX,
@@ -144,7 +147,7 @@ export function ServiceCard({
             <span className={styles.iconBadge} aria-hidden="true">
               <Icon size={26} strokeWidth={1.5} />
             </span>
-            <h3 className={styles.title} itemProp="name">
+            <h3 className={styles.title} itemProp="name" lang={locale}>
               <span className={styles.cascadeWrap}>
                 <CascadeChars text={service.title} />
               </span>
@@ -160,13 +163,14 @@ export function ServiceCard({
                 href={`/${locale}/services/${service.slug}`}
                 label={learnMoreLabel}
                 theme={theme}
+                locale={locale}
               />
             </div>
 
-            <p className={styles.cardText} style={{ color: theme.stageInk }}>
+            <p className={styles.cardText} style={{ color: theme.stageInk }} lang={locale}>
               {service.description}
             </p>
-            <p className={styles.cardDetails} style={{ color: theme.stageInkMuted }}>
+            <p className={styles.cardDetails} style={{ color: theme.stageInkMuted }} lang={locale}>
               {service.details}
             </p>
 
@@ -176,6 +180,7 @@ export function ServiceCard({
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={stagger}
+              lang={locale}
             >
               {service.features.map((feature) => (
                 <motion.li

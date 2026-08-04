@@ -90,7 +90,7 @@ export default function Services({ locale }: { locale: Locale }) {
   };
 
   return (
-    <section id="services" className={styles.services} aria-label={t.heading}>
+    <section id="services" className={styles.services} aria-label={t.heading} lang={locale}>
       <h2 className={styles.srOnly}>{t.heading}</h2>
       <script
         type="application/ld+json"
