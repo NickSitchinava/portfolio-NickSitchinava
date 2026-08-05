@@ -59,7 +59,7 @@ export function useMouseVector(containerRef?: React.RefObject<HTMLElement | null
     };
 
     target.addEventListener("mousemove", handleMove as EventListener);
-    target.addEventListener("touchmove", handleTouch as EventListener);
+    target.addEventListener("touchmove", handleTouch as EventListener, { passive: true });
 
     return () => {
       target.removeEventListener("mousemove", handleMove as EventListener);

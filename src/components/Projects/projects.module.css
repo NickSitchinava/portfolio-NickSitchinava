@@ -17,20 +17,22 @@
   border-radius: 24px;
   background: var(--color-muted-bg);
   overflow: visible;
+  min-width: 0;
 }
 
 .trailHeading {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(2.5rem, 4.2vw, 3.5rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.1;
   color: var(--color-text);
-  max-width: 12ch;
+  max-width: 14ch;
   margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
   pointer-events: none;
+  overflow-wrap: break-word;
 }
 
 .trailWindow {
@@ -48,6 +50,7 @@
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  min-width: 0;
 }
 
 .quoteBg {
@@ -62,6 +65,7 @@
   z-index: 1;
   margin: 0;
   pointer-events: none;
+  min-width: 0;
 }
 
 .quoteMark {
@@ -76,12 +80,13 @@
 .quoteText {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  line-height: 1.28;
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  line-height: 1.32;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-wrap: balance;
   margin: 0 0 1.5rem;
+  overflow-wrap: break-word;
 }
 
 .quoteAttribution {
@@ -142,6 +147,7 @@
   gap: 0.65rem;
   height: 100%;
   padding: 1.1rem 1.25rem;
+  min-width: 0;
 }
 
 .deliveryCardTop {
@@ -149,6 +155,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
+  min-width: 0;
 }
 
 .deliveryCardTitle {
@@ -157,6 +164,8 @@
   font-weight: 600;
   color: var(--color-text);
   line-height: 1.3;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .deliveryCardIcon {
@@ -179,6 +188,7 @@
   line-height: 1.5;
   color: var(--color-muted);
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .deliveryCardMeta {
@@ -198,6 +208,7 @@
   border-radius: 999px;
   padding: 0.25rem 0.65rem;
   transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
 }
 
 .deliveryLink:hover .deliveryCardChip {
@@ -218,6 +229,18 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .trailPanel,
+  .quotePanel {
+    min-height: 36rem;
+    padding: 3rem;
+  }
+
+  .quoteText {
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+  }
+}
+
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
@@ -225,8 +248,18 @@
 
   .trailPanel,
   .quotePanel {
-    min-height: 34rem;
+    min-height: 28rem;
     padding: 2.5rem;
+  }
+
+  .trailHeading {
+    font-size: clamp(1.85rem, 5vw, 2.75rem);
+    max-width: 16ch;
+    margin-bottom: 2rem;
+  }
+
+  .trailWindow {
+    inset: 2rem;
   }
 
   .deliveryStrip {
@@ -243,8 +276,71 @@
   }
 }
 
+@media (max-width: 640px) {
+  .projects {
+    padding: 5.5rem 1.25rem;
+  }
+
+  .grid {
+    gap: 1.25rem;
+  }
+
+  .trailPanel,
+  .quotePanel {
+    min-height: 22rem;
+    padding: 1.75rem;
+    border-radius: 20px;
+  }
+
+  .trailHeading {
+    font-size: clamp(1.6rem, 6.5vw, 2.1rem);
+    max-width: 18ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .trailWindow {
+    inset: 1.5rem;
+  }
+
+  .quoteMark {
+    font-size: 2.75rem;
+  }
+
+  .quoteText {
+    font-size: clamp(1.15rem, 5vw, 1.5rem);
+    line-height: 1.35;
+  }
+
+  .quoteAttribution {
+    font-size: 0.85rem;
+  }
+
+  .deliveryStrip {
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .deliveryCard {
+    padding: 0.9rem 1rem;
+  }
+
+  .deliveryCardTitle {
+    font-size: 0.85rem;
+  }
+
+  .deliveryCardDescription {
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 520px) {
   .deliveryLink {
     flex: 1 1 100%;
+  }
+
+  .trailPanel,
+  .quotePanel {
+    min-height: 19rem;
+    padding: 1.5rem;
   }
 }

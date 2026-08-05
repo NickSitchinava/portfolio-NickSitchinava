@@ -10,14 +10,31 @@ export interface VideoMorphingDialogProps {
   videoSrc: string;
   label: string;
   className?: string;
+  active?: boolean;
 }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-export function VideoMorphingDialog({ videoSrc, label, className }: VideoMorphingDialogProps) {
+export function VideoMorphingDialog({
+  videoSrc,
+  label,
+  className,
+  active = true,
+}: VideoMorphingDialogProps) {
   const [open, setOpen] = React.useState(false);
   const prefersReducedMotion = useReducedMotion();
   const layoutId = React.useId();
+  const triggerVideoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    const video = triggerVideoRef.current;
+    if (!video) return;
+    if (active && !open) {
+      video.play().catch(() => undefined);
+    } else {
+      video.pause();
+    }
+  }, [active, open]);
 
   return (
     <RdxDialog.Root open={open} onOpenChange={setOpen}>
@@ -31,9 +48,9 @@ export function VideoMorphingDialog({ videoSrc, label, className }: VideoMorphin
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2, ease: EASE }}
         >
           <video
+            ref={triggerVideoRef}
             className={styles.video}
             src={videoSrc}
-            autoPlay
             muted
             loop
             playsInline

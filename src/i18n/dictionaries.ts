@@ -101,6 +101,26 @@ export interface ContactDictionary {
   };
 }
 
+export interface ProjectsDeliveryLink {
+  title: string;
+  description: string;
+  region: string;
+  duration: string;
+  href?: string;
+  previewSrc: string;
+  private?: boolean;
+}
+
+export interface ProjectsDictionary {
+  heading: string;
+  trailHeading: string;
+  problemStatement: string;
+  problemAttribution: string;
+  showreelLabel: string;
+  items: { title: string; description: string }[];
+  deliveryLinks: ProjectsDeliveryLink[];
+}
+
 export interface Dictionary {
   meta: {
     title: string;
@@ -139,13 +159,7 @@ export interface Dictionary {
     ctaText: string;
     ctaButton: string;
   };
- projects: {
-  heading: string;
-  trailHeading: string;
-  problemStatement: string;
-  problemAttribution: string;
-  items: { title: string; description: string }[];
-};
+  projects: ProjectsDictionary;
   pricingCalculator: PricingCalculatorDictionary;
   contact: ContactDictionary;
   footer: FooterDictionary;
@@ -248,18 +262,53 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaText: "Tell us about your project and we'll get back to you with next steps.",
       ctaButton: "Start a Project",
     },
-   projects: {
-  heading: "Projects",
-  trailHeading: "See for yourself",
-  problemStatement:
-    "Every business we work with has a problem a template can't fix. We dig into what's actually slowing down calls and bookings, then build the exact site that solves it.",
-  problemAttribution: "— How we approach every project",
-  items: [
-    { title: "Project One", description: "A short description of this project goes here." },
-    { title: "Project Two", description: "A short description of this project goes here." },
-    { title: "Project Three", description: "A short description of this project goes here." },
-  ],
-},
+    projects: {
+      heading: "Projects",
+      trailHeading: "See for yourself",
+      problemStatement:
+        "Every business we work with has a problem a template can't fix. We dig into what's actually slowing down calls and bookings, then build the exact site that solves it.",
+      problemAttribution: "— How we approach every project",
+      showreelLabel: "Showreel",
+      items: [
+        { title: "Project One", description: "A short description of this project goes here." },
+        { title: "Project Two", description: "A short description of this project goes here." },
+        { title: "Project Three", description: "A short description of this project goes here." },
+      ],
+      deliveryLinks: [
+        {
+          title: "Nick Sitchinava",
+          description: "Personal portfolio site",
+          region: "Georgia",
+          duration: "1–2 weeks",
+          href: "https://nick-sitchinava.vercel.app/",
+          previewSrc: "/images/previews/nick-portfolio.webp",
+        },
+        {
+          title: "George Sitchinava",
+          description: "Personal portfolio site",
+          region: "Georgia",
+          duration: "2–3 weeks",
+          href: "https://georgesitchinava.vercel.app/",
+          previewSrc: "/images/previews/george-portfolio.webp",
+        },
+        {
+          title: "F-Dash",
+          description: "Finance dashboard",
+          region: "Europe",
+          duration: "13–15 weeks",
+          href: "https://f-dash.vercel.app/",
+          previewSrc: "/images/previews/fdash.webp",
+        },
+        {
+          title: "Company landing page",
+          description: "Marketing landing page",
+          region: "Private",
+          duration: "Under NDA",
+          previewSrc: "/images/previews/company-landing.webp",
+          private: true,
+        },
+      ],
+    },
     pricingCalculator: {
       eyebrow: "Get an Estimate",
       heading: "Let's talk / about your / project.",
@@ -491,18 +540,53 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaText: "მოგვიყევით თქვენი პროექტის შესახებ და დაგიკავშირდებით შემდეგი ნაბიჯებისთვის.",
       ctaButton: "დაიწყეთ პროექტი",
     },
- projects: {
-  heading: "პროექტები",
-  trailHeading: "ნახეთ თავად",
-  problemStatement:
-    "ყველა ბიზნესს, რომელთანაც ვმუშაობთ, აქვს პრობლემა, რომელსაც შაბლონი ვერ გადაწყვეტს. ჩვენ ღრმად ვსწავლობთ, რა ანელებს რეალურად ზარებსა და ჯავშნებს, და შემდეგ ვქმნით ზუსტად იმ საიტს, რომელიც ამას აგვარებს.",
-  problemAttribution: "— ჩვენი მიდგომა ყველა პროექტისადმი",
-  items: [
-    { title: "პროექტი პირველი", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-    { title: "პროექტი მეორე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-    { title: "პროექტი მესამე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
-  ],
-},
+    projects: {
+      heading: "პროექტები",
+      trailHeading: "ნახეთ თავად",
+      problemStatement:
+        "ყველა ბიზნესს, რომელთანაც ვმუშაობთ, აქვს პრობლემა, რომელსაც შაბლონი ვერ გადაწყვეტს. ჩვენ ღრმად ვსწავლობთ, რა ანელებს რეალურად ზარებსა და ჯავშნებს, და შემდეგ ვქმნით ზუსტად იმ საიტს, რომელიც ამას აგვარებს.",
+      problemAttribution: "— ჩვენი მიდგომა ყველა პროექტისადმი",
+      showreelLabel: "შოურილი",
+      items: [
+        { title: "პროექტი პირველი", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+        { title: "პროექტი მეორე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+        { title: "პროექტი მესამე", description: "ამ პროექტის მოკლე აღწერა განთავსდება აქ." },
+      ],
+      deliveryLinks: [
+        {
+          title: "Nick Sitchinava",
+          description: "პერსონალური პორტფოლიო საიტი",
+          region: "საქართველო",
+          duration: "1–2 კვირა",
+          href: "https://nick-sitchinava.vercel.app/",
+          previewSrc: "/images/previews/nick-portfolio.webp",
+        },
+        {
+          title: "George Sitchinava",
+          description: "პერსონალური პორტფოლიო საიტი",
+          region: "საქართველო",
+          duration: "2–3 კვირა",
+          href: "https://georgesitchinava.vercel.app/",
+          previewSrc: "/images/previews/george-portfolio.webp",
+        },
+        {
+          title: "F-Dash",
+          description: "ფინანსური დაფა",
+          region: "ევროპა",
+          duration: "13–15 კვირა",
+          href: "https://f-dash.vercel.app/",
+          previewSrc: "/images/previews/fdash.webp",
+        },
+        {
+          title: "კომპანიის ლენდინგ გვერდი",
+          description: "მარკეტინგული ლენდინგ გვერდი",
+          region: "პირადი",
+          duration: "NDA-ს ფარგლებში",
+          previewSrc: "/images/previews/company-landing.webp",
+          private: true,
+        },
+      ],
+    },
     pricingCalculator: {
       eyebrow: "მიიღეთ შეფასება",
       heading: "მოდით ვისაუბროთ / თქვენს / პროექტზე",

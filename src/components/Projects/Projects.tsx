@@ -26,52 +26,6 @@ const TRAIL_IMAGES = [
   { src: "/images/projects/company-landing-hero.webp", alt: "Company landing page" },
 ];
 
-interface DeliveryLink {
-  title: string;
-  description: string;
-  region: string;
-  duration: string;
-  href?: string;
-  previewSrc: string;
-  private?: boolean;
-}
-
-const DELIVERY_LINKS: DeliveryLink[] = [
-  {
-    title: "Nick Sitchinava",
-    description: "Personal portfolio site",
-    region: "Georgia",
-    duration: "1–2 weeks",
-    href: "https://nick-sitchinava.vercel.app/",
-    previewSrc: "/images/previews/nick-portfolio.webp",
-  },
-  {
-    title: "George Sitchinava",
-    description: "Personal portfolio site",
-    region: "Georgia",
-    duration: "2–3 weeks",
-    href: "https://georgesitchinava.vercel.app/",
-    previewSrc: "/images/previews/george-portfolio.webp",
-  },
-  {
-    title: "F-Dash",
-    description: "Finance dashboard",
-    region: "Europe",
-    duration: "13–15 weeks",
-    href: "https://f-dash.vercel.app/",
-    previewSrc: "/images/previews/fdash.webp",
-  },
-  {
-    title: "Company landing page",
-    description: "Marketing landing page",
-    region: "Private",
-    duration: "Under NDA",
-    href: undefined,
-    previewSrc: "/images/previews/company-landing.webp",
-    private: true,
-  },
-];
-
 export default function Projects({ locale }: { locale: Locale }) {
   const t = dictionaries[locale].projects;
   const trailContainerRef = useRef<HTMLDivElement>(null);
@@ -80,6 +34,16 @@ export default function Projects({ locale }: { locale: Locale }) {
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const [enableParallax, setEnableParallax] = useState(false);
   const [quoteInView, setQuoteInView] = useState(false);
+  const [trailInView, setTrailInView] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const evaluate = () => setReduceMotion(motionQuery.matches);
+    evaluate();
+    motionQuery.addEventListener("change", evaluate);
+    return () => motionQuery.removeEventListener("change", evaluate);
+  }, []);
 
   useEffect(() => {
     setEnableParallax(
@@ -96,6 +60,20 @@ export default function Projects({ locale }: { locale: Locale }) {
     }
     const observer = new IntersectionObserver(
       ([entry]) => setQuoteInView(entry.isIntersecting),
+      { rootMargin: "200px", threshold: 0.05 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = trailPanelRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setTrailInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setTrailInView(entry.isIntersecting),
       { rootMargin: "200px", threshold: 0.05 }
     );
     observer.observe(node);
@@ -154,13 +132,14 @@ export default function Projects({ locale }: { locale: Locale }) {
   );
 
   return (
-    <section id="projects" className={styles.projects} aria-label={t.heading}>
+    <section id="projects" className={styles.projects} aria-label={t.heading} lang={locale}>
       <div className={styles.grid} ref={gridRef}>
         <div className={styles.trailPanel} ref={trailPanelRef}>
           <h2 className={styles.trailHeading}>{t.trailHeading}</h2>
           <div className={styles.trailWindow} ref={trailContainerRef}>
             <ImageTrail
               containerRef={trailContainerRef}
+              active={trailInView && !reduceMotion}
               interval={90}
               minDistance={60}
               newOnTop
@@ -179,7 +158,7 @@ export default function Projects({ locale }: { locale: Locale }) {
 
         <div className={styles.quotePanel} ref={quotePanelRef}>
           <div className={styles.quoteBg} aria-hidden="true">
-            {quoteInView && (
+            {quoteInView && !reduceMotion && (
               <Antigravity
                 count={280}
                 magnetRadius={4.5}
@@ -199,7 +178,7 @@ export default function Projects({ locale }: { locale: Locale }) {
               />
             )}
           </div>
-          <blockquote className={styles.quote}>
+          <blockquote className={styles.quote} lang={locale}>
             <span className={styles.quoteMark} aria-hidden="true">
               &ldquo;
             </span>
@@ -211,12 +190,16 @@ export default function Projects({ locale }: { locale: Locale }) {
 
       <div className={styles.deliveryStrip}>
         <div className={styles.deliveryVideoCell}>
-          <VideoMorphingDialog videoSrc="/videos/showreel.mp4" label="Showreel" />
+          <VideoMorphingDialog
+            videoSrc="/videos/showreel.mp4"
+            label={t.showreelLabel}
+            active={quoteInView}
+          />
         </div>
 
-        {DELIVERY_LINKS.map((link) => {
+        {t.deliveryLinks.map((link) => {
           const card = (
-            <div className={styles.deliveryCard}>
+            <div className={styles.deliveryCard} lang={locale}>
               <div className={styles.deliveryCardTop}>
                 <span className={styles.deliveryCardTitle}>{link.title}</span>
                 {link.private ? (
