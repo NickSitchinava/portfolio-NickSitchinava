@@ -270,3 +270,83 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+@media (max-width: 900px) {
+  .subhead {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing {
+    padding: 5.5rem 1.25rem;
+  }
+
+  .layout {
+    gap: 2.25rem;
+  }
+
+  .subhead {
+    max-width: none;
+    overflow-wrap: break-word;
+  }
+
+  .panel {
+    gap: 0.9rem;
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .fieldHeader {
+    gap: 0.6rem;
+  }
+
+  .fieldLabel {
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  .fieldTrigger {
+    min-height: 44px;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .fieldTriggerLabel {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .fieldPanel {
+    max-height: 280px;
+  }
+
+  .fieldOption {
+    min-height: 44px;
+  }
+
+  .fieldOptionText {
+    min-width: 0;
+  }
+
+  .fieldOptionLabel,
+  .fieldOptionDescription {
+    overflow-wrap: break-word;
+  }
+
+  .resultCard {
+    padding: 1.35rem;
+    border-radius: 20px;
+  }
+
+  .resultTime,
+  .resultPrice {
+    font-size: clamp(1.6rem, 8.5vw, 2.4rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .resultTime,
+  .resultPrice {
+    font-size: clamp(1.4rem, 9.5vw, 2rem);
+  }
+}

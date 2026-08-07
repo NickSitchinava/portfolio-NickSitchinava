@@ -153,7 +153,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
   );
 
   return (
-    <section id="pricing" className={styles.pricing} aria-label={t.heading}>
+    <section id="pricing" className={styles.pricing} aria-label={t.heading} lang={locale}>
       <div className={styles.layout}>
         <div className={styles.sticky}>
           <span className={styles.eyebrow}>{t.eyebrow}</span>
@@ -164,6 +164,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
           <div className={styles.panel}>
             <DropdownField
               index={1}
+              locale={locale}
               label={t.steps.projectType.title}
               placeholder={t.placeholder}
               options={projectTypeOptions}
@@ -184,6 +185,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
 
             <DropdownField
               index={2}
+              locale={locale}
               label={t.steps.size.title}
               placeholder={t.placeholder}
               options={sizeOptions}
@@ -196,6 +198,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
 
             <DropdownField
               index={3}
+              locale={locale}
               label={t.steps.creativity.title}
               placeholder={t.placeholder}
               options={creativityOptions}
@@ -208,6 +211,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
 
             <DropdownField
               index={4}
+              locale={locale}
               label={t.steps.timeline.title}
               placeholder={t.placeholder}
               options={timelineOptions}
@@ -220,6 +224,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
 
             <DropdownField
               index={5}
+              locale={locale}
               label={t.steps.seo.title}
               placeholder={t.placeholder}
               options={seoOptions}
@@ -232,6 +237,7 @@ export default function PricingCalculator({ locale }: { locale: Locale }) {
 
             <DropdownField
               index={6}
+              locale={locale}
               label={t.steps.content.title}
               placeholder={t.placeholder}
               options={contentOptions}

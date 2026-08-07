@@ -22,6 +22,7 @@ export interface DropdownFieldProps {
   value: string | null;
   onChange: (value: string) => void;
   disabled?: boolean;
+  locale?: string;
 }
 
 export function DropdownField({
@@ -32,6 +33,7 @@ export function DropdownField({
   value,
   onChange,
   disabled = false,
+  locale,
 }: DropdownFieldProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -92,7 +94,9 @@ export function DropdownField({
     <div className={styles.field}>
       <div className={styles.fieldHeader}>
         <span className={styles.fieldIndex}>{index}</span>
-        <span className={styles.fieldLabel}>{label}</span>
+        <span className={styles.fieldLabel} lang={locale}>
+          {label}
+        </span>
       </div>
 
       <button
@@ -105,7 +109,11 @@ export function DropdownField({
         disabled={disabled}
         onClick={() => setOpen((prev) => !prev)}
       >
-        <span className={styles.fieldTriggerLabel} data-placeholder={!selectedOption}>
+        <span
+          className={styles.fieldTriggerLabel}
+          data-placeholder={!selectedOption}
+          lang={locale}
+        >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <motion.span
@@ -130,6 +138,7 @@ export function DropdownField({
                 role="listbox"
                 className={styles.fieldPanel}
                 style={{ top: coords.top, left: coords.left, width: coords.width }}
+                lang={locale}
                 initial={
                   prefersReducedMotion
                     ? { opacity: 0 }
