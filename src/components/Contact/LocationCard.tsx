@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -24,8 +24,13 @@ export interface LocationCardProps {
 export function LocationCard({ location, coordinates, liveLabel, hintLabel }: LocationCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [tiltEnabled, setTiltEnabled] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    setTiltEnabled(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -36,8 +41,10 @@ export function LocationCard({ location, coordinates, liveLabel, hintLabel }: Lo
   const springRotateX = useSpring(rotateX, { stiffness: 300, damping: 30 });
   const springRotateY = useSpring(rotateY, { stiffness: 300, damping: 30 });
 
+  const tiltActive = tiltEnabled && !prefersReducedMotion;
+
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (prefersReducedMotion || !containerRef.current) return;
+    if (!tiltActive || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -73,13 +80,13 @@ export function LocationCard({ location, coordinates, liveLabel, hintLabel }: Lo
       <motion.div
         className={styles.card}
         style={
-          prefersReducedMotion
-            ? undefined
-            : {
+          tiltActive
+            ? {
                 rotateX: springRotateX,
                 rotateY: springRotateY,
                 transformStyle: "preserve-3d",
               }
+            : undefined
         }
         animate={{
           width: isExpanded ? "100%" : "78%",

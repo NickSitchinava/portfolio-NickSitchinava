@@ -18,30 +18,33 @@ function MagneticPill({
   href,
   className,
   children,
+  enabled,
 }: {
   href: string;
   className: string;
   children: React.ReactNode;
+  enabled: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
 
   useGSAP(
     () => {
       const node = ref.current;
-      if (!node) return;
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReducedMotion) return;
+      if (!node || !enabled) return;
 
       gsap.set(node, { willChange: "transform" });
 
+      let rect: DOMRect | null = null;
       let rafId = 0;
       let targetX = 0;
       let targetY = 0;
 
-      const handleMove = (event: MouseEvent) => {
-        const rect = node.getBoundingClientRect();
+      const handleEnter = () => {
+        rect = node.getBoundingClientRect();
+      };
+
+      const handleMove = (event: PointerEvent) => {
+        if (!rect) rect = node.getBoundingClientRect();
         targetX = (event.clientX - rect.left - rect.width / 2) * 0.3;
         targetY = (event.clientY - rect.top - rect.height / 2) * 0.3;
 
@@ -60,6 +63,7 @@ function MagneticPill({
       };
 
       const handleLeave = () => {
+        rect = null;
         if (rafId) {
           cancelAnimationFrame(rafId);
           rafId = 0;
@@ -73,16 +77,19 @@ function MagneticPill({
         });
       };
 
-      node.addEventListener("mousemove", handleMove);
-      node.addEventListener("mouseleave", handleLeave);
+      node.addEventListener("pointerenter", handleEnter, { passive: true });
+      node.addEventListener("pointermove", handleMove, { passive: true });
+      node.addEventListener("pointerleave", handleLeave, { passive: true });
 
       return () => {
         if (rafId) cancelAnimationFrame(rafId);
-        node.removeEventListener("mousemove", handleMove);
-        node.removeEventListener("mouseleave", handleLeave);
+        node.removeEventListener("pointerenter", handleEnter);
+        node.removeEventListener("pointermove", handleMove);
+        node.removeEventListener("pointerleave", handleLeave);
+        gsap.set(node, { x: 0, y: 0, willChange: "auto" });
       };
     },
-    { scope: ref }
+    { scope: ref, dependencies: [enabled] }
   );
 
   return (
@@ -98,6 +105,8 @@ export default function Footer({ locale }: { locale: Locale }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [pointerFine, setPointerFine] = useState(false);
+  const [inView, setInView] = useState(false);
   const year = new Date().getFullYear();
   const t = dictionaries[locale].footer;
 
@@ -108,6 +117,27 @@ export default function Footer({ locale }: { locale: Locale }) {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  React.useEffect(() => {
+    setPointerFine(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  React.useEffect(() => {
+    const node = wrapperRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px", threshold: 0.01 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const magneticEnabled = pointerFine && !reducedMotion;
+  const decorativeMotionActive = inView && !reducedMotion;
 
   useGSAP(
     () => {
@@ -137,7 +167,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           trigger: wrapperRef.current,
           start: "top 80%",
           end: "bottom bottom",
-          scrub: 1,
+          scrub: true,
         },
       });
 
@@ -190,7 +220,10 @@ export default function Footer({ locale }: { locale: Locale }) {
       <div className={styles.spacer} aria-hidden="true" />
       <div ref={wrapperRef} className={styles.curtain}>
         <footer className={styles.footer}>
-          <div className={styles.aurora} aria-hidden="true" />
+          <div
+            className={`${styles.aurora} ${!decorativeMotionActive ? styles.auroraPaused : ""}`}
+            aria-hidden="true"
+          />
           <div className={styles.grid} aria-hidden="true" />
 
           <div ref={giantTextRef} className={styles.giantText} aria-hidden="true">
@@ -198,12 +231,14 @@ export default function Footer({ locale }: { locale: Locale }) {
           </div>
 
           <div className={styles.marqueeStrip} aria-hidden="true">
-            <div className={styles.marqueeTrack}>
+            <div
+              className={`${styles.marqueeTrack} ${!decorativeMotionActive ? styles.marqueeTrackPaused : ""}`}
+            >
               {[0, 1].map((repeat) => (
                 <div className={styles.marqueeItem} key={repeat}>
                   {t.marquee.map((item, index) => (
                     <React.Fragment key={`${repeat}-${item}`}>
-                      <span>{item}</span>
+                      <span lang={locale}>{item}</span>
                       {index < t.marquee.length - 1 && (
                         <span className={styles.marqueeDot}>&#10022;</span>
                       )}
@@ -215,7 +250,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </div>
 
           <div className={styles.center}>
-            <h2 ref={headingRef} className={styles.heading}>
+            <h2 ref={headingRef} className={styles.heading} lang={locale}>
               {t.heading}
             </h2>
 
@@ -224,6 +259,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                 <MagneticPill
                   href={`/${locale}#contact`}
                   className={`${styles.pill} ${styles.pillPrimary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.primaryCta}
                   <ArrowUpRight size={18} strokeWidth={2} />
@@ -231,6 +267,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                 <MagneticPill
                   href={`/${locale}#projects`}
                   className={`${styles.pill} ${styles.pillPrimary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.secondaryCta}
                   <ArrowUpRight size={18} strokeWidth={2} />
@@ -241,36 +278,42 @@ export default function Footer({ locale }: { locale: Locale }) {
                 <MagneticPill
                   href={`/${locale}#about`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.nav.about}
                 </MagneticPill>
                 <MagneticPill
                   href={`/${locale}#services`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.nav.services}
                 </MagneticPill>
                 <MagneticPill
                   href={`/${locale}#projects`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.nav.projects}
                 </MagneticPill>
                 <MagneticPill
                   href={`/${locale}#contact`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.nav.contact}
                 </MagneticPill>
                 <MagneticPill
                   href={`/${locale}/legal/privacy`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.legal.privacy}
                 </MagneticPill>
                 <MagneticPill
                   href={`/${locale}/legal/terms`}
                   className={`${styles.pill} ${styles.pillSecondary}`}
+                  enabled={magneticEnabled}
                 >
                   {t.legal.terms}
                 </MagneticPill>

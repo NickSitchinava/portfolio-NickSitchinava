@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Mail, MessageCircle, type LucideIcon } from "lucide-react";
 import { siInstagram } from "simple-icons";
@@ -53,12 +53,19 @@ function ReachOutCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [glowEnabled, setGlowEnabled] = useState(false);
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
   const glowOpacity = useMotionValue(0);
 
+  useEffect(() => {
+    setGlowEnabled(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  const glowActive = glowEnabled && !prefersReducedMotion;
+
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion) return;
+    if (!glowActive) return;
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
     glowX.set(((e.clientX - rect.left) / rect.width) * 100);
@@ -72,10 +79,10 @@ function ReachOutCard({
       ref={cardRef}
       className={styles.reachCard}
       onPointerMove={handlePointerMove}
-      onPointerEnter={() => !prefersReducedMotion && glowOpacity.set(1)}
-      onPointerLeave={() => !prefersReducedMotion && glowOpacity.set(0)}
+      onPointerEnter={() => glowActive && glowOpacity.set(1)}
+      onPointerLeave={() => glowActive && glowOpacity.set(0)}
     >
-      {!prefersReducedMotion && (
+      {glowActive && (
         <motion.div
           className={styles.reachGlow}
           aria-hidden="true"
@@ -144,6 +151,7 @@ export default function Contact({ locale }: { locale: Locale }) {
 
             <motion.h2
               className={styles.heading}
+              lang={locale}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
             >
@@ -152,6 +160,7 @@ export default function Contact({ locale }: { locale: Locale }) {
 
             <motion.p
               className={styles.text}
+              lang={locale}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
             >
@@ -164,7 +173,9 @@ export default function Contact({ locale }: { locale: Locale }) {
               transition={{ duration: 0.5, ease: EASE }}
             >
               <span className={styles.statusDot} aria-hidden="true" />
-              <span className={styles.statusLabel}>{t.statusLabel}</span>
+              <span className={styles.statusLabel} lang={locale}>
+                {t.statusLabel}
+              </span>
             </motion.div>
           </motion.div>
 

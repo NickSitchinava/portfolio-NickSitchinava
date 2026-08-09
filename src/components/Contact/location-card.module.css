@@ -24,6 +24,7 @@
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #202024;
+  contain: layout paint style;
 }
 
 .gradientOverlay {
@@ -138,17 +139,20 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1.25rem;
+  min-width: 0;
 }
 
 .topRow {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .compassIcon {
   color: var(--color-accent);
   filter: drop-shadow(0 0 4px color-mix(in oklch, var(--color-accent) 40%, transparent));
+  flex-shrink: 0;
 }
 
 .statusPill {
@@ -158,6 +162,8 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   padding: 0.3rem 0.6rem;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .statusDot {
@@ -165,6 +171,7 @@
   height: 6px;
   border-radius: 50%;
   background: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .statusLabel {
@@ -174,12 +181,14 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
 }
 
 .bottomBlock {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  min-width: 0;
 }
 
 .locationName {
@@ -189,6 +198,7 @@
   letter-spacing: -0.01em;
   color: #ffffff;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .coordinates {
@@ -197,6 +207,7 @@
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: break-word;
 }
 
 .underline {
@@ -228,5 +239,52 @@
   .gridPattern,
   .underline {
     transition: none !important;
+  }
+}
+
+@media (hover: none) {
+  .perspectiveWrap {
+    perspective: none;
+  }
+
+  .hint {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .perspectiveWrap {
+    max-width: none;
+    min-height: 240px;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .statusLabel {
+    font-size: 0.58rem;
+  }
+
+  .locationName {
+    font-size: 0.9rem;
+  }
+
+  .coordinates {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .perspectiveWrap {
+    min-height: 210px;
+  }
+
+  .topRow {
+    gap: 0.5rem;
+  }
+
+  .statusPill {
+    padding: 0.28rem 0.5rem;
   }
 }

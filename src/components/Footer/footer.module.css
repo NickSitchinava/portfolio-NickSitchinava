@@ -23,7 +23,6 @@
   background: #0a0a0c;
   color: #f5f5f7;
   font-family: var(--font-body);
-  contain: layout paint;
 }
 
 .aurora {
@@ -45,6 +44,10 @@
   );
   will-change: transform, opacity;
   animation: breathe 8s ease-in-out infinite alternate;
+}
+
+.auroraPaused {
+  animation-play-state: paused;
 }
 
 @keyframes breathe {
@@ -118,6 +121,7 @@
   padding: 1rem 0;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   isolation: isolate;
+  contain: layout paint style;
 }
 
 .marqueeTrack {
@@ -134,6 +138,10 @@
   backface-visibility: hidden;
 }
 
+.marqueeTrackPaused {
+  animation-play-state: paused;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0) translateZ(0);
@@ -148,10 +156,16 @@
   align-items: center;
   gap: 3rem;
   padding: 0 1.5rem;
+  min-width: 0;
+}
+
+.marqueeItem span {
+  white-space: nowrap;
 }
 
 .marqueeDot {
   color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .center {
@@ -167,6 +181,7 @@
   margin: 0 auto;
   margin-top: 5rem;
   padding: 0 1.5rem;
+  min-width: 0;
 }
 
 .heading {
@@ -187,6 +202,9 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   will-change: transform, opacity;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  max-width: 100%;
 }
 
 .actions {
@@ -196,6 +214,7 @@
   align-items: center;
   gap: 1.5rem;
   will-change: transform, opacity;
+  min-width: 0;
 }
 
 .primaryRow {
@@ -292,6 +311,8 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .craftedBadge {
@@ -303,6 +324,7 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 0.65rem 1.35rem;
   cursor: default;
+  flex-shrink: 0;
 }
 
 .craftedText {
@@ -312,6 +334,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
 }
 
 .heart {
@@ -368,6 +391,7 @@
 
   .copyright {
     order: 1;
+    text-align: left;
   }
 
   .craftedBadge {
@@ -390,12 +414,180 @@
   }
 }
 
+@media (hover: none) {
+  .pill:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .pill:active {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+  }
+
+  .pillSecondary:hover {
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .pillSecondary:active {
+    color: #ffffff;
+  }
+
+  .backToTop:hover {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .backToTop:hover svg {
+    transform: none;
+  }
+
+  .backToTop:active {
+    color: #ffffff;
+  }
+
+  .backToTop:active svg {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 900px) {
+  .aurora {
+    width: 110vw;
+    height: 50vh;
+    filter: blur(40px);
+  }
+
+  .giantText {
+    font-size: 26vw;
+  }
+
+  .center {
+    margin-top: 4rem;
+  }
+
+  .heading {
+    margin-bottom: 2.25rem;
+  }
+}
+
 @media (max-width: 640px) {
+  .footer {
+    justify-content: flex-end;
+  }
+
+  .aurora {
+    width: 140vw;
+    height: 42vh;
+    filter: blur(28px);
+  }
+
+  .grid {
+    background-size: 44px 44px;
+  }
+
   .giantText {
     font-size: 30vw;
+    bottom: -3vh;
   }
 
   .spacer {
     height: 12vh;
+  }
+
+  .marqueeStrip {
+    top: 2rem;
+    padding: 0.75rem 0;
+    transform: rotate(-2deg) scale(1.22) translateZ(0);
+  }
+
+  .marqueeTrack {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .marqueeItem {
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .center {
+    margin-top: 3.25rem;
+    padding: 0 1.25rem;
+  }
+
+  .heading {
+    font-size: clamp(1.9rem, 8.5vw, 2.75rem);
+    margin-bottom: 1.75rem;
+    line-height: 1.12;
+    hyphens: auto;
+  }
+
+  .actions {
+    gap: 1.1rem;
+  }
+
+  .primaryRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .pillPrimary {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .secondaryRow {
+    gap: 0.5rem;
+  }
+
+  .pillSecondary {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.74rem;
+  }
+
+  .bottomBar {
+    gap: 1.1rem;
+    padding: 0 1.25rem 2rem;
+  }
+
+  .craftedText {
+    font-size: 0.65rem;
+  }
+
+  .craftedBadge {
+    padding: 0.55rem 1.1rem;
+  }
+
+  .backToTop {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 400px) {
+  .heading {
+    font-size: clamp(1.65rem, 9.5vw, 2.2rem);
+  }
+
+  .pillSecondary {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.95rem;
+  }
+
+  .copyright {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
   }
 }
