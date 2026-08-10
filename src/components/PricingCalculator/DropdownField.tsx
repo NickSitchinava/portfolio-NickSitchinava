@@ -73,14 +73,26 @@ export function DropdownField({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
-    const handleReposition = () => computeCoords();
+
+    let rafId = 0;
+    const handleReposition = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        computeCoords();
+        rafId = 0;
+      });
+    };
 
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("resize", handleReposition);
-    window.addEventListener("scroll", handleReposition, true);
+    window.addEventListener("resize", handleReposition, { passive: true });
+    window.addEventListener("scroll", handleReposition, {
+      passive: true,
+      capture: true,
+    });
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", handleReposition);

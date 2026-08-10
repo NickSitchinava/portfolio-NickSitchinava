@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import GradualBlur from "./gradual-blur";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -29,23 +29,29 @@ export default function PageBottomBlur() {
   }, []);
 
   return (
-    <motion.div
-      initial={false}
-      animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.6, ease: EASE }}
-      style={{ pointerEvents: "none" }}
-      aria-hidden="true"
-    >
-      <GradualBlur
-        target="page"
-        position="bottom"
-        height="7rem"
-        strength={2}
-        divCount={5}
-        curve="bezier"
-        exponential
-        opacity={1}
-      />
-    </motion.div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="page-bottom-blur"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ pointerEvents: "none" }}
+          aria-hidden="true"
+        >
+          <GradualBlur
+            target="page"
+            position="bottom"
+            height="7rem"
+            strength={2}
+            divCount={5}
+            curve="bezier"
+            exponential
+            opacity={1}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

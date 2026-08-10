@@ -2,8 +2,6 @@
   position: relative;
   background: var(--color-bg);
   padding: clamp(5rem, 10vw, 8rem) 1.5rem;
-  content-visibility: auto;
-  contain-intrinsic-size: 1200px;
 }
 
 .inner {
