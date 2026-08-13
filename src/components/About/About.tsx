@@ -226,6 +226,7 @@ export default function About({ locale = "en" }: AboutProps) {
   const t: AboutContent = content[locale];
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
+  const [hasEnteredView, setHasEnteredView] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
 
@@ -259,13 +260,17 @@ export default function About({ locale = "en" }: AboutProps) {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      setHasEnteredView(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
+        setInView(entry.isIntersecting);
         if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
+          setHasEnteredView(true);
         }
       },
       { rootMargin: "200px" }
@@ -332,11 +337,11 @@ export default function About({ locale = "en" }: AboutProps) {
                   <span key={stat.label} className={styles.statCell}>
                     <span className={styles.statNumber}>
                       {stat.kind === "count" ? (
-                        <AnimatedCount stat={stat} active={inView} reduceMotion={reduceMotion} />
+                        <AnimatedCount stat={stat} active={hasEnteredView} reduceMotion={reduceMotion} />
                       ) : (
                         <BilingualToggle
                           values={stat.toggleValues ?? []}
-                          active={inView}
+                          active={hasEnteredView}
                           reduceMotion={reduceMotion}
                         />
                       )}

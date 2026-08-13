@@ -411,20 +411,11 @@ export default function MeshText(props: MeshTextProps) {
         window.addEventListener("pointerleave", onLeave);
 
         let rafId = 0;
-        let idleFrames = 0;
 
         const tick = () => {
             if (!inViewRef.current) {
-                const anyDisplacement = disp.some((v) => Math.abs(v) > 0.001);
-                if (!anyDisplacement) {
-                    idleFrames++;
-                    if (idleFrames > 5) {
-                        rafId = requestAnimationFrame(tick);
-                        return;
-                    }
-                }
-            } else {
-                idleFrames = 0;
+                rafId = requestAnimationFrame(tick);
+                return;
             }
 
             cursor.vx *= 0.94;

@@ -49,6 +49,7 @@ export default function InkReveal({
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
   const dimsRef = useRef({ w: 0, h: 0 });
   const idleSinceRef = useRef<number | null>(null);
+  const inViewRef = useRef(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [fineOnly, setFineOnly] = useState(true);
 
@@ -71,6 +72,23 @@ export default function InkReveal({
   }, []);
 
   const skipMask = reducedMotion || !fineOnly;
+
+  useEffect(() => {
+    if (skipMask) return;
+    const canvas = canvasRef.current;
+    if (!canvas || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewRef.current = entry.isIntersecting;
+        if (!entry.isIntersecting) {
+          idleSinceRef.current = null;
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, [skipMask]);
 
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -158,6 +176,11 @@ export default function InkReveal({
   const startLoopRef = useRef<() => void>(() => {});
 
   const loop = useCallback(() => {
+    if (!inViewRef.current) {
+      runningRef.current = false;
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -191,6 +214,7 @@ export default function InkReveal({
   }, [carveInk, mc, lifetime, rStart]);
 
   const startLoop = useCallback(() => {
+    if (!inViewRef.current) return;
     if (!runningRef.current) {
       runningRef.current = true;
       requestAnimationFrame(loop);
@@ -214,6 +238,12 @@ export default function InkReveal({
 
     const idleTick = (time: number) => {
       rafId = requestAnimationFrame(idleTick);
+
+      if (!inViewRef.current) {
+        idleSinceRef.current = null;
+        return;
+      }
+
       if (idleSinceRef.current === null) {
         idleSinceRef.current = time;
         return;
